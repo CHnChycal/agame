@@ -50,7 +50,8 @@ int main()
 	while (true)
 	{
 		cin >> choice;
-		if (cin.fail() || choice < 0 || choice > 2) {//出错时清除输入流
+		if (cin.fail() || choice < 0 || choice > 2)
+		{//出错时清除输入流
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
 			cout << endl << endl << '\t' << '\t' << '\t' << '\t' << "输入了错误的序号，请重新输入" << endl;

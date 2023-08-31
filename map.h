@@ -2,8 +2,10 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include <string>
 #include <vector>
+#include <string>
+
+using namespace std;
 
 class Map {
 public:
@@ -16,7 +18,7 @@ public:
     void enterHospital();
     void goToOtherCity();
     void exitGame();
-    void visitLocation();
+    void visitLocation(int i);
 
 private:
     struct City {

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+using namespace std;
 
 Map::Map() : currentLocation("紫瑾市"), gymBadges(0) {
     cities[0] = { "紫瑾市", {"斧炎镇", "琉璃岛"}, true };
@@ -23,7 +24,6 @@ void Map::showMap() {
     displayOptions();
 }
 
-
 void Map::exploreWilderness() {
     showWilderness();
 
@@ -34,11 +34,11 @@ void Map::challengeGym() {
 }
 
 void Map::enterShop() {
-    visitLocation("商店");
+    visitLocation(1);
 }
 
 void Map::enterHospital() {
-    visitLocation("医院");
+    visitLocation(2);
 }
 
 void Map::goToOtherCity() {
@@ -125,6 +125,8 @@ void Map::encounterPokemon() {
 
 bool Map::checkGymRequirements(const std::string& gymName) {
     // Check if the player meets the requirements to challenge the gym
+    if (0 == 0)return true;
+    else return false;
 }
 
 void Map::battleAndWinBadge(const std::string& gymName) {
@@ -144,4 +146,9 @@ void Map::changeLocation(const std::string& newLocation) {
         }
     }
     currentLocation = newLocation;
+}
+
+void Map::visitLocation(int i)
+{
+
 }

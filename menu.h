@@ -1,26 +1,29 @@
 #ifndef MENU_H
-#define MENY_H
-#include "menu.cpp"
-class menu
+#define MENU_H
+#include <stdio.h>
+#include <iostream>
+#include "map.h"
+#include "player.h"
+class Menu
 {
 private:
-    /* data */
-    int condition;
+    Player player;
 public:
-    menu(/* args */);
-    ~menu();
-    void Gamestart(int i);
+    Menu();
+    ~Menu();
+    Player Gamestart(int i);
+    void Playeredit(Player _player);//ÐÞ¸Äplayer
     void Gamerunning();
+    void Store();
+    void Hospital();
+    void Battle();
+    void PokemonBag();
+    void ItemBag();
+    void Map();
+
+
     
 };
 
-menu::menu()
-{
-}
 
-menu::~menu()
-{
-}
-
-
-#ifndef
+#endif

@@ -118,9 +118,10 @@ int main()
 	//游戏开始运行
 	while (true)
 	{
-		condition = menu.Gamerunning();
+		condition = menu.Gamerunning();//获取游戏状态
 		if (condition == 0)
 		{
+			system("cls");
 			Welcomepage();
 			while (true)
 			{

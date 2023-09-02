@@ -10,8 +10,8 @@ using namespace std;
 class Map {
 public:
     Map();
-
     void showMap();
+    string showLocation();
     void exploreWilderness();
     void challengeGym();
     void enterShop();

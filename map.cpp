@@ -152,3 +152,7 @@ void Map::visitLocation(int i)
 {
 
 }
+string Map::showLocation()
+{
+    return currentLocation;
+}

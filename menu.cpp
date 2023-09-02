@@ -173,14 +173,15 @@ int Menu::Gamerunning()//游戏运行界面
 	while(true)
 	{ 
 		system("cls");
-		MonsterBag* mbp = MonsterBag::Getinstance();
+		//MonsterBag* mbp = MonsterBag::Getinstance();
 		for (int i = 0; i < 4; i++)
 			cout << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;
-		cout << "你现在处于" << "" << endl;
+		cout << "你现在处于 " << map.showLocation() << endl;
+		cout << "这里有 " << endl;
 		cout << player.Showname() << " 训练师您好，今天想要做些什么呢?" << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;
-		cout << "Tip:离开游戏前请存档\n1查看地图（进行探索）\n2检查道具背包\n3检查宝可梦腰包\n4存档\n5读取存档\n6返回主菜单\n0退出游戏" << endl;
+		cout << "Tip:离开游戏前请存档\n1查看地图(进行探索)\n2交谈(对战)\n3检查道具背包\n4检查宝可梦腰包\n5存档\n6读取存档\n7返回主菜单\n0退出游戏" << endl;
 
 		int choice;
 		while (true)
@@ -203,18 +204,20 @@ int Menu::Gamerunning()//游戏运行界面
 		case 1://查看地图
 			ShowMap();//展示地图
 			break;
-		case 2://检查道具背包
+		case 2://与npc交谈
 			break;
-		case 3://检查宝可梦背包
-			mbp->Query();
+		case 3://检查道具背包
 			break;
-		case 4://存档
+		case 4://检查宝可梦背包
+			//mbp->Query();
+			break;
+		case 5://存档
 			//save();
 			break;
-		case 5://读取存档
+		case 6://读取存档
 			//load();
 			break;
-		case 6://返回主菜单
+		case 7://返回主菜单
 			return 0;
 			break;
 

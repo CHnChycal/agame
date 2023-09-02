@@ -47,20 +47,55 @@ void MonsterBag::Query()
 	}
 	case 2:
 	{
-		cout << "请选择要放生的宝可梦" << endl;
-		int k;
-		cin >> k;
-		while (k < 0 || k >= size)
-		{
-			cout << "请正确选择宝可梦序号!" << endl;
-			cin >> k;
-		}
-		bag.erase(bag.begin() + k);
+		this->Release();
 	}
 	case 3:
 	{
-		//返回场景******************************************************************************************
+		break;
 	}
 	break;
+	}
+}
+
+void MonsterBag::Add(Monster monster)
+{
+	int size = bag.size();
+	if (size < 6)
+	{
+		bag.push_back(monster);
+		cout << "//////////////////////////////////////////////////////////" << endl;
+		cout << monster.Show_Name() << "已加入宝可梦背包！" << endl;
+	}
+	else
+	{
+		cout << "//////////////////////////////////////////////////////////" << endl;
+		cout << "宝可梦背包已满，请放生部分宝可梦后再捕捉，不要太贪心哦！" << endl;
+	}
+}
+
+void MonsterBag::Release()
+{
+	int size = bag.size();
+	cout << "请选择要放生的宝可梦" << endl;
+	int k;
+	cin >> k;
+	while (k < 0 || k >= size)
+	{
+		cout << "请正确选择宝可梦序号!" << endl;
+		cin >> k;
+	}
+	bag.erase(bag.begin() + k);
+}
+
+Monster MonsterBag::Find()
+{
+	int size = bag.size();
+	for (int i = 0; i < size; i++)
+	{
+		if (bag[i].IsAlive())
+		{
+			return bag[i];
+			break;
+		}
 	}
 }

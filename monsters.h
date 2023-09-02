@@ -25,6 +25,7 @@ public:
 	void M_Attacked(Monster enemy);
 	//void M_Denfense(Monster enemy);
 
+	bool IsAlive();
 	string Show_Name();//返回妖怪名字
 	void Show_Detail();//返回妖怪的详细信息
 private:

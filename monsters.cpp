@@ -500,13 +500,11 @@ void Monster::Meet(int num)//修改为num
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cin >> n;
 	}
-	if (n == 1)
+	switch (n)
 	{
-		this->Fight(enemy);
-	}
-	else if (n == 2)
-	{
-		//返回场景*******************************************************************************
+	case 1:this->Fight(enemy);
+	case 2:break;//想要返回场景的
+		break;
 	}
 }
 
@@ -826,6 +824,11 @@ int Monster::Check(Monster enemy)
 	}
 	break;
 	}
+}
+
+bool Monster::IsAlive()
+{
+	return isAlive;
 }
 
 string Monster::Show_Name()

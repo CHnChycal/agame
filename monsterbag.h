@@ -15,8 +15,8 @@ public:
 	}
 	void Query();//查询背包里的宝可梦
 	//void Detail();//显示宝可梦详细信息
-	void Add();//添加宝可梦
-	void Release();//放生宝可梦
+	//void Add();//添加宝可梦
+	//void Release();//放生宝可梦
 private:
 	MonsterBag();
 	static MonsterBag monsterbag;

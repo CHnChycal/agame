@@ -15,3 +15,7 @@ Player::Player(string _name)//可选构造函数
 {
 	name = _name;
 }
+string Player::Showname()
+{
+	return name;
+}

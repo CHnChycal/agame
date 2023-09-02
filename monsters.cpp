@@ -478,9 +478,9 @@ Monster::Monster(int num,int level)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //探索野外遇到怪物
-void Monster::Meet(int n)
+void Monster::Meet(int num)//修改为num
 {
-	int newlevel = rand() % 10 + n;
+	int newlevel = rand() % 10 + num;
 	int newmonster = rand() % 50;
 	Monster enemy(newmonster, newlevel);
 	cout << "//////////////////////////////////////////////////////////" << endl;

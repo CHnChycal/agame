@@ -3,6 +3,8 @@
 
 #include "menu.h"
 #include "player.h"
+#include "map.h"
+#include "monsterbag.h"
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -161,15 +163,66 @@ Player Menu::Gamestart(int i)
 		return tmp;
 	}
 		
-		;
 }
 void Menu::Playeredit(Player _player)
 {
 	player = _player;
 }
-void Menu::Gamerunning()//游戏运行界面
+int Menu::Gamerunning()//游戏运行界面
 {
-	system("cls");
-}
+	while(true)
+	{ 
+		system("cls");
+		MonsterBag* mbp = MonsterBag::Getinstance();
+		for (int i = 0; i < 4; i++)
+			cout << endl;
+		cout << "/////////////////////////////////////////////////////////" << endl;
+		cout << "你现在处于" << "" << endl;
+		cout << player.Showname() << " 训练师您好，今天想要做些什么呢?" << endl;
+		cout << "/////////////////////////////////////////////////////////" << endl;
+		cout << "Tip:离开游戏前请存档\n1查看地图（进行探索）\n2检查道具背包\n3检查宝可梦腰包\n4存档\n5读取存档\n6返回主菜单\n0退出游戏" << endl;
 
+		int choice;
+		while (true)
+		{
+			cout << ":";
+			cin >> choice;
+			if (cin.fail() || choice < 0 || choice>6)
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "(输入了错误的序号，请重新输入)" << endl;
+			}
+			else break;
+		}
+		switch (choice)
+		{
+		case 0://退出游戏
+			exit(0);
+			break;
+		case 1://查看地图
+			ShowMap();//展示地图
+			break;
+		case 2://检查道具背包
+			break;
+		case 3://检查宝可梦背包
+			mbp->Query();
+			break;
+		case 4://存档
+			//save();
+			break;
+		case 5://读取存档
+			//load();
+			break;
+		case 6://返回主菜单
+			return 0;
+			break;
+
+		}
+	}
+}
+void Menu::ShowMap()
+{
+	map.showMap();
+}
 #endif

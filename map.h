@@ -11,32 +11,36 @@ class Map {
 public:
     Map();
     void showMap();
-    string showLocation();
+   
     void exploreWilderness();
     void challengeGym();
     void enterShop();
     void enterHospital();
-    void goToOtherCity();
+    void goToOtherCity(int& currentLocationIndex,string &currentLocation);
+  
     void exitGame();
     void visitLocation(int i);
+    void displayOptions();
+    string showLocation();
+   
+    void showWilderness();
+    void battleAndWinBadge();
+    void showAvailableCities(int currentLocationindex);
+    void changeLocation(int newLocationIndex, string& currentlocation);
 
 private:
     struct City {
-        std::string name;
-        std::vector<std::string> connectedCities;
-        bool hasGym;
+        int id=1;
+        std::string name="×ÏèªÊÐ";
+
     };
 
     City cities[4];
+    
     std::string currentLocation;
     int gymBadges;
     int currentLocationIndex;
-    void displayOptions();
-    void showWilderness();
-    void encounterPokemon();
-    bool checkGymRequirements(const std::string& gymName);
-    void battleAndWinBadge(const std::string& gymName);
-    void showAvailableCities();
-    void changeLocation(const std::string& newLocation);
+    
+    
 }; 
 #endif

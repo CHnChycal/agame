@@ -188,7 +188,7 @@ int Menu::Gamerunning()//游戏运行界面
 		{
 			cout << ":";
 			cin >> choice;
-			if (cin.fail() || choice < 0 || choice>6)
+			if (cin.fail() || choice < 0 || choice>7)
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
@@ -207,6 +207,7 @@ int Menu::Gamerunning()//游戏运行界面
 		case 2://与npc交谈
 			break;
 		case 3://检查道具背包
+			showBag();
 			break;
 		case 4://检查宝可梦背包
 			//mbp->Query();
@@ -227,5 +228,52 @@ int Menu::Gamerunning()//游戏运行界面
 void Menu::ShowMap()
 {
 	map.showMap();
+}
+void Menu::showBag()
+{
+	int choice;
+	system("cls");
+	cout << "\n\n\n\n";
+	cout << "///////////////////////////////////////////////////////////////" << endl;
+	cout << "红白相间的背包内有序堆放着" << player.Showname() << "平时常用的道具" << endl;
+	cout << "///////////////////////////////////////////////////////////////" << endl;
+	cout << "请输入你想要进行的操作：\n1查看道具\n0合上背包" << endl;
+	while (true)
+	{
+		cout << ":";
+		cin >> choice;
+		if (cin.fail() || choice < 0 || choice>1)
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "(输入了错误的序号，请重新输入)" << endl;
+		}
+		else break;
+	}
+	switch (choice)
+	{
+	case 0://直接结束，返回原代码
+		break;
+	case 1://进入背包界面
+		while (true)
+		{
+			system("cls");
+			cout << "//////////////////////\n" << "//具体的道具如下//\n" << "//////////////////////\n" << "输入道具序号使用/查看:\n";
+			bag.showBags();
+			while (true)
+			{
+				cout << ":";
+				cin >> choice;
+				if (cin.fail() || choice < 0 || choice>8)
+				{
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+					cout << "(输入了错误的序号，请重新输入)" << endl;
+				}
+				else break;
+			}
+		}
+		break;
+	}
 }
 #endif

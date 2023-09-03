@@ -13,8 +13,6 @@ public:
 	Goods(int id);
 	~Goods();
 
-	void showGoods();
-
 	string getName();
 	int getGoodsId();
 	string getDesc();

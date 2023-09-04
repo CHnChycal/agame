@@ -119,6 +119,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bag.cpp" />
+    <ClCompile Include="Goods.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="menu.cpp" />
@@ -127,6 +129,8 @@
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bag.h" />
+    <ClInclude Include="Goods.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="monsterbag.h" />

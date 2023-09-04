@@ -11,9 +11,8 @@ class Map {
 public:
     Map();
     void showMap();
-   
     void exploreWilderness();
-    void challengeGym();
+    void challengeGym(int& gymbadges, int currentLocationIndex);
     void enterShop();
     void enterHospital();
     void goToOtherCity(int& currentLocationIndex,string &currentLocation);

@@ -30,9 +30,31 @@ void Map::exploreWilderness() {
 
 }
 
-void Map::challengeGym() {
-
+void Map::challengeGym(int& gymBadges,int currentLocationIndex)
+{
+    switch (currentLocationIndex) {
+    case 1:cout << "你将挑战紫瑾市的  道馆\n"; break;
+    case 2:if (gymBadges > 0) {
+        cout << "你将挑战斧炎镇的  道馆\n";
+    }
+          else {
+        cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的  道馆";
+    }break;
+    case 3:if (gymBadges > 1) {
+        cout << "你将挑战橙华市的  道馆\n";
+    }
+          else {
+        cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的  道馆";
+    }break;
+    case 4:if(gymBadges > 2) {
+        cout << "你将挑战琉璃岛的  道馆\n";
+    }
+          else {
+         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的  道馆";
+    }break;
+    }
 }
+    
 
 void Map::enterShop() {
     visitLocation(1);
@@ -47,6 +69,10 @@ void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation) {
     showAvailableCities(currentLocationIndex);
     int choice;
     std::cin >> choice;
+    while(choice!=1&&choice!=2) {
+         std::cout << "无效的选择。请重新输入\n";
+         std::cin >> choice;
+    }
     if (currentLocationIndex == 1 && choice == 1) { currentLocationIndex = 2; changeLocation(2,  currentLocation); }
     else if (currentLocationIndex == 1 && choice == 2) { currentLocationIndex = 4; changeLocation(4,currentLocation); }
     else if (currentLocationIndex == 2 && choice == 1) { currentLocationIndex = 1; changeLocation(1, currentLocation); }
@@ -56,7 +82,7 @@ void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation) {
     else if (currentLocationIndex == 4 && choice == 1) { currentLocationIndex = 1; changeLocation(1, currentLocation); }
     else if (currentLocationIndex == 4 && choice == 2) { currentLocationIndex = 3; changeLocation(3, currentLocation); }
     displayOptions();
-}
+ }
 
 
 void Map::exitGame() {
@@ -81,7 +107,7 @@ void Map::displayOptions() {
         exploreWilderness();
         break;
     case 2:
-        challengeGym();
+        challengeGym(gymBadges,currentLocationIndex);
         break;
     case 3:
         enterShop();

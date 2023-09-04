@@ -11,6 +11,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÃîÍÜÖÖ×Ó";
 		Mnature = 4;
+		id = 0;
 		BasValue = 65;
 		BasAttack = 49;
 		BasDefense = 34;
@@ -20,6 +21,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Ð¡»ðÁú";
 		Mnature = 1;
+		id = 1;
 		BasValue = 59;
 		BasAttack = 52;
 		BasDefense = 37;
@@ -29,6 +31,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "½ÜÄá¹ê";
 		Mnature = 2;
+		id = 2;
 		BasValue = 64;
 		BasAttack = 48;
 		BasDefense = 38;
@@ -38,6 +41,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÂÌÃ«³æ";
 		Mnature = 8;
+		id = 3;
 		BasValue = 55;
 		BasAttack = 45;
 		BasDefense = 30;
@@ -47,6 +51,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "°¢°ØÉß";
 		Mnature = 7;
+		id = 4;
 		BasValue = 45;
 		BasAttack = 50;
 		BasDefense = 33;
@@ -56,6 +61,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Æ¤¿¨Çð";
 		Mnature = 3;
+		id = 5;
 		BasValue = 63;
 		BasAttack = 70;
 		BasDefense = 48;
@@ -65,6 +71,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "´©É½Êó";
 		Mnature = 9;
+		id = 6;
 		BasValue = 58;
 		BasAttack = 48;
 		BasDefense = 50;
@@ -74,6 +81,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Æ¤Æ¤";
 		Mnature = 6;
+		id = 7;
 		BasValue = 50;
 		BasAttack = 40;
 		BasDefense = 32;
@@ -83,6 +91,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÅÖ¶¡";
 		Mnature = 0;
+		id = 8;
 		BasValue = 60;
 		BasAttack = 38;
 		BasDefense = 48;
@@ -92,6 +101,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "³¬Òôòð";
 		Mnature = 6;
+		id = 9;
 		BasValue = 56;
 		BasAttack = 51;
 		BasDefense = 30;
@@ -101,6 +111,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "×ßÂ·²Ý";
 		Mnature = 4;
+		id = 10;
 		BasValue = 52;
 		BasAttack = 38;
 		BasDefense = 38;
@@ -110,6 +121,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "µØÊó";
 		Mnature = 9;
+		id = 11;
 		BasValue = 44;
 		BasAttack = 42;
 		BasDefense = 25;
@@ -119,6 +131,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ß÷ß÷";
 		Mnature = 6;
+		id = 12;
 		BasValue = 46;
 		BasAttack = 51;
 		BasDefense = 25;
@@ -128,6 +141,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¿É´ïÑ¼";
 		Mnature = 2;
+		id = 13;
 		BasValue = 53;
 		BasAttack = 39;
 		BasDefense = 36;
@@ -137,6 +151,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¿¨µÙ¹·";
 		Mnature = 9;
+		id = 14;
 		BasValue = 50;
 		BasAttack = 46;
 		BasDefense = 45;
@@ -146,6 +161,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÎÃÏãòòò½";
 		Mnature = 2;
+		id = 15;
 		BasValue = 39;
 		BasAttack = 36;
 		BasDefense = 36;
@@ -155,6 +171,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "À®°ÈÑ¿";
 		Mnature = 4;
+		id = 16;
 		BasValue = 52;
 		BasAttack = 34;
 		BasDefense = 38;
@@ -164,6 +181,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¶¾´ÌË®Ä¸";
 		Mnature = 7;
+		id = 17;
 		BasValue = 46;
 		BasAttack = 48;
 		BasDefense = 39;
@@ -173,6 +191,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Ð¡»ðÂí";
 		Mnature = 1;
+		id = 18;
 		BasValue = 50;
 		BasAttack = 52;
 		BasDefense = 39;
@@ -182,6 +201,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "´ô´ôÊÞ";
 		Mnature = 2;
+		id = 19;
 		BasValue = 64;
 		BasAttack = 54;
 		BasDefense = 42;
@@ -191,6 +211,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "³ô³ôÄà";
 		Mnature = 7;
+		id = 20;
 		BasValue = 68;
 		BasAttack = 36;
 		BasDefense = 47;
@@ -200,6 +221,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Ð¡º£Ê¨";
 		Mnature = 2;
+		id = 21;
 		BasValue = 54;
 		BasAttack = 47;
 		BasDefense = 42;
@@ -209,6 +231,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "´óÑÒÉß";
 		Mnature = 9;
+		id = 22;
 		BasValue = 72;
 		BasAttack = 56;
 		BasDefense = 40;
@@ -218,6 +241,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "À×µçÇò";
 		Mnature = 3;
+		id = 23;
 		BasValue = 52;
 		BasAttack = 47;
 		BasDefense = 35;
@@ -227,6 +251,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "±¦Ê¯º£ÐÇ";
 		Mnature = 2;
+		id = 24;
 		BasValue = 65;
 		BasAttack = 41;
 		BasDefense = 50;
@@ -236,6 +261,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¼±¶³Äñ";
 		Mnature = 5;
+		id = 25;
 		BasValue = 54;
 		BasAttack = 52;
 		BasDefense = 41;
@@ -245,6 +271,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "»ðÑæÄñ";
 		Mnature = 1;
+		id = 26;
 		BasValue = 54;
 		BasAttack = 52;
 		BasDefense = 41;
@@ -254,6 +281,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÉÁµçÄñ";
 		Mnature = 3;
+		id = 27;
 		BasValue = 54;
 		BasAttack = 52;
 		BasDefense = 41;
@@ -263,6 +291,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÔÂ¹ðÒ¶";
 		Mnature = 4;
+		id = 28;
 		BasValue = 60;
 		BasAttack = 41;
 		BasDefense = 43;
@@ -272,6 +301,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "»ðÒÁ²¼";
 		Mnature = 1;
+		id = 29;
 		BasValue = 65;
 		BasAttack = 55;
 		BasDefense = 45;
@@ -281,6 +311,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Ë®ÒÁ²¼";
 		Mnature = 2;
+		id = 30;
 		BasValue = 65;
 		BasAttack = 55;
 		BasDefense = 45;
@@ -290,6 +321,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "À×ÒÁ²¼";
 		Mnature = 3;
+		id = 31;
 		BasValue = 65;
 		BasAttack = 55;
 		BasDefense = 45;
@@ -299,6 +331,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "È¦È¦ÐÜ";
 		Mnature = 0;
+		id = 32;
 		BasValue = 60;
 		BasAttack = 50;
 		BasDefense = 48;
@@ -308,6 +341,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÈÛÑÒ³æ";
 		Mnature = 1;
+		id = 33;
 		BasValue = 48;
 		BasAttack = 62;
 		BasDefense = 42;
@@ -317,6 +351,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¶¾·Ûµû";
 		Mnature = 7;
+		id = 34;
 		BasValue = 46;
 		BasAttack = 61;
 		BasDefense = 37;
@@ -326,6 +361,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "³¤³áÅ¸";
 		Mnature = 6;
+		id = 35;
 		BasValue = 52;
 		BasAttack = 47;
 		BasDefense = 36;
@@ -335,6 +371,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÓÅÑÅÃ¨";
 		Mnature = 0;
+		id = 36;
 		BasValue = 56;
 		BasAttack = 52;
 		BasDefense = 42;
@@ -344,6 +381,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÕýµçÅÄÅÄ";
 		Mnature = 3;
+		id = 37;
 		BasValue = 60;
 		BasAttack = 50;
 		BasDefense = 40;
@@ -353,6 +391,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¸ºµçÅÄÅÄ";
 		Mnature = 3;
+		id = 38;
 		BasValue = 60;
 		BasAttack = 40;
 		BasDefense = 50;
@@ -362,6 +401,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "¾ÞÑÀöè";
 		Mnature = 2;
+		id = 39;
 		BasValue = 64;
 		BasAttack = 65;
 		BasDefense = 40;
@@ -371,6 +411,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÈÜÊ³ÊÞ";
 		Mnature = 7;
+		id = 40;
 		BasValue = 55;
 		BasAttack = 55;
 		BasDefense = 55;
@@ -380,6 +421,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Åç»ðÍÕ";
 		Mnature = 1;
+		id = 41;
 		BasValue = 68;
 		BasAttack = 60;
 		BasDefense = 45;
@@ -389,6 +431,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÆßÏ¦ÇàÄñ";
 		Mnature = 6;
+		id = 42;
 		BasValue = 55;
 		BasAttack = 50;
 		BasDefense = 55;
@@ -398,6 +441,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÔÂÊ¯";
 		Mnature = 9;
+		id = 43;
 		BasValue = 60;
 		BasAttack = 50;
 		BasDefense = 50;
@@ -407,6 +451,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Ì«ÑôÑÒ";
 		Mnature = 9;
+		id = 44;
 		BasValue = 60;
 		BasAttack = 65;
 		BasDefense = 55;
@@ -416,6 +461,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "É³Ä®òßòÑ";
 		Mnature = 6;
+		id = 45;
 		BasValue = 57;
 		BasAttack = 47;
 		BasDefense = 47;
@@ -425,6 +471,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "Ñ©Í¯×Ó";
 		Mnature = 5;
+		id = 46;
 		BasValue = 59;
 		BasAttack = 49;
 		BasDefense = 43;
@@ -434,6 +481,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "º£±ªÇò";
 		Mnature = 5;
+		id = 47;
 		BasValue = 65;
 		BasAttack = 48;
 		BasDefense = 46;
@@ -443,6 +491,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "ÈýÃÛ·ä";
 		Mnature = 8;
+		id = 48;
 		BasValue = 60;
 		BasAttack = 53;
 		BasDefense = 37;
@@ -452,6 +501,7 @@ Monster::Monster(int num,int level)
 	{
 		Mname = "°Ù×ãòÚò¼";
 		Mnature = 8;
+		id = 49;
 		BasValue = 58;
 		BasAttack = 52;
 		BasDefense = 43;
@@ -834,6 +884,26 @@ bool Monster::IsAlive()
 string Monster::Show_Name()
 {
 	return this->Mname;
+}
+
+int Monster::Id()
+{
+	return id;
+}
+
+int Monster::CURValue()
+{
+	return CurValue;
+}
+
+int Monster::CURLevel()
+{
+	return CurLevel;
+}
+
+int Monster::CURExper()
+{
+	return CurExper;
 }
 
 void Monster::Show_Detail()

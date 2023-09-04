@@ -26,10 +26,15 @@ public:
 	//void M_Denfense(Monster enemy);
 
 	bool IsAlive();
-	string Show_Name();//返回妖怪名字
-	void Show_Detail();//返回妖怪的详细信息
+	string Show_Name();	//返回妖怪名字
+	int Id();			//返回妖怪的id
+	int CURValue();		//返回妖怪当前血量
+	int CURLevel();		//返回妖怪的当前等级
+	int CURExper();		//返回妖怪的当前经验值
+	void Show_Detail();	//返回妖怪的详细信息
 private:
 	string Mname;		//妖怪名字
+	int id;				//创建宝可梦时的id
 	int Mnature;		//妖怪属性
 	//属性表示：0（一般）、1（火）、2（水）、3（电）、4（草）、5（冰）、6（飞行）、7（毒）、8（虫）、9（岩石）
 	bool isAlive;		//妖怪是否活着

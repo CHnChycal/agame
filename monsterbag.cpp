@@ -2,6 +2,7 @@
 
 #include"monsterbag.h"
 
+MonsterBag* MonsterBag::monsterbag = new MonsterBag();
 void MonsterBag::Query()
 {
 	int size = bag.size();

@@ -6,12 +6,12 @@
 #include"monsters.h"
 #include<vector>
 
-//单例模式，怪物背包只需要一个
-class MonsterBag {
+using namespace std;
+class MonsterBag{
 public:
 	static MonsterBag* Getinstance()
 	{
-		return &monsterbag;
+		return monsterbag;
 	}
 	void Query();//查询背包里的宝可梦
 	//void Detail();//显示宝可梦详细信息
@@ -19,8 +19,9 @@ public:
 	void Release();//放生宝可梦
 	Monster Find();//查找背包里第一只状态为活着的宝可梦，一般用在战斗开始以及过程中有宝可梦阵亡切换宝可梦（
 private:
-	MonsterBag();
-	static MonsterBag monsterbag;
+	MonsterBag(){}
+	static MonsterBag* monsterbag;
 	vector<Monster> bag;
 };
+
 #endif

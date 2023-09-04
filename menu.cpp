@@ -173,7 +173,7 @@ int Menu::Gamerunning()//游戏运行界面
 	while(true)
 	{ 
 		system("cls");
-		//MonsterBag* mbp = MonsterBag::Getinstance();
+		MonsterBag* bag = MonsterBag::Getinstance();
 		for (int i = 0; i < 4; i++)
 			cout << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;

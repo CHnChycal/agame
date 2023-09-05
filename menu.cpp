@@ -21,7 +21,7 @@ Menu::~Menu()
 Player Menu::Gamestart(int i) 
 {
 	string name;
-
+	MonsterBag* mbp = MonsterBag::Getinstance();
 	system("cls");
 	if (i == 1)//创建新游戏，自定义姓名和获取御三家
 	{
@@ -134,6 +134,7 @@ Player Menu::Gamestart(int i)
 			}
 			cout << endl;
 			break;
+			choice = 1;
 		case 2:
 			text = "(你选择了妙蛙种子)";
 			for (int i = 0; i < text.length(); i++)
@@ -142,6 +143,7 @@ Player Menu::Gamestart(int i)
 				cout << text[i];
 			}
 			cout << endl;
+			choice = 0;
 			break;
 		case 3:
 			text = "(你选择了杰尼龟)";
@@ -151,9 +153,12 @@ Player Menu::Gamestart(int i)
 				cout << text[i];
 			}
 			cout << endl;
+			choice = 2;
 			break;
 		}
 		cout << "(新的存档已创建，如需保存，请在游戏内保存)" << endl;
+		Monster ms(choice,1);
+		mbp->Add(ms);
 		system("pause");
 		Player tmp(name);
 		return tmp;
@@ -173,7 +178,7 @@ int Menu::Gamerunning()//游戏运行界面
 	while(true)
 	{ 
 		system("cls");
-		MonsterBag* bag = MonsterBag::Getinstance();
+		MonsterBag* mbp = MonsterBag::Getinstance();
 		for (int i = 0; i < 4; i++)
 			cout << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;
@@ -210,7 +215,7 @@ int Menu::Gamerunning()//游戏运行界面
 			showBag();
 			break;
 		case 4://检查宝可梦背包
-			//mbp->Query();
+			mbp->Query();
 			break;
 		case 5://存档
 			//save();
@@ -275,5 +280,24 @@ void Menu::showBag()
 		}
 		break;
 	}
+}
+void Menu::save()
+{
+	ofstream filePlayer("SavePlayer.dat", ios_base::binary);
+	ofstream fileMap("SaveMap.dat", ios_base::binary);
+	ofstream fileBag("SaveBag.dat", ios_base::binary);
+	ofstream fileMonster("SaveMonster.dat", ios_base::binary);
+
+	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
+	{
+		cout << "无法打开保存文件!\n保存失败！" << endl;
+		system("pause");
+
+	}
+	else
+	{
+
+	}
+
 }
 #endif

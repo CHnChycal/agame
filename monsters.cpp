@@ -16,6 +16,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 49;
 		BasDefense = 34;
 		BasSpeed = 45;
+		break;
 	}
 	case 1: //火
 	{
@@ -26,6 +27,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 37;
 		BasSpeed = 65;
+		break;
 	}
 	case 2://水
 	{
@@ -36,6 +38,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 38;
 		BasSpeed = 43;
+		break;
 	}
 	case 3://虫
 	{
@@ -46,6 +49,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 45;
 		BasDefense = 30;
 		BasSpeed = 45;
+		break;
 	}
 	case 4://毒
 	{
@@ -56,6 +60,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 33;
 		BasSpeed = 55;
+		break;
 	}
 	case 5://电
 	{
@@ -66,6 +71,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 70;
 		BasDefense = 48;
 		BasSpeed = 90;
+		break;
 	}
 	case 6://岩石
 	{
@@ -76,6 +82,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 50;
 		BasSpeed = 40;
+		break;
 	}
 	case 7://飞行
 	{
@@ -86,6 +93,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 40;
 		BasDefense = 32;
 		BasSpeed = 44;
+		break;
 	}
 	case 8://一般
 	{
@@ -96,6 +104,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 38;
 		BasDefense = 48;
 		BasSpeed = 38;
+		break;
 	}
 	case 9://飞行
 	{
@@ -106,6 +115,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 51;
 		BasDefense = 30;
 		BasSpeed = 49;
+		break;
 	}
 	case 10://草
 	{
@@ -116,6 +126,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 38;
 		BasDefense = 38;
 		BasSpeed = 40;
+		break;
 	}
 	case 11://岩石
 	{
@@ -126,6 +137,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 42;
 		BasDefense = 25;
 		BasSpeed = 78;
+		break;
 	}
 	case 12://一般
 	{
@@ -136,6 +148,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 51;
 		BasDefense = 25;
 		BasSpeed = 62;
+		break;
 	}
 	case 13://水
 	{
@@ -146,6 +159,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 39;
 		BasDefense = 36;
 		BasSpeed = 39;
+		break;
 	}
 	case 14://岩石
 	{
@@ -156,6 +170,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 46;
 		BasDefense = 45;
 		BasSpeed = 40;
+		break;
 	}
 	case 15://水
 	{
@@ -166,6 +181,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 36;
 		BasDefense = 36;
 		BasSpeed = 40;
+		break;
 	}
 	case 16://草
 	{
@@ -176,6 +192,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 34;
 		BasDefense = 38;
 		BasSpeed = 36;
+		break;
 	}
 	case 17://毒
 	{
@@ -186,6 +203,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 39;
 		BasSpeed = 37;
+		break;
 	}
 	case 18://火
 	{
@@ -196,6 +214,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 39;
 		BasSpeed = 53;
+		break;
 	}
 	case 19://水
 	{
@@ -206,6 +225,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 54;
 		BasDefense = 42;
 		BasSpeed = 30;
+		break;
 	}
 	case 20://毒
 	{
@@ -216,6 +236,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 36;
 		BasDefense = 47;
 		BasSpeed = 28;
+		break;
 	}
 	case 21://水
 	{
@@ -226,6 +247,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 42;
 		BasSpeed = 44;
+		break;
 	}
 	case 22://岩石
 	{
@@ -236,6 +258,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 56;
 		BasDefense = 40;
 		BasSpeed = 60;
+		break;
 	}
 	case 23://电
 	{
@@ -246,6 +269,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 35;
 		BasSpeed = 66;
+		break;
 	}
 	case 24://水
 	{
@@ -256,6 +280,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 41;
 		BasDefense = 50;
 		BasSpeed = 39;
+		break;
 	}
 	case 25://冰
 	{
@@ -266,6 +291,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 41;
 		BasSpeed = 66;
+		break;
 	}
 	case 26://火
 	{
@@ -276,6 +302,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 41;
 		BasSpeed = 66;
+		break;
 	}
 	case 27://电
 	{
@@ -286,6 +313,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 41;
 		BasSpeed = 66;
+		break;
 	}
 	case 28://草
 	{
@@ -296,6 +324,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 41;
 		BasDefense = 43;
 		BasSpeed = 45;
+		break;
 	}
 	case 29://火
 	{
@@ -306,6 +335,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 45;
 		BasSpeed = 55;
+		break;
 	}
 	case 30://水
 	{
@@ -316,6 +346,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 45;
 		BasSpeed = 55;
+		break;
 	}
 	case 31://电
 	{
@@ -326,6 +357,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 45;
 		BasSpeed = 55;
+		break;
 	}
 	case 32://一般
 	{
@@ -336,6 +368,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 48;
 		BasSpeed = 37;
+		break;
 	}
 	case 33://火
 	{
@@ -346,6 +379,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 62;
 		BasDefense = 42;
 		BasSpeed = 39;
+		break;
 	}
 	case 34://毒
 	{
@@ -356,6 +390,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 61;
 		BasDefense = 37;
 		BasSpeed = 53;
+		break;
 	}
 	case 35://飞行
 	{
@@ -366,6 +401,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 36;
 		BasSpeed = 67;
+		break;
 	}
 	case 36://一般
 	{
@@ -376,6 +412,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 42;
 		BasSpeed = 60;
+		break;
 	}
 	case 37://电
 	{
@@ -386,6 +423,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 40;
 		BasSpeed = 50;
+		break;
 	}
 	case 38://电
 	{
@@ -396,6 +434,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 40;
 		BasDefense = 50;
 		BasSpeed = 50;
+		break;
 	}
 	case 39://水
 	{
@@ -406,6 +445,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 65;
 		BasDefense = 40;
 		BasSpeed = 60;
+		break;
 	}
 	case 40://毒
 	{
@@ -416,6 +456,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 55;
 		BasSpeed = 55;
+		break;
 	}
 	case 41://火
 	{
@@ -426,6 +467,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 60;
 		BasDefense = 45;
 		BasSpeed = 40;
+		break;
 	}
 	case 42://飞行
 	{
@@ -436,6 +478,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 55;
 		BasSpeed = 60;
+		break;
 	}
 	case 43://岩石
 	{
@@ -446,6 +489,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 50;
 		BasSpeed = 80;
+		break;
 	}
 	case 44://岩石
 	{
@@ -456,6 +500,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 65;
 		BasDefense = 55;
 		BasSpeed = 50;
+		break;
 	}
 	case 45://飞行
 	{
@@ -466,6 +511,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 47;
 		BasSpeed = 72;
+		break;
 	}
 	case 46://冰
 	{
@@ -476,6 +522,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 49;
 		BasDefense = 43;
 		BasSpeed = 44;
+		break;
 	}
 	case 47://冰
 	{
@@ -486,6 +533,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 46;
 		BasSpeed = 38;
+		break;
 	}
 	case 48://虫
 	{
@@ -496,6 +544,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 53;
 		BasDefense = 37;
 		BasSpeed = 66;
+		break;
 	}
 	case 49://虫
 	{
@@ -506,8 +555,8 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 43;
 		BasSpeed = 70;
+		break;
 	}
-	break;
 	}
 	CurLevel = level;
 	MaxValue = CurLevel * 5 + BasValue;
@@ -872,7 +921,6 @@ int Monster::Check(Monster enemy)
 			return 1;
 		}
 	}
-	break;
 	}
 }
 

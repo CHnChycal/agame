@@ -260,24 +260,7 @@ void Menu::showBag()
 	case 0://直接结束，返回原代码
 		break;
 	case 1://进入背包界面
-		while (true)
-		{
-			system("cls");
-			cout << "//////////////////////\n" << "//具体的道具如下//\n" << "//////////////////////\n" << "输入道具序号使用/查看:\n";
-			bag.showBags();
-			while (true)
-			{
-				cout << ":";
-				cin >> choice;
-				if (cin.fail() || choice < 0 || choice>8)
-				{
-					cin.clear();
-					cin.ignore(INT_MAX, '\n');
-					cout << "(输入了错误的序号，请重新输入)" << endl;
-				}
-				else break;
-			}
-		}
+		bag.showbag();
 		break;
 	}
 }
@@ -300,7 +283,7 @@ void Menu::save()
 
 		fileMap << map.showIndex() << " ";
 
-		fileBag <<bag
+		
 	}
 
 }

@@ -2,33 +2,19 @@
 #ifndef BAG_H
 #define BAG_H
 
-#include<map>
 #include"Goods.h"
-
+#include<vector>
 class Bag {
 public:
-	Bag();
-	~Bag();
-
-	void showBags();
-	void showGoods(int* goodsId, int* num);
-	void showGoods(int goodsId, int num);  //重载应对两种情况
-	int getGoodsNum();                     //得到背包物品的数量
-	int getWhichGoodsId(int whichGoods);   //得到背包第whichGoods件物品的Id
-	int getWhichGoodsNum(int whichGoods);  //得到背包第whichGoods件物品的数量
-	void addGoods(int id, int num);
-	bool reduceGoods(int id, int num);
-	void saveBag();                        //最后保存游戏时单独将物品存入一个数组
-	//int** getSaveBag();                  //得到保存物品的数组
-
-	bool isUseDrug();                      //判断是否有药水可以用
-	//void operator=(Bag bag);
-	map<int, int>getMapBag();
+	Bag();//构造函数
+	void showbag();
+	void editGoodNum(int id, int num);//修改物品数量，负数则为减少
+	int showGoodNum(int id);//返回物品数量
+	void reloadGoodNum(int id, int num);//读取时使用，恢复物品数量
 
 private:
-	map<int, int> bags;
-	int saveGoods[20][2];                  //用来save物品的数组
-	Goods goods[8] = { 0,1,2,3,4,5,6 ,7};    //物品实例化
+	vector<Goods> goods;
+
 };
 
 

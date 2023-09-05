@@ -38,5 +38,5 @@ Npc::Npc(int num) {
 	}
 }
 
-Npc::Npc();
+
 

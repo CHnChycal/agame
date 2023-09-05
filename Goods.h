@@ -16,11 +16,13 @@ public:
 	string getName();
 	int getGoodsId();
 	string getDesc();
-	void showGoods();
-
+	void showGoods();//显示物品详情
+	int showGoodsNum();//显示物品数量
+	void changeGoodsNum(int num);//修改物品数量
 private:
 	string name;     //物品名称
 	int goodsId;
+	int goodsNum=0;	//物品数量
 	string desc;     //物品描述
 
 

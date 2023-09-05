@@ -77,3 +77,12 @@ void Goods::showGoods() {
 	cout << name << endl;
 	cout << desc << endl;
 }
+int Goods::showGoodsNum()
+{
+	return goodsNum;
+}
+void Goods::changeGoodsNum(int num)
+{
+	goodsNum = num;
+
+}

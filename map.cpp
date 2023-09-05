@@ -1,5 +1,6 @@
 #include "map.h"
 #include"monsters.h"
+#include"monsterbag.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -130,16 +131,62 @@ void Map::displayOptions() {
 
 
 void exploreWildness() {
-   
-  
-}
-void Map::showWilderness() {
     std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
     std::cout << "//有野生的宝可梦在附近出没//\n";
     std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
-  
+    std::cout << "请输入你想要进行的操作：\n";
+    std::cout << "1. 探索野外\n";
+    std::cout << "2. 离开\n";
+
+    int choice;
+    std::cout << "请输入你的选择：";
+    std::cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        //
+    case 2:
+        break;
+    }
+}
+void Map::explore() {
+    
 }
 
+void Map::Meet(int num)
+{
+    int newlevel = rand() % 10 + num;
+    int newmonster = rand() % 50;
+    Monster enemy(newmonster, newlevel);
+    cout << "//////////////////////////////////////////////////////////" << endl;
+    cout << "///" << "  一只lv." << enemy.CURLevel() << "的" << enemy.Show_Name() << "向你挑衅" << endl;
+    cout << "///  请选择 :" << endl;
+    cout << "///  1: 战斗" << endl;
+    cout << "///  2: 逃跑" << endl;
+    cout << "//////////////////////////////////////////////////////////" << endl;
+    int n;
+    cin >> n;
+    while (n != 1 && n != 2)
+    {
+        cout << "//////////////////////////////////////////////////////////" << endl;
+        cout << "///                                                    ///" << endl;
+        cout << "///   请选择输入 1 / 2！                               ///" << endl;
+        cout << "///                                                    ///" << endl;
+        cout << "//////////////////////////////////////////////////////////" << endl;
+        cin >> n;
+    }
+    switch (n)
+    {
+    case 1:
+    {
+        MonsterBag* bag = MonsterBag::Getinstance();
+        bag->Find().Fight(enemy);
+        break;
+    }
+    case 2:break;//想要返回场景的
+        break;
+    }
+}
 
 
 void Map::battleAndWinBadge() {

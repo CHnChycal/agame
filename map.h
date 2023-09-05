@@ -22,7 +22,10 @@ public:
     void displayOptions();
     string showLocation();
    
-    void showWilderness();
+    void explore();//Ò°ÍâÌ½Ë÷
+    void Meet(int num);
+    void Event();
+
     void battleAndWinBadge();
     void showAvailableCities(int currentLocationindex);
     void changeLocation(int newLocationIndex, string& currentlocation);

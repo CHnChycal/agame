@@ -28,7 +28,7 @@ public:
 private:
 	map<int, int> bags;
 	int saveGoods[20][2];                  //用来save物品的数组
-	Goods goods[7] = { 0,1,2,3,4,5,6 };    //物品实例化
+	Goods goods[8] = { 0,1,2,3,4,5,6 ,7};    //物品实例化
 };
 
 

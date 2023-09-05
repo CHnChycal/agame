@@ -8,13 +8,13 @@ Goods::Goods(int id)
 	case 0: {
 		goodsId = id;
 		name = "电力徽章";
-		desc = "在紫堇市的紫堇道馆挑战成功后获得，你能隐隐感受到一股电力在体内流动";
+		desc = "在紫瑾市的紫瑾道馆挑战成功后获得，你能隐隐感受到一股电力在体内流动";
 		break;
 	}
 	case 1: {
 		goodsId = id;
 		name = "烈焰徽章";
-		desc = "在釜炎镇的釜炎道馆挑战成功后获得，你心里感到有烈火在燃烧。";
+		desc = "在斧炎镇的斧炎道馆挑战成功后获得，你心里感到有烈火在燃烧。";
 		break;
 	}
 	case 2: {
@@ -26,7 +26,7 @@ Goods::Goods(int id)
 	case 3: {
 		goodsId = id;
 		name = "雨滴徽章";
-		desc = "在琉璃市的琉璃道馆挑战成功后获得，优雅又不失华丽的外表令你感到惊奇。";
+		desc = "在琉璃岛的琉璃道馆挑战成功后获得，优雅又不失华丽的外表令你感到惊奇。";
 		break;
 	}
 	case 4: {
@@ -44,6 +44,12 @@ Goods::Goods(int id)
 		goodsId = id;
 		name = "大师精灵球";
 		desc = "可以捕捉宝可梦，外表镶嵌着黄金，看起来很珍贵。";
+		break;
+	}
+	case 7: {
+		goodsId = id;
+		name = "代币";
+		desc = "一堆闪闪发光的东西，可以用于交易。";
 		break;
 	}
 	default:

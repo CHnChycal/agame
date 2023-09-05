@@ -296,7 +296,11 @@ void Menu::save()
 	}
 	else
 	{
+		filePlayer << player.Showname() << " ";
 
+		fileMap << map.showIndex() << " ";
+
+		fileBag <<bag
 	}
 
 }

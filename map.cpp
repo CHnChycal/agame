@@ -186,4 +186,7 @@ string Map::showLocation()
 {
     return currentLocation;
 }
-
+int Map::showIndex()
+{
+    return currentLocationIndex;
+}

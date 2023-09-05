@@ -1,7 +1,7 @@
 #pragma once
 
 #include"monsters.h"
-
+#include"monsterbag.h"
 
 Monster::Monster(int num,int level) 
 {
@@ -629,8 +629,13 @@ void Monster::Fight(Monster enemy)
 	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy.Mname << "lv.(" << enemy.CurLevel << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	int n;
+	int turn = 1;
 	while(this->isAlive && enemy.isAlive)//当双方都未死亡时选择操作
 	{
+		cout << "//////////////////////////////////////////////////////////" << endl;
+		cout << "当前为第" << turn << "回合";
+		cout << "当前" << this->Mname << "的状态为: " << this->MaxValue << " / " << this->CurValue << endl;
+		cout << enemy.Mname << "的状态为: " << enemy.MaxValue << " / " << enemy.CurValue << endl;
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cout << "请选择你的操作：" << endl;
 		cout << "1: 攻击" << endl;
@@ -640,6 +645,7 @@ void Monster::Fight(Monster enemy)
 		cout << "5: 逃跑" << endl;//返回场景****************************************************************************
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cin >> n;
+		system("cls");
 		while (n != 1 && n != 2 && n != 3 && n != 4 && n != 5)
 		{
 			cout << "//////////////////////////////////////////////////////////" << endl;
@@ -648,6 +654,7 @@ void Monster::Fight(Monster enemy)
 			cout << "///                                                    ///" << endl;
 			cout << "//////////////////////////////////////////////////////////" << endl;
 			cin >> n;
+			system("cls");
 		}
 		switch (n)
 		{
@@ -673,7 +680,8 @@ void Monster::Fight(Monster enemy)
 				}
 				else
 				{
-					//切换下一只宝可梦并且调用Fight（）函数
+					MonsterBag* bag = MonsterBag::Getinstance();
+					bag->Find().Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
 					break;
 				}
 			}
@@ -682,6 +690,7 @@ void Monster::Fight(Monster enemy)
 		{
 			cout << this->Mname << "进行了防御，双方都未受到伤害" << endl;
 			cout << "//////////////////////////////////////////////////////////" << endl;
+			break;
 		}
 		case 3:
 		{
@@ -694,10 +703,11 @@ void Monster::Fight(Monster enemy)
 		}
 		case 5:
 		{
-			//返回场景
+			enemy.isAlive = false;
 		}
 		break;
 		}
+		turn++;
 	}
 }
 

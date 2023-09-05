@@ -575,6 +575,16 @@ Monster::Monster(int num,int level)
 	AcuPercentage = 0;
 }
 
+void Monster::SetExper(int curexper)
+{
+	this->CurExper = curexper;
+}
+
+void Monster::SetValue(int curvalue)
+{
+	this->CurValue = curvalue;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //探索野外遇到怪物
 void Monster::Meet(int num)//修改为num
@@ -601,7 +611,11 @@ void Monster::Meet(int num)//修改为num
 	}
 	switch (n)
 	{
-	case 1:this->Fight(enemy);
+	case 1:
+	{
+		this->Fight(enemy);
+		break;
+	}
 	case 2:break;//想要返回场景的
 		break;
 	}
@@ -642,16 +656,25 @@ void Monster::Fight(Monster enemy)
 			if (this->Speed >= enemy.Speed)
 			{
 				M_Attack(enemy);
-				if (enemy.isAlive) M_Attacked(enemy);
+				if (enemy.isAlive)
+				{
+					M_Attacked(enemy);
+					break;
+				}
 				else break;
 			}
 			else
 			{
 				M_Attacked(enemy);
-				if (this->isAlive) M_Attack(enemy);
+				if (this->isAlive)
+				{
+					M_Attack(enemy);
+					break;
+				}
 				else
 				{
-					//切换下一只怪物并且调用Fight（）函数
+					//切换下一只宝可梦并且调用Fight（）函数
+					break;
 				}
 			}
 		}
@@ -694,16 +717,19 @@ void Monster::M_Attack(Monster enemy)
 		{
 			cout << this->Mname << "对" << enemy.Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
 			enemy.CurValue -= damage / 2;
+			break;
 		}
 		case 1:
 		{
 			cout << this->Mname << "对" << enemy.Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
 			enemy.CurValue -= damage;
+			break;
 		}
 		case 2:
 		{
 			cout << this->Mname << "对" << enemy.Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
 			enemy.CurValue -= damage * 2;
+			break;
 		}
 		}
 	}
@@ -753,16 +779,19 @@ void Monster::M_Attacked(Monster enemy)
 		{
 			cout << enemy.Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
 			this->CurValue -= damage / 2;
+			break;
 		}
 		case 1:
 		{
 			cout << enemy.Mname << "对" << this->Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
 			this->CurValue -= damage;
+			break;
 		}
 		case 2:
 		{
 			cout << enemy.Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
 			this->CurValue -= damage * 2;
+			break;
 		}
 		}
 	}
@@ -784,10 +813,12 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 0)
 		{
 			return 0;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 1://火属性时，对火、水、岩石属性劣势，对草、冰、虫属性优势，对其他正常
@@ -795,14 +826,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 2 || enemy.Mnature == 9)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4 || enemy.Mnature == 5 || enemy.Mnature == 8)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 2://水属性时，对水、草属性劣势，对火、岩石属性优势，对其他正常
@@ -810,14 +844,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 2 || enemy.Mnature == 4)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 1 || enemy.Mnature == 9)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 3://电属性时，对电、草属性劣势，对水、飞行属性优势，对其他正常
@@ -825,14 +862,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 3 || enemy.Mnature == 4)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 2 || enemy.Mnature == 6)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 4://草属性时,对火、草、毒、飞行、虫属性劣势，对水、岩石属性优势，对其他正常
@@ -840,14 +880,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 4 || enemy.Mnature == 6 || enemy.Mnature == 7 || enemy.Mnature == 8)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 2 || enemy.Mnature == 9)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 5://冰属性时，对火、水、冰属性劣势，对草、飞行属性优势，对其他正常
@@ -855,14 +898,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 2 || enemy.Mnature == 5)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4 || enemy.Mnature == 6)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 6://飞行属性时，对电、岩石属性劣势，对草、虫属性优势，对其他正常
@@ -870,14 +916,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 3 || enemy.Mnature == 9)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4 || enemy.Mnature == 8)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 7://毒属性时，对毒、岩石属性劣势,对草属性优势，对其他正常
@@ -885,14 +934,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 7 || enemy.Mnature == 9)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 8://虫属性时，对火、毒、飞行属性劣势，对草属性优势，对其他正常
@@ -900,14 +952,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 6 || enemy.Mnature == 7)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 9://岩石属性时，对火、冰、飞行、虫属性优势，对其他正常
@@ -915,10 +970,12 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 5 || enemy.Mnature == 6 || enemy.Mnature == 8)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	}
@@ -961,16 +1018,56 @@ void Monster::Show_Detail()
 	cout << "属性:";
 	switch (this->Mnature)
 	{
-	case 0:cout << "一般" << endl;
-	case 1:cout << "火" << endl;
-	case 2:cout << "水" << endl;
-	case 3:cout << "电" << endl;
-	case 4:cout << "草" << endl;
-	case 5:cout << "冰" << endl;
-	case 6:cout << "飞行" << endl;
-	case 7:cout << "毒" << endl;
-	case 8:cout << "虫" << endl;
-	case 9:cout << "岩石" << endl;
+	case 0:
+	{
+		cout << "一般" << endl;
+		break;
+	}
+	case 1:
+	{
+		cout << "火" << endl;
+		break;
+	}
+	case 2:
+	{
+		cout << "水" << endl;
+		break;
+	}
+	case 3:
+	{
+		cout << "电" << endl;
+		break;
+	}
+	case 4:
+	{
+		cout << "草" << endl;
+		break;
+	}
+	case 5:
+	{
+		cout << "冰" << endl;
+		break;
+	}
+	case 6:
+	{
+		cout << "飞行" << endl;
+		break;
+	}
+	case 7:
+	{
+		cout << "毒" << endl;
+		break;
+	}
+	case 8:
+	{
+		cout << "虫" << endl;
+		break;
+	}
+	case 9:
+	{
+		cout << "岩石" << endl;
+		break;
+	}
 		break;
 	}
 	cout << endl;

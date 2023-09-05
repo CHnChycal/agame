@@ -16,6 +16,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 49;
 		BasDefense = 34;
 		BasSpeed = 45;
+		break;
 	}
 	case 1: //火
 	{
@@ -26,6 +27,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 37;
 		BasSpeed = 65;
+		break;
 	}
 	case 2://水
 	{
@@ -36,6 +38,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 38;
 		BasSpeed = 43;
+		break;
 	}
 	case 3://虫
 	{
@@ -46,6 +49,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 45;
 		BasDefense = 30;
 		BasSpeed = 45;
+		break;
 	}
 	case 4://毒
 	{
@@ -56,6 +60,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 33;
 		BasSpeed = 55;
+		break;
 	}
 	case 5://电
 	{
@@ -66,6 +71,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 70;
 		BasDefense = 48;
 		BasSpeed = 90;
+		break;
 	}
 	case 6://岩石
 	{
@@ -76,6 +82,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 50;
 		BasSpeed = 40;
+		break;
 	}
 	case 7://飞行
 	{
@@ -86,6 +93,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 40;
 		BasDefense = 32;
 		BasSpeed = 44;
+		break;
 	}
 	case 8://一般
 	{
@@ -96,6 +104,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 38;
 		BasDefense = 48;
 		BasSpeed = 38;
+		break;
 	}
 	case 9://飞行
 	{
@@ -106,6 +115,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 51;
 		BasDefense = 30;
 		BasSpeed = 49;
+		break;
 	}
 	case 10://草
 	{
@@ -116,6 +126,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 38;
 		BasDefense = 38;
 		BasSpeed = 40;
+		break;
 	}
 	case 11://岩石
 	{
@@ -126,6 +137,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 42;
 		BasDefense = 25;
 		BasSpeed = 78;
+		break;
 	}
 	case 12://一般
 	{
@@ -136,6 +148,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 51;
 		BasDefense = 25;
 		BasSpeed = 62;
+		break;
 	}
 	case 13://水
 	{
@@ -146,6 +159,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 39;
 		BasDefense = 36;
 		BasSpeed = 39;
+		break;
 	}
 	case 14://岩石
 	{
@@ -156,6 +170,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 46;
 		BasDefense = 45;
 		BasSpeed = 40;
+		break;
 	}
 	case 15://水
 	{
@@ -166,6 +181,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 36;
 		BasDefense = 36;
 		BasSpeed = 40;
+		break;
 	}
 	case 16://草
 	{
@@ -176,6 +192,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 34;
 		BasDefense = 38;
 		BasSpeed = 36;
+		break;
 	}
 	case 17://毒
 	{
@@ -186,6 +203,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 39;
 		BasSpeed = 37;
+		break;
 	}
 	case 18://火
 	{
@@ -196,6 +214,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 39;
 		BasSpeed = 53;
+		break;
 	}
 	case 19://水
 	{
@@ -206,6 +225,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 54;
 		BasDefense = 42;
 		BasSpeed = 30;
+		break;
 	}
 	case 20://毒
 	{
@@ -216,6 +236,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 36;
 		BasDefense = 47;
 		BasSpeed = 28;
+		break;
 	}
 	case 21://水
 	{
@@ -226,6 +247,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 42;
 		BasSpeed = 44;
+		break;
 	}
 	case 22://岩石
 	{
@@ -236,6 +258,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 56;
 		BasDefense = 40;
 		BasSpeed = 60;
+		break;
 	}
 	case 23://电
 	{
@@ -246,6 +269,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 35;
 		BasSpeed = 66;
+		break;
 	}
 	case 24://水
 	{
@@ -256,6 +280,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 41;
 		BasDefense = 50;
 		BasSpeed = 39;
+		break;
 	}
 	case 25://冰
 	{
@@ -266,6 +291,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 41;
 		BasSpeed = 66;
+		break;
 	}
 	case 26://火
 	{
@@ -276,6 +302,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 41;
 		BasSpeed = 66;
+		break;
 	}
 	case 27://电
 	{
@@ -286,6 +313,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 41;
 		BasSpeed = 66;
+		break;
 	}
 	case 28://草
 	{
@@ -296,6 +324,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 41;
 		BasDefense = 43;
 		BasSpeed = 45;
+		break;
 	}
 	case 29://火
 	{
@@ -306,6 +335,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 45;
 		BasSpeed = 55;
+		break;
 	}
 	case 30://水
 	{
@@ -316,6 +346,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 45;
 		BasSpeed = 55;
+		break;
 	}
 	case 31://电
 	{
@@ -326,6 +357,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 45;
 		BasSpeed = 55;
+		break;
 	}
 	case 32://一般
 	{
@@ -336,6 +368,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 48;
 		BasSpeed = 37;
+		break;
 	}
 	case 33://火
 	{
@@ -346,6 +379,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 62;
 		BasDefense = 42;
 		BasSpeed = 39;
+		break;
 	}
 	case 34://毒
 	{
@@ -356,6 +390,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 61;
 		BasDefense = 37;
 		BasSpeed = 53;
+		break;
 	}
 	case 35://飞行
 	{
@@ -366,6 +401,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 36;
 		BasSpeed = 67;
+		break;
 	}
 	case 36://一般
 	{
@@ -376,6 +412,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 42;
 		BasSpeed = 60;
+		break;
 	}
 	case 37://电
 	{
@@ -386,6 +423,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 40;
 		BasSpeed = 50;
+		break;
 	}
 	case 38://电
 	{
@@ -396,6 +434,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 40;
 		BasDefense = 50;
 		BasSpeed = 50;
+		break;
 	}
 	case 39://水
 	{
@@ -406,6 +445,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 65;
 		BasDefense = 40;
 		BasSpeed = 60;
+		break;
 	}
 	case 40://毒
 	{
@@ -416,6 +456,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 55;
 		BasDefense = 55;
 		BasSpeed = 55;
+		break;
 	}
 	case 41://火
 	{
@@ -426,6 +467,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 60;
 		BasDefense = 45;
 		BasSpeed = 40;
+		break;
 	}
 	case 42://飞行
 	{
@@ -436,6 +478,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 55;
 		BasSpeed = 60;
+		break;
 	}
 	case 43://岩石
 	{
@@ -446,6 +489,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 50;
 		BasDefense = 50;
 		BasSpeed = 80;
+		break;
 	}
 	case 44://岩石
 	{
@@ -456,6 +500,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 65;
 		BasDefense = 55;
 		BasSpeed = 50;
+		break;
 	}
 	case 45://飞行
 	{
@@ -466,6 +511,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 47;
 		BasDefense = 47;
 		BasSpeed = 72;
+		break;
 	}
 	case 46://冰
 	{
@@ -476,6 +522,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 49;
 		BasDefense = 43;
 		BasSpeed = 44;
+		break;
 	}
 	case 47://冰
 	{
@@ -486,6 +533,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 48;
 		BasDefense = 46;
 		BasSpeed = 38;
+		break;
 	}
 	case 48://虫
 	{
@@ -496,6 +544,7 @@ Monster::Monster(int num,int level)
 		BasAttack = 53;
 		BasDefense = 37;
 		BasSpeed = 66;
+		break;
 	}
 	case 49://虫
 	{
@@ -506,8 +555,8 @@ Monster::Monster(int num,int level)
 		BasAttack = 52;
 		BasDefense = 43;
 		BasSpeed = 70;
+		break;
 	}
-	break;
 	}
 	CurLevel = level;
 	MaxValue = CurLevel * 5 + BasValue;
@@ -524,6 +573,16 @@ Monster::Monster(int num,int level)
 
 	Experience = CurLevel * 10;
 	AcuPercentage = 0;
+}
+
+void Monster::SetExper(int curexper)
+{
+	this->CurExper = curexper;
+}
+
+void Monster::SetValue(int curvalue)
+{
+	this->CurValue = curvalue;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -552,7 +611,11 @@ void Monster::Meet(int num)//修改为num
 	}
 	switch (n)
 	{
-	case 1:this->Fight(enemy);
+	case 1:
+	{
+		this->Fight(enemy);
+		break;
+	}
 	case 2:break;//想要返回场景的
 		break;
 	}
@@ -593,16 +656,25 @@ void Monster::Fight(Monster enemy)
 			if (this->Speed >= enemy.Speed)
 			{
 				M_Attack(enemy);
-				if (enemy.isAlive) M_Attacked(enemy);
+				if (enemy.isAlive)
+				{
+					M_Attacked(enemy);
+					break;
+				}
 				else break;
 			}
 			else
 			{
 				M_Attacked(enemy);
-				if (this->isAlive) M_Attack(enemy);
+				if (this->isAlive)
+				{
+					M_Attack(enemy);
+					break;
+				}
 				else
 				{
-					//切换下一只怪物并且调用Fight（）函数
+					//切换下一只宝可梦并且调用Fight（）函数
+					break;
 				}
 			}
 		}
@@ -645,16 +717,19 @@ void Monster::M_Attack(Monster enemy)
 		{
 			cout << this->Mname << "对" << enemy.Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
 			enemy.CurValue -= damage / 2;
+			break;
 		}
 		case 1:
 		{
 			cout << this->Mname << "对" << enemy.Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
 			enemy.CurValue -= damage;
+			break;
 		}
 		case 2:
 		{
 			cout << this->Mname << "对" << enemy.Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
 			enemy.CurValue -= damage * 2;
+			break;
 		}
 		}
 	}
@@ -704,16 +779,19 @@ void Monster::M_Attacked(Monster enemy)
 		{
 			cout << enemy.Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
 			this->CurValue -= damage / 2;
+			break;
 		}
 		case 1:
 		{
 			cout << enemy.Mname << "对" << this->Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
 			this->CurValue -= damage;
+			break;
 		}
 		case 2:
 		{
 			cout << enemy.Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
 			this->CurValue -= damage * 2;
+			break;
 		}
 		}
 	}
@@ -735,10 +813,12 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 0)
 		{
 			return 0;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 1://火属性时，对火、水、岩石属性劣势，对草、冰、虫属性优势，对其他正常
@@ -746,14 +826,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 2 || enemy.Mnature == 9)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4 || enemy.Mnature == 5 || enemy.Mnature == 8)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 2://水属性时，对水、草属性劣势，对火、岩石属性优势，对其他正常
@@ -761,14 +844,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 2 || enemy.Mnature == 4)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 1 || enemy.Mnature == 9)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 3://电属性时，对电、草属性劣势，对水、飞行属性优势，对其他正常
@@ -776,14 +862,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 3 || enemy.Mnature == 4)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 2 || enemy.Mnature == 6)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 4://草属性时,对火、草、毒、飞行、虫属性劣势，对水、岩石属性优势，对其他正常
@@ -791,14 +880,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 4 || enemy.Mnature == 6 || enemy.Mnature == 7 || enemy.Mnature == 8)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 2 || enemy.Mnature == 9)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 5://冰属性时，对火、水、冰属性劣势，对草、飞行属性优势，对其他正常
@@ -806,14 +898,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 2 || enemy.Mnature == 5)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4 || enemy.Mnature == 6)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 6://飞行属性时，对电、岩石属性劣势，对草、虫属性优势，对其他正常
@@ -821,14 +916,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 3 || enemy.Mnature == 9)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4 || enemy.Mnature == 8)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 7://毒属性时，对毒、岩石属性劣势,对草属性优势，对其他正常
@@ -836,14 +934,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 7 || enemy.Mnature == 9)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 8://虫属性时，对火、毒、飞行属性劣势，对草属性优势，对其他正常
@@ -851,14 +952,17 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 6 || enemy.Mnature == 7)
 		{
 			return 0;
+			break;
 		}
 		else if (enemy.Mnature == 4)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
 	case 9://岩石属性时，对火、冰、飞行、虫属性优势，对其他正常
@@ -866,13 +970,14 @@ int Monster::Check(Monster enemy)
 		if (enemy.Mnature == 1 || enemy.Mnature == 5 || enemy.Mnature == 6 || enemy.Mnature == 8)
 		{
 			return 2;
+			break;
 		}
 		else
 		{
 			return 1;
+			break;
 		}
 	}
-	break;
 	}
 }
 
@@ -913,16 +1018,56 @@ void Monster::Show_Detail()
 	cout << "属性:";
 	switch (this->Mnature)
 	{
-	case 0:cout << "一般" << endl;
-	case 1:cout << "火" << endl;
-	case 2:cout << "水" << endl;
-	case 3:cout << "电" << endl;
-	case 4:cout << "草" << endl;
-	case 5:cout << "冰" << endl;
-	case 6:cout << "飞行" << endl;
-	case 7:cout << "毒" << endl;
-	case 8:cout << "虫" << endl;
-	case 9:cout << "岩石" << endl;
+	case 0:
+	{
+		cout << "一般" << endl;
+		break;
+	}
+	case 1:
+	{
+		cout << "火" << endl;
+		break;
+	}
+	case 2:
+	{
+		cout << "水" << endl;
+		break;
+	}
+	case 3:
+	{
+		cout << "电" << endl;
+		break;
+	}
+	case 4:
+	{
+		cout << "草" << endl;
+		break;
+	}
+	case 5:
+	{
+		cout << "冰" << endl;
+		break;
+	}
+	case 6:
+	{
+		cout << "飞行" << endl;
+		break;
+	}
+	case 7:
+	{
+		cout << "毒" << endl;
+		break;
+	}
+	case 8:
+	{
+		cout << "虫" << endl;
+		break;
+	}
+	case 9:
+	{
+		cout << "岩石" << endl;
+		break;
+	}
 		break;
 	}
 	cout << endl;

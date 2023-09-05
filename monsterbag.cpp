@@ -44,11 +44,13 @@ void MonsterBag::Query()
 		cout << "输入任何键返回" << endl;
 		cin >> m;
 		this->Query();
+		break;
 		//返回上一级
 	}
 	case 2:
 	{
 		this->Release();
+		break;
 	}
 	case 3:
 	{
@@ -86,6 +88,11 @@ void MonsterBag::Release()
 		cin >> k;
 	}
 	bag.erase(bag.begin() + k);
+}
+
+Monster MonsterBag::Return(int number)
+{
+	return bag[number];
 }
 
 Monster MonsterBag::Find()

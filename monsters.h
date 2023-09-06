@@ -19,7 +19,7 @@ public:
 	void SetExper(int curexper);//设置经验值
 	void SetValue(int curvalue);//设置血量
 	//void Meet(int n);//探索野外遇到怪物（刷级或者捕捉新怪物）
-//n代表等级区间，若n为10，则野外怪物等级区间为10~20，若n为20，则野外怪物等级区间为20~30
+//n代表等级区间，若n为1，则野外怪物等级区间为1~21，若n为20，则野外怪物等级区间为20~40
 	void Fight(Monster enemy);//战斗页面显示，但需要调用 M_Attack 和 M_Denfense 等函数来实现战斗
 	int Check(Monster enemy);//判断属性优劣势
 

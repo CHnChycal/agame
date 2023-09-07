@@ -278,10 +278,18 @@ void Menu::save()
 
 	}
 	else
-	{
+	{	//存储玩家信息
 		filePlayer << player.Showname() << " ";
-
+		//存储地图信息
 		fileMap << map.showIndex() << " ";
+		//存储背包
+		for (int i = 0; i < 8; i++)
+		{
+			fileBag << bag.showGoodNum(i) << " ";
+
+		}
+		//存储宝可梦数据
+
 
 		
 	}

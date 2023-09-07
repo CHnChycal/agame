@@ -72,6 +72,7 @@ void MonsterBag::Add(Monster monster)
 	{
 		bag.push_back(monster);
 		cout << "//////////////////////////////////////////////////////////" << endl;
+		monster.Caught();
 		cout << monster.Show_Name() << "已加入宝可梦背包！" << endl;
 	}
 	else

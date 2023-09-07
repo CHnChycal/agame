@@ -586,42 +586,6 @@ void Monster::SetValue(int curvalue)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//探索野外遇到怪物
-/*void Monster::Meet(int num)//修改为num
-{
-	int newlevel = rand() % 10 + num;
-	int newmonster = rand() % 50;
-	Monster enemy(newmonster, newlevel);
-	cout << "//////////////////////////////////////////////////////////" << endl;
-	cout << "///" << "  一只lv." << enemy.CurLevel << "的" << enemy.Mname << "向你挑衅" << endl;
-	cout << "///  请选择 :" << endl;
-	cout << "///  1: 战斗" << endl;
-	cout << "///  2: 逃跑" << endl;
-	cout << "//////////////////////////////////////////////////////////" << endl;
-	int n;
-	cin >> n;
-	while (n != 1 && n != 2)
-	{
-		cout << "//////////////////////////////////////////////////////////" << endl;
-		cout << "///                                                    ///" << endl;
-		cout << "///   请选择输入 1 / 2！                               ///" << endl;
-		cout << "///                                                    ///" << endl;
-		cout << "//////////////////////////////////////////////////////////" << endl;
-		cin >> n;
-	}
-	switch (n)
-	{
-	case 1:
-	{
-		this->Fight(enemy);
-		break;
-	}
-	case 2:break;//想要返回场景的
-		break;
-	}
-}*/
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //战斗页面
 void Monster::Fight(Monster enemy)
 {
@@ -630,7 +594,7 @@ void Monster::Fight(Monster enemy)
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	int n;
 	int turn = 1;
-	while(this->isAlive && enemy.isAlive)//当双方都未死亡时选择操作
+	while(this->isAlive && enemy.isAlive && !enemy.hasCaught)//当双方都未死亡时选择操作
 	{
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cout << "当前为第" << turn << "回合";
@@ -695,6 +659,7 @@ void Monster::Fight(Monster enemy)
 		case 3:
 		{
 			//打开背包，选择道具
+			cout << "//////////////////////////////////////////////////////////" << endl;
 		}
 		case 4:
 		{
@@ -709,6 +674,126 @@ void Monster::Fight(Monster enemy)
 		}
 		turn++;
 	}
+}
+
+void Monster::UsePotion(Bag* bag)
+{
+	cout << "//////////////////////////////////////////////////////////" << endl;
+	cout << "你的背包中有" << bag->showGoodNum(4) << "瓶治疗药水，是否要对" << this->Mname << " (" << this->MaxValue << " / " << this->CurValue << ") 使用？" << endl;
+	cout << "1. 使用" << endl;
+	cout << "2. 返回" << endl;
+	int choice;
+	cin >> choice;
+	switch (choice)
+	{
+	case 1:
+	{
+		if (bag->showGoodNum(4) <= 0)
+		{
+			cout << "使用失败！剩余治疗药水不足！" << endl;
+			system("pause");
+			break;
+		}
+		else
+		{
+			bag->editGoodNum(4, -1);
+			this->CurValue += this->MaxValue / 5;
+			if (this->CurValue > this->MaxValue)
+			{
+				this->CurValue = this->MaxValue;
+			}
+			cout << "使用成功，当前" << this->Mname << "的血量为：" << this->MaxValue << " / " << this->CurValue;
+			system("pause");
+			break;
+		}
+	}
+	case 2:
+		break;
+	default:
+		cout << "操作失败，请输入正确数字！" << endl;
+		this->UsePotion(bag);
+		system("pause");
+		break;
+	}
+}
+
+void Monster::UseBall(Bag* bag,Monster enemy)
+{
+	cout << "//////////////////////////////////////////////////////////" << endl;
+	cout << "你的背包中有：\n" << bag->showGoodNum(5) << " 个普通精灵球" << endl;
+	cout << bag->showGoodNum(6) << " 个大师精灵球" << endl;
+	cout << "请选择你的操作：" << endl;
+	cout << "1. 使用普通精灵球" << endl;
+	cout << "2. 使用大师精灵球" << endl;
+	cout << "3. 返回" << endl;
+	int choice;
+	cin>>choice;
+	switch (choice)
+	{
+	case 1:
+	{
+		if (bag->showGoodNum(5) <= 0)
+		{
+			cout << "使用失败！剩余普通精灵球不足！" << endl;
+			system("pause");
+			break;
+		}
+		else
+		{
+			bag->editGoodNum(5, -1);
+			int possible = (enemy.MaxValue - enemy.CurValue) / enemy.MaxValue * 100;
+			int n = rand() % 100;
+			if (n <= possible)
+			{
+				MonsterBag::Getinstance()->Add(enemy);
+			}
+			else
+			{
+				cout << "捕捉失败！" << endl;
+			}
+			system("pause");
+			break;
+		}
+		break;
+	}
+	case 2:
+	{
+		if (bag->showGoodNum(6) <= 0)
+		{
+			cout << "使用失败！剩余大师精灵球不足！" << endl;
+			system("pause");
+			break;
+		}
+		else
+		{
+			bag->editGoodNum(6, -1);
+			int possible = (enemy.MaxValue - enemy.CurValue) / enemy.MaxValue * 100 * 2;
+			int n = rand() % 100;
+			if (n <= possible)
+			{
+				MonsterBag::Getinstance()->Add(enemy);
+			}
+			else
+			{
+				cout << "捕捉失败！" << endl;
+			}
+			system("pause");
+			break;
+		}
+		break;
+	}
+	case 3:
+	{
+		break;
+	}
+	default:
+	{
+		cout << "操作失败！请输入正确数字！" << endl;
+		this->UseBall(bag,enemy);
+		break;
+	}
+	}
+
 }
 
 void Monster::M_Attack(Monster enemy)
@@ -812,6 +897,16 @@ void Monster::M_Attacked(Monster enemy)
 	}
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	//自动切换背包里下一只宝可梦，若都没存活，则返回场景*********************************************************************
+}
+
+void Monster::Caught()
+{
+	this->hasCaught = true;
+}
+
+bool Monster::HasCaught()
+{
+	return this->hasCaught;
 }
 
 int Monster::Check(Monster enemy)

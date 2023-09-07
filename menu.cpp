@@ -238,6 +238,7 @@ void Menu::ShowMap()
 void Menu::showBag()
 {
 	int choice;
+	Bag* bp = Bag::Getinstance();
 	system("cls");
 	cout << "\n\n\n\n";
 	cout << "///////////////////////////////////////////////////////////////" << endl;
@@ -261,7 +262,7 @@ void Menu::showBag()
 	case 0://直接结束，返回原代码
 		break;
 	case 1://进入背包界面
-		bag.showbag();
+		bp->showbag();
 		break;
 	}
 }
@@ -271,7 +272,8 @@ int Menu::save()
 	ofstream fileMap("SaveMap.dat", ios_base::binary);
 	ofstream fileBag("SaveBag.dat", ios_base::binary);
 	ofstream fileMonster("SaveMonster.dat", ios_base::binary);
-
+	Bag* bp = Bag::Getinstance();
+	MonsterBag* mbp = MonsterBag::Getinstance();
 	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
 	{
 		cout << "无法打开保存文件!\n保存失败！" << endl;
@@ -286,11 +288,16 @@ int Menu::save()
 		//存储背包
 		for (int i = 0; i < 8; i++)
 		{
-			fileBag << bag.showGoodNum(i) << " ";
+			fileBag << bp->showGoodNum(i) << " ";
 
 		}
 		//存储宝可梦数据
-		fileMonster << "pokemon" << " ";
+		fileMonster << mbp->MonsterNum() << " ";
+		for (int i = 0; i < mbp->MonsterNum(); i++)
+		{
+			//保存ID，等级，经验，血量
+			fileMonster << mbp->Return(i)->Id() << " " << mbp->Return(i)->CURLevel() << " " << mbp->Return(i)->CURExper() << " " << mbp->Return(i)->CURValue() << " ";
+		}
 
 		cout << "(保存成功)" << endl;
 		filePlayer.close();
@@ -307,6 +314,8 @@ int Menu::load()
 	ifstream fileMap("SaveMap.dat", ios_base::binary);
 	ifstream fileBag("SaveBag.dat", ios_base::binary);
 	ifstream fileMonster("SaveMonster.dat", ios_base::binary);
+	Bag* bp = Bag::Getinstance();
+	MonsterBag* mbp = MonsterBag::Getinstance();
 	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
 	{
 		cout << "不存在存档文件，读取失败！" << endl;
@@ -323,15 +332,29 @@ int Menu::load()
 		//读取地图位置
 		int index;
 		fileMap >> index;
-		map.changeLocation(index+1);
+		map.changeLocation(index);
 		//读取背包
 		int num;
 		for (int i = 0; i < 8; i++) {
 			fileBag >> num;
-			bag.reloadGoodNum(i, num);
+			bp->reloadGoodNum(i, num);
 		}
 		//读取宝可梦
-
+		int max;//怪物数量
+		
+		int id;//怪物id
+		int level;//怪物等级
+		int exp;//怪物经验
+		int value;//怪物血量
+		fileMonster >> max;
+		for (int i = 0; i < max; i++)
+		{
+			fileMonster >> id >> level >> exp >> value;
+			Monster* monster = new Monster(id, level);
+			monster->SetExper(exp);
+			monster->SetValue(value);
+			mbp->Add(*monster);
+		}
 		cout << "(读取成功)" << endl;
 		filePlayer.close();
 		fileMap.close();

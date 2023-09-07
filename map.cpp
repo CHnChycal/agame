@@ -106,10 +106,10 @@ void Map::enterShop() {
 }
 void Map::enterHospital() {
     MonsterBag* monsterBag = MonsterBag::Getinstance();
-    int size = 6;
-    for (int i = 0; i < 6; i++) {
-        Monster currentMonster = monsterBag->Return(i);
-        currentMonster.Recover();
+    int size = monsterBag->MonsterNum();
+    for (int i = 0; i < size; i++) {
+        Monster* currentMonster = monsterBag->Return(i);
+        currentMonster->Recover();
     }
     cout << "ÄãµÄ±¦¿ÉÃÎ¶¼ÒÑ»Ö¸´½¡¿µ\n";
 }
@@ -356,7 +356,7 @@ void Map::Meet(int num)
     case 1:
     {
         MonsterBag* bag = MonsterBag::Getinstance();
-        bag->Find().Fight(enemy);
+        bag->Find()->Fight(enemy);
         break;
     }
     case 2:

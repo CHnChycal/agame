@@ -12,7 +12,6 @@ class Menu
 private:
     Player player;//´æ´¢Íæ¼ÒĞÕÃû
     Map map;
-    Bag bag;
 
 public:
     Menu();

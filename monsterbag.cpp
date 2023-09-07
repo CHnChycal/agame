@@ -96,19 +96,19 @@ void MonsterBag::Release()
 	bag.erase(bag.begin() + k);
 }
 
-Monster MonsterBag::Return(int number)
+Monster* MonsterBag::Return(int number)
 {
-	return bag[number];
+	return &bag[number];
 }
 
-Monster MonsterBag::Find()
+Monster* MonsterBag::Find()
 {
 	int size = bag.size();
 	for (int i = 0; i < size; i++)
 	{
 		if (bag[i].IsAlive())
 		{
-			return bag[i];
+			return &bag[i];
 			break;
 		}
 	}

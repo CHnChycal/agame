@@ -649,7 +649,7 @@ void Monster::Fight(Monster enemy)
 				else
 				{
 					MonsterBag* bag = MonsterBag::Getinstance();
-					bag->Find().Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
+					bag->Find()->Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
 					break;
 				}
 			}

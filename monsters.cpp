@@ -586,6 +586,7 @@ void Monster::SetValue(int curvalue)
 }
 void Monster::Recover()
 {
+	this->isAlive = true;
 	this->CurValue = MaxValue;
 }
 
@@ -612,18 +613,24 @@ void Monster::Fight(Monster enemy)
 		cout << "4: 捕捉道具" << endl;
 		cout << "5: 逃跑" << endl;//返回场景****************************************************************************
 		cout << "//////////////////////////////////////////////////////////" << endl;
-		cin >> n;
-		system("cls");
-		while (n != 1 && n != 2 && n != 3 && n != 4 && n != 5)
+		while (true)
 		{
-			cout << "//////////////////////////////////////////////////////////" << endl;
-			cout << "///                                                    ///" << endl;
-			cout << "///   请选择输入 1~5 之间的一个数！                    ///" << endl;
-			cout << "///                                                    ///" << endl;
-			cout << "//////////////////////////////////////////////////////////" << endl;
+			cout << ":";
 			cin >> n;
-			system("cls");
+			if (cin.fail() || n < 1 || n > 5)
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "//////////////////////////////////////////////////////////" << endl;
+				cout << "///                                                    ///" << endl;
+				cout << "///   请选择输入 1~5 之间的一个数！                    ///" << endl;
+				cout << "///                                                    ///" << endl;
+				cout << "//////////////////////////////////////////////////////////" << endl;
+			}
+			else break;
 		}
+		system("cls");
+		
 		switch (n)
 		{
 		case 1:
@@ -680,19 +687,31 @@ void Monster::Fight(Monster enemy)
 	}
 }
 
-void Monster::UsePotion(Bag* bag)
+void Monster::UsePotion()
 {
+	Bag* bp = Bag::Getinstance();
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	cout << "你的背包中有" << bag->showGoodNum(4) << "瓶治疗药水，是否要对" << this->Mname << " (" << this->MaxValue << " / " << this->CurValue << ") 使用？" << endl;
+	cout << "你的背包中有" << bp->showGoodNum(4) << "瓶治疗药水，是否要对" << this->Mname << " (" << this->MaxValue << " / " << this->CurValue << ") 使用？" << endl;
 	cout << "1. 使用" << endl;
 	cout << "2. 返回" << endl;
 	int choice;
-	cin >> choice;
+	while (true)
+	{
+		cout << ":";
+		cin >> choice;
+		if (cin.fail() || choice < 1 || choice>2)
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "(输入了错误的序号，请重新输入)" << endl;
+		}
+		else break;
+	}
 	switch (choice)
 	{
 	case 1:
 	{
-		if (bag->showGoodNum(4) <= 0)
+		if (bp->showGoodNum(4) <= 0)
 		{
 			cout << "使用失败！剩余治疗药水不足！" << endl;
 			system("pause");
@@ -700,7 +719,7 @@ void Monster::UsePotion(Bag* bag)
 		}
 		else
 		{
-			bag->editGoodNum(4, -1);
+			bp->editGoodNum(4, -1);
 			this->CurValue += this->MaxValue / 5;
 			if (this->CurValue > this->MaxValue)
 			{
@@ -715,28 +734,40 @@ void Monster::UsePotion(Bag* bag)
 		break;
 	default:
 		cout << "操作失败，请输入正确数字！" << endl;
-		this->UsePotion(bag);
+		this->UsePotion();
 		system("pause");
 		break;
 	}
 }
 
-void Monster::UseBall(Bag* bag,Monster enemy)
+void Monster::UseBall(Monster enemy)
 {
+	Bag* bp = Bag::Getinstance();
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	cout << "你的背包中有：\n" << bag->showGoodNum(5) << " 个普通精灵球" << endl;
-	cout << bag->showGoodNum(6) << " 个大师精灵球" << endl;
+	cout << "你的背包中有：\n" << bp->showGoodNum(5) << " 个普通精灵球" << endl;
+	cout << bp->showGoodNum(6) << " 个大师精灵球" << endl;
 	cout << "请选择你的操作：" << endl;
 	cout << "1. 使用普通精灵球" << endl;
 	cout << "2. 使用大师精灵球" << endl;
 	cout << "3. 返回" << endl;
 	int choice;
-	cin>>choice;
+	while (true)
+	{
+		cout << ":";
+		cin >> choice;
+		if (cin.fail() || choice < 0 || choice>1)
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "(输入了错误的序号，请重新输入)" << endl;
+		}
+		else break;
+	}
 	switch (choice)
 	{
 	case 1:
 	{
-		if (bag->showGoodNum(5) <= 0)
+		if (bp->showGoodNum(5) <= 0)
 		{
 			cout << "使用失败！剩余普通精灵球不足！" << endl;
 			system("pause");
@@ -744,7 +775,7 @@ void Monster::UseBall(Bag* bag,Monster enemy)
 		}
 		else
 		{
-			bag->editGoodNum(5, -1);
+			bp->editGoodNum(5, -1);
 			int possible = (enemy.MaxValue - enemy.CurValue) / enemy.MaxValue * 100;
 			int n = rand() % 100;
 			if (n <= possible)
@@ -762,7 +793,7 @@ void Monster::UseBall(Bag* bag,Monster enemy)
 	}
 	case 2:
 	{
-		if (bag->showGoodNum(6) <= 0)
+		if (bp->showGoodNum(6) <= 0)
 		{
 			cout << "使用失败！剩余大师精灵球不足！" << endl;
 			system("pause");
@@ -770,7 +801,7 @@ void Monster::UseBall(Bag* bag,Monster enemy)
 		}
 		else
 		{
-			bag->editGoodNum(6, -1);
+			bp->editGoodNum(6, -1);
 			int possible = (enemy.MaxValue - enemy.CurValue) / enemy.MaxValue * 100 * 2;
 			int n = rand() % 100;
 			if (n <= possible)
@@ -793,7 +824,7 @@ void Monster::UseBall(Bag* bag,Monster enemy)
 	default:
 	{
 		cout << "操作失败！请输入正确数字！" << endl;
-		this->UseBall(bag,enemy);
+		this->UseBall(enemy);
 		break;
 	}
 	}

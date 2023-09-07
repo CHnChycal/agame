@@ -71,7 +71,7 @@ void Map::enterShop() {
         {
             cout << ":";
             cin >> choice;
-            if (cin.fail() || choice < 0 || choice>1)
+            if (cin.fail() || choice < 0 || choice>4)
             {
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');

@@ -167,6 +167,7 @@ void Map::exploreWildness(int level) {
     switch (choice)
     {
     case 1:
+    {
         int percentage = rand() % 50;
         switch (percentage)
         {
@@ -227,6 +228,7 @@ void Map::exploreWildness(int level) {
             Meet(level);
             break;
         }
+    }
     case 2:
         displayOptions();//返回选择界面
         break;

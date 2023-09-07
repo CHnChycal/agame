@@ -60,6 +60,11 @@ void MonsterBag::Query()
 	}
 }
 
+int MonsterBag::MonsterNum()
+{
+	return bag.size();
+}
+
 void MonsterBag::Add(Monster monster)
 {
 	int size = bag.size();

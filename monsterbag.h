@@ -14,6 +14,8 @@ public:
 		return monsterbag;
 	}
 	void Query();//查询背包里的宝可梦
+	int MonsterNum();//查询宝贝里的宝可梦数量
+
 	//void Detail();//显示宝可梦详细信息
 	void Add(Monster monster);//添加宝可梦
 	void Release();//放生宝可梦

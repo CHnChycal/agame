@@ -180,8 +180,6 @@ int Menu::Gamerunning()//游戏运行界面
 	{ 
 		system("cls");
 		MonsterBag* mbp = MonsterBag::Getinstance();
-		for (int i = 0; i < 4; i++)
-			cout << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;
 		cout << "你现在处于 " << map.showLocation() << endl;
 		cout << "这里有 " << endl;
@@ -240,7 +238,6 @@ void Menu::showBag()
 	int choice;
 	Bag* bp = Bag::Getinstance();
 	system("cls");
-	cout << "\n\n\n\n";
 	cout << "///////////////////////////////////////////////////////////////" << endl;
 	cout << "红白相间的背包内有序堆放着" << player.Showname() << "平时常用的道具" << endl;
 	cout << "///////////////////////////////////////////////////////////////" << endl;

@@ -381,7 +381,7 @@ void Map::Meet(int num)
     case 1:
     {
         MonsterBag* bag = MonsterBag::Getinstance();
-        bag->Find()->Fight(enemy);
+        bag->Find()->Fight(&enemy);
         break;
     }
     case 2:

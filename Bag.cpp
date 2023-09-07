@@ -16,11 +16,11 @@ Bag::Bag()
 void Bag::showbag()
 {
 	int itemNum[8];
-	int listNum=1;
+	int listNum = 1;
 	while(true)
 	{ 
+		listNum = 1;
 		system("cls");
-		cout << "\n\n\n\n";
 		cout << "/////////////////////////////////////////////////////////" << endl;
 		cout << "背包里的物品如下: " << endl;
 		for (int i = 0; i < 7; i++)
@@ -37,7 +37,6 @@ void Bag::showbag()
 
 		itemNum[listNum - 1] = 7;
 		cout << listNum << '\t' << goods[7].getName() << '\t' << goods[7].showGoodsNum() << endl;
-		listNum++;
 
 		cout << "0\t退出" << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;

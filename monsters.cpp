@@ -565,6 +565,7 @@ Monster::Monster(int num,int level)
 	Speed = CurLevel + BasSpeed;
 	
 	isAlive = true;
+	hasCaught = false;
 
 	MaxLevel = 80;
 	CurValue = MaxValue;
@@ -592,19 +593,19 @@ void Monster::Recover()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //战斗页面
-void Monster::Fight(Monster enemy)
+void Monster::Fight(Monster* enemy)
 {
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy.Mname << "lv.(" << enemy.CurLevel << ")开始了战斗！" << endl;
+	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	int n;
 	int turn = 1;
-	while(this->isAlive && enemy.isAlive && !enemy.hasCaught)//当双方都未死亡时选择操作
+	while(this->isAlive && enemy->isAlive && !enemy->hasCaught)//当双方都未死亡时选择操作
 	{
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cout << "当前为第" << turn << "回合";
 		cout << "当前" << this->Mname << "的状态为: " << this->MaxValue << " / " << this->CurValue << endl;
-		cout << enemy.Mname << "的状态为: " << enemy.MaxValue << " / " << enemy.CurValue << endl;
+		cout << enemy->Mname << "的状态为: " << enemy->MaxValue << " / " << enemy->CurValue << endl;
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cout << "请选择你的操作：" << endl;
 		cout << "1: 攻击" << endl;
@@ -635,10 +636,10 @@ void Monster::Fight(Monster enemy)
 		{
 		case 1:
 		{
-			if (this->Speed >= enemy.Speed)
+			if (this->Speed >= enemy->Speed)
 			{
 				M_Attack(enemy);
-				if (enemy.isAlive)
+				if (enemy->isAlive)
 				{
 					M_Attacked(enemy);
 					break;
@@ -656,7 +657,10 @@ void Monster::Fight(Monster enemy)
 				else
 				{
 					MonsterBag* bag = MonsterBag::Getinstance();
-					bag->Find()->Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
+					if(bag->Find()!=nullptr)
+					{
+						bag->Find()->Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
+					}
 					break;
 				}
 			}
@@ -679,7 +683,7 @@ void Monster::Fight(Monster enemy)
 		}
 		case 5:
 		{
-			enemy.isAlive = false;
+			enemy->isAlive = false;
 		}
 		break;
 		}
@@ -740,7 +744,7 @@ void Monster::UsePotion()
 	}
 }
 
-void Monster::UseBall(Monster enemy)
+void Monster::UseBall(Monster* enemy)
 {
 	Bag* bp = Bag::Getinstance();
 	cout << "//////////////////////////////////////////////////////////" << endl;
@@ -776,11 +780,11 @@ void Monster::UseBall(Monster enemy)
 		else
 		{
 			bp->editGoodNum(5, -1);
-			int possible = (enemy.MaxValue - enemy.CurValue) / enemy.MaxValue * 100;
+			int possible = (enemy->MaxValue - enemy->CurValue) / enemy->MaxValue * 100;
 			int n = rand() % 100;
 			if (n <= possible)
 			{
-				MonsterBag::Getinstance()->Add(enemy);
+				MonsterBag::Getinstance()->Add(*enemy);
 			}
 			else
 			{
@@ -802,11 +806,11 @@ void Monster::UseBall(Monster enemy)
 		else
 		{
 			bp->editGoodNum(6, -1);
-			int possible = (enemy.MaxValue - enemy.CurValue) / enemy.MaxValue * 100 * 2;
+			int possible = (enemy->MaxValue - enemy->CurValue) / enemy->MaxValue * 100 * 2;
 			int n = rand() % 100;
 			if (n <= possible)
 			{
-				MonsterBag::Getinstance()->Add(enemy);
+				MonsterBag::Getinstance()->Add(*enemy);
 			}
 			else
 			{
@@ -831,43 +835,43 @@ void Monster::UseBall(Monster enemy)
 
 }
 
-void Monster::M_Attack(Monster enemy)
+void Monster::M_Attack(Monster* enemy)
 {
 	int damage;
-	damage = this->Attack - enemy.Defense;
-	int check = this->Check(enemy);//判断属性优劣势
+	damage = this->Attack - enemy->Defense;
+	int check = this->Check(*enemy);//判断属性优劣势
 	if (damage <= 0)//对敌人造成伤害
 	{
-		cout << this->Mname << "对" << enemy.Mname << "发起了攻击，但没能击破" << enemy.Mname << "的防御，造成了 0 点伤害" << endl;
+		cout << this->Mname << "对" << enemy->Mname << "发起了攻击，但没能击破" << enemy->Mname << "的防御，造成了 0 点伤害" << endl;
 	}
 	else {
 		switch (check)
 		{
 		case 0:
 		{
-			cout << this->Mname << "对" << enemy.Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
-			enemy.CurValue -= damage / 2;
+			cout << this->Mname << "对" << enemy->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
+			enemy->CurValue -= damage / 2;
 			break;
 		}
 		case 1:
 		{
-			cout << this->Mname << "对" << enemy.Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
-			enemy.CurValue -= damage;
+			cout << this->Mname << "对" << enemy->Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
+			enemy->CurValue -= damage;
 			break;
 		}
 		case 2:
 		{
-			cout << this->Mname << "对" << enemy.Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
-			enemy.CurValue -= damage * 2;
+			cout << this->Mname << "对" << enemy->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
+			enemy->CurValue -= damage * 2;
 			break;
 		}
 		}
 	}
-	if (enemy.CurValue <= 0)
+	if (enemy->CurValue <= 0)
 	{
-		enemy.isAlive = false;
-		cout << enemy.Mname << "体力不支，倒下了!" << endl;
-		this->CurExper += enemy.Experience;
+		enemy->isAlive = false;
+		cout << enemy->Mname << "体力不支，倒下了!" << endl;
+		this->CurExper += enemy->Experience;
 		if (this->CurExper >= this->MaxExper && this->CurLevel < this->MaxLevel)//经验足够且未达最高等级
 		{
 			this->CurLevel += 1;
@@ -884,7 +888,7 @@ void Monster::M_Attack(Monster enemy)
 		}
 		else//未达升级条件则显示当前经验
 		{
-			cout << this->Mname << "获得了" << enemy.Experience << "点经验，当前经验" << this->CurExper << " / " << this->MaxExper << endl;
+			cout << this->Mname << "获得了" << enemy->Experience << "点经验，当前经验" << this->CurExper << " / " << this->MaxExper << endl;
 		}
 	}
 	cout << "//////////////////////////////////////////////////////////" << endl;
@@ -893,33 +897,33 @@ void Monster::M_Attack(Monster enemy)
 
 }
 
-void Monster::M_Attacked(Monster enemy)
+void Monster::M_Attacked(Monster* enemy)
 {
 	int damage;
-	damage = enemy.Attack - this->Defense;
-	int check = this->Check(enemy);//判断属性优劣势
+	damage = enemy->Attack - this->Defense;
+	int check = this->Check(*enemy);//判断属性优劣势
 	if (damage <= 0)//收到敌人伤害
 	{
-		cout << enemy.Mname << "对" << this->Mname << "发起了攻击，但没能击破" << this->Mname << "的防御，造成了 0 点伤害" << endl;
+		cout << enemy->Mname << "对" << this->Mname << "发起了攻击，但没能击破" << this->Mname << "的防御，造成了 0 点伤害" << endl;
 	}
 	else {
 		switch (check)
 		{
 		case 0:
 		{
-			cout << enemy.Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
 			this->CurValue -= damage / 2;
 			break;
 		}
 		case 1:
 		{
-			cout << enemy.Mname << "对" << this->Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击。造成了 " << damage << " 点伤害" << endl;
 			this->CurValue -= damage;
 			break;
 		}
 		case 2:
 		{
-			cout << enemy.Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
 			this->CurValue -= damage * 2;
 			break;
 		}
@@ -927,6 +931,7 @@ void Monster::M_Attacked(Monster enemy)
 	}
 	if (this->CurValue <= 0)
 	{
+		this->CurValue = 0;
 		this->isAlive = false;
 		cout << this->Mname << "体力不支，倒下了!" << endl;
 	}

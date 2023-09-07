@@ -4,7 +4,7 @@
 #include"Bag.h"
 #include"Goods.h"
 using namespace std;
-
+Bag* Bag::bag = new Bag();
 Bag::Bag()
 {
 	for (int i = 0; i < 8; i++)

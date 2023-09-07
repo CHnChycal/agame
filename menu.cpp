@@ -164,7 +164,8 @@ Player Menu::Gamestart(int i)
 		return tmp;
 	}
 	else {//读取游戏
-		Player tmp;
+		load();
+		Player tmp = player;
 		return tmp;
 	}
 		
@@ -218,10 +219,10 @@ int Menu::Gamerunning()//游戏运行界面
 			mbp->Query();
 			break;
 		case 5://存档
-			//save();
+			save();
 			break;
 		case 6://读取存档
-			//load();
+			load();
 			break;
 		case 7://返回主菜单
 			return 0;
@@ -264,7 +265,7 @@ void Menu::showBag()
 		break;
 	}
 }
-void Menu::save()
+int Menu::save()
 {
 	ofstream filePlayer("SavePlayer.dat", ios_base::binary);
 	ofstream fileMap("SaveMap.dat", ios_base::binary);
@@ -275,7 +276,7 @@ void Menu::save()
 	{
 		cout << "无法打开保存文件!\n保存失败！" << endl;
 		system("pause");
-
+		return 0;
 	}
 	else
 	{	//存储玩家信息
@@ -289,7 +290,7 @@ void Menu::save()
 
 		}
 		//存储宝可梦数据
-
+		fileMonster << "pokemon" << " ";
 
 		cout << "(保存成功)" << endl;
 		filePlayer.close();
@@ -297,9 +298,10 @@ void Menu::save()
 		fileBag.close();
 		fileMonster.close();
 		system("pause");
+		return 1;
 	}
 }
-void Menu::load()
+int Menu::load()
 {
 	ifstream filePlayer("SavePlayer.dat", ios_base::binary);
 	ifstream fileMap("SaveMap.dat", ios_base::binary);
@@ -309,6 +311,7 @@ void Menu::load()
 	{
 		cout << "不存在存档文件，读取失败！" << endl;
 		system("pause");
+		return 0;
 	}
 	else
 	{
@@ -335,6 +338,7 @@ void Menu::load()
 		fileBag.close();
 		fileMonster.close();
 		system("pause");
+		return 1;
 	}
 }
 #endif

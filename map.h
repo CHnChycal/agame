@@ -30,7 +30,7 @@ public:
 
     void battleAndWinBadge();
     void showAvailableCities(int currentLocationindex);
-    void changeLocation(int newLocationIndex, string& currentlocation);
+    void changeLocation(int newLocationIndex);
     int showIndex();
 private:
     struct City {

@@ -291,8 +291,50 @@ void Menu::save()
 		//存储宝可梦数据
 
 
-		
+		cout << "(保存成功)" << endl;
+		filePlayer.close();
+		fileMap.close();
+		fileBag.close();
+		fileMonster.close();
+		system("pause");
 	}
+}
+void Menu::load()
+{
+	ifstream filePlayer("SavePlayer.dat", ios_base::binary);
+	ifstream fileMap("SaveMap.dat", ios_base::binary);
+	ifstream fileBag("SaveBag.dat", ios_base::binary);
+	ifstream fileMonster("SaveMonster.dat", ios_base::binary);
+	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
+	{
+		cout << "不存在存档文件，读取失败！" << endl;
+		system("pause");
+	}
+	else
+	{
+		//读取玩家名
+		string playername;
+		filePlayer >> playername;
+		Player player(playername);
+		Playeredit(player);
+		//读取地图位置
+		int index;
+		fileMap >> index;
+		map.changeLocation(index+1);
+		//读取背包
+		int num;
+		for (int i = 0; i < 8; i++) {
+			fileBag >> num;
+			bag.reloadGoodNum(i, num);
+		}
+		//读取宝可梦
 
+		cout << "(读取成功)" << endl;
+		filePlayer.close();
+		fileMap.close();
+		fileBag.close();
+		fileMonster.close();
+		system("pause");
+	}
 }
 #endif

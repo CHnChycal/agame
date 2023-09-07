@@ -70,14 +70,14 @@ void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation) {
          std::cout << "无效的选择。请重新输入\n";
          std::cin >> choice;
     }
-    if (currentLocationIndex == 1 && choice == 1) { currentLocationIndex = 2; changeLocation(2,  currentLocation); }
-    else if (currentLocationIndex == 1 && choice == 2) { currentLocationIndex = 4; changeLocation(4,currentLocation); }
-    else if (currentLocationIndex == 2 && choice == 1) { currentLocationIndex = 1; changeLocation(1, currentLocation); }
-    else if (currentLocationIndex == 2 && choice == 2) { currentLocationIndex = 3; changeLocation(3, currentLocation); }
-    else if (currentLocationIndex == 3 && choice == 1) { currentLocationIndex = 2; changeLocation(2,currentLocation); }
-    else if (currentLocationIndex == 3 && choice == 2) { currentLocationIndex = 4; changeLocation(4, currentLocation); }
-    else if (currentLocationIndex == 4 && choice == 1) { currentLocationIndex = 1; changeLocation(1, currentLocation); }
-    else if (currentLocationIndex == 4 && choice == 2) { currentLocationIndex = 3; changeLocation(3, currentLocation); }
+    if (currentLocationIndex == 1 && choice == 1) { currentLocationIndex = 2; changeLocation(2); }
+    else if (currentLocationIndex == 1 && choice == 2) { currentLocationIndex = 4; changeLocation(4); }
+    else if (currentLocationIndex == 2 && choice == 1) { currentLocationIndex = 1; changeLocation(1); }
+    else if (currentLocationIndex == 2 && choice == 2) { currentLocationIndex = 3; changeLocation(3); }
+    else if (currentLocationIndex == 3 && choice == 1) { currentLocationIndex = 2; changeLocation(2); }
+    else if (currentLocationIndex == 3 && choice == 2) { currentLocationIndex = 4; changeLocation(4); }
+    else if (currentLocationIndex == 4 && choice == 1) { currentLocationIndex = 1; changeLocation(1); }
+    else if (currentLocationIndex == 4 && choice == 2) { currentLocationIndex = 3; changeLocation(3); }
     displayOptions();
  }
 
@@ -330,7 +330,7 @@ void Map::showAvailableCities(int currentLocationIndex) {
     }
 
 }
-void Map::changeLocation(int newLocationIndex, string& currentlocation) {
+void Map::changeLocation(int newLocationIndex) {
     if (newLocationIndex == 1) {
         currentLocation = cities[0].name;
         cout << "你已经到达" << currentLocation<<endl;

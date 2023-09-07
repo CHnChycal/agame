@@ -54,13 +54,65 @@ void Map::challengeGym(int& gymBadges,int currentLocationIndex)
     
 
 void Map::enterShop() {
-    visitLocation(1);
-}
+    Bag* bag = Bag::Getinstance();
+    int choice;
+    int number;
+    int totalPrice;
+    system("cls");
+    cout << "//////////////////////////////////////////////////////////\n";
+    cout << "你进入了当地的宝可梦商店，这里可以购置许多有用的宝可梦装备\n";
+    cout << "//////////////////////////////////////////////////////////\n";
 
+
+    while (true) {
+        cout << "1.治疗药水\n2.普通精灵球\n3.大师精灵球\n4.退出商店\n";
+        cout << "tip:输入对应ID和数量进行购买\n";
+        cin >> choice;
+        switch (choice) {
+        case 1:
+            Goods(4).showGoods();
+            cout << "单价为20个金币，请输入你要购买的数量:";
+            cin >> number;//输入购买数量
+            totalPrice = number * 20;
+            bag->editGoodNum(7, -totalPrice);
+            bag->editGoodNum(4, number);//扣除金币并增加物品数量
+            cout << "你现在一共有" << bag->showGoodNum(4) << "瓶治疗药水了";
+            break;
+        case 2:
+            Goods(5).showGoods();
+            cout << "单价为40个金币，请输入你要购买的数量:";
+            cin >> number;//输入购买数量
+            totalPrice = number * 40;
+            bag->editGoodNum(7, -totalPrice);
+            bag->editGoodNum(5, number);//扣除金币并增加物品数量
+            cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了";
+            break;
+        case 3:
+            Goods(6).showGoods();
+            cout << "单价为80个金币，请输入你要购买的数量:";
+            cin >> number;//输入购买数量
+            totalPrice = number * 80;
+            bag->editGoodNum(7, -totalPrice);
+            bag->editGoodNum(6, number);//扣除金币并增加物品数量
+            cout << "你现在一共有" << bag->showGoodNum(5) << "个大师精灵球了";
+            break;
+        case 4:return;
+        default:
+            cout << "输入了错误的序号，请重新输入";
+            break;
+
+        }
+    } system("pause");
+}
 void Map::enterHospital() {
-    visitLocation(2);
+    MonsterBag* monsterBag = MonsterBag::Getinstance();
+    int size = 6;
+    for (int i = 0; i < 6; i++) {
+        Monster currentMonster = monsterBag->Return(i);
+        currentMonster.Recover();
+    }
+    cout << "你的宝可梦都已恢复健康\n";
 }
-
 void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation) {
     std::cout << "//你现在处于：" << currentLocation << " //\n";
     showAvailableCities(currentLocationIndex);

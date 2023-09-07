@@ -24,8 +24,8 @@ public:
     void PokemonBag();
     void ItemBag();
     void ShowMap();
-    void save();
-    void load();
+    int save();
+    int load();
     void showBag();
     
 };

@@ -67,7 +67,18 @@ void Map::enterShop() {
     while (true) {
         cout << "1.治疗药水\n2.普通精灵球\n3.大师精灵球\n4.退出商店\n";
         cout << "tip:输入对应ID和数量进行购买\n";
-        cin >> choice;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 0 || choice>1)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                cout << "(输入了错误的序号，请重新输入)" << endl;
+            }
+            else break;
+        }
         switch (choice) {
         case 1:
             Goods(4).showGoods();
@@ -186,15 +197,29 @@ void Map::exploreWilderness()
     std::cout << "2: 等级21~40" << endl;
     std::cout << "3: 等级41~60" << endl;
     std::cout << "4: 等级61~80" << endl;
-    int level;
-    cin >> level;
-    switch (level)
+    cout << "0:返回" << endl;
+    int choice;
+    while (true)
     {
+        cout << ":";
+        cin >> choice;
+        if (cin.fail() || choice < 0 || choice>4)
+        {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "(输入了错误的序号，请重新输入)" << endl;
+        }
+        else break;
+    }
+    switch (choice)
+    {
+    case 0:
+        break;
     case 1:
     case 2:
     case 3:
     case 4:
-        exploreWildness(level - 1);
+        exploreWildness(choice - 1);
         break;
     default:
         std::cout << "无效的选择。\n";

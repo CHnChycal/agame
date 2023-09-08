@@ -923,8 +923,8 @@ void Monster::M_Attacked(Monster* enemy)
 		{
 		case 0:
 		{
-			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
-			this->CurValue -= damage / 2;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
+			this->CurValue -= damage * 2;
 			break;
 		}
 		case 1:
@@ -935,8 +935,8 @@ void Monster::M_Attacked(Monster* enemy)
 		}
 		case 2:
 		{
-			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
-			this->CurValue -= damage * 2;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
+			this->CurValue -= damage / 2;
 			break;
 		}
 		}
@@ -946,9 +946,10 @@ void Monster::M_Attacked(Monster* enemy)
 		this->CurValue = 0;
 		this->isAlive = false;
 		cout << this->Mname << "体力不支，倒下了!" << endl;
+		/*MonsterBag* bag = MonsterBag::Getinstance();
+		bag->Find()->Fight(enemy);*/
 	}
-	cout << "//////////////////////////////////////////////////////////" << endl;
-	//自动切换背包里下一只宝可梦，若都没存活，则返回场景*********************************************************************
+
 }
 
 void Monster::Caught()

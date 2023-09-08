@@ -118,7 +118,7 @@ void MonsterBag::Release()
 		if (k != 0)
 		{
 			bag.erase(bag.begin() + k - 1);
-			cout << "(宝可梦已被放生，希望它能够找到属于自己的未来)" << endl;
+			cout << "(宝可梦离开了你，希望它能够找到属于自己的未来)" << endl;
 		}
 	}
 	else cout << "(背包内宝可梦数量不可为0，请再思考一下吧)" << endl;

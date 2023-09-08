@@ -595,6 +595,7 @@ void Monster::Recover()
 //战斗页面
 void Monster::Fight(Monster* enemy)
 {
+	system("cls");
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
@@ -603,7 +604,7 @@ void Monster::Fight(Monster* enemy)
 	while(this->isAlive && enemy->isAlive && !enemy->hasCaught)//当双方都未死亡时选择操作
 	{
 		cout << "//////////////////////////////////////////////////////////" << endl;
-		cout << "当前为第" << turn << "回合";
+		cout << "当前为第" << turn << "回合" << endl;
 		cout << "当前" << this->Mname << "的状态为: " << this->MaxValue << " / " << this->CurValue << endl;
 		cout << enemy->Mname << "的状态为: " << enemy->MaxValue << " / " << enemy->CurValue << endl;
 		cout << "//////////////////////////////////////////////////////////" << endl;
@@ -674,11 +675,13 @@ void Monster::Fight(Monster* enemy)
 		case 3:
 		{
 			UsePotion();
+			turn--;
 			break;
 		}
 		case 4:
 		{
 			UseBall(enemy);
+			turn--;
 			break;
 		}
 		case 5:

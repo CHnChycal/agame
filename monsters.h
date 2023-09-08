@@ -23,6 +23,7 @@ public:
 	//void Meet(int n);//探索野外遇到怪物（刷级或者捕捉新怪物）
 //n代表等级区间，若n为1，则野外怪物等级区间为1~21，若n为20，则野外怪物等级区间为20~40
 	void Fight(Monster* enemy);//战斗页面显示，但需要调用 M_Attack 和 M_Denfense 等函数来实现战斗
+	void GainCoin(Monster* enemy);
 	void UsePotion();//使用恢复药水
 	void UseBall(Monster* enemy);//使用精灵球捕捉
 	int Check(Monster enemy);//判断属性优劣势

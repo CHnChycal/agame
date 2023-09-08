@@ -17,9 +17,7 @@ public:
     void enterHospital();
     void goToOtherCity(int& currentLocationIndex,string &currentLocation);
   
-    void exitGame();
     void visitLocation(int i);
-    void displayOptions();
     string showLocation();
    
     void exploreWildness(int level);

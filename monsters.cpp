@@ -673,22 +673,33 @@ void Monster::Fight(Monster* enemy)
 		}
 		case 3:
 		{
-			//打开背包，选择道具
-			cout << "//////////////////////////////////////////////////////////" << endl;
+			UsePotion();
+			break;
 		}
 		case 4:
 		{
-			//打开背包，选择精灵球
-			//捕捉概率 = 总血量-当前血量/总血量 * 精灵球概率倍率
+			UseBall(enemy);
+			break;
 		}
 		case 5:
 		{
 			enemy->isAlive = false;
+			cout << "逃跑成功！" << endl;
+			system("pause");
+			break;
 		}
 		break;
 		}
 		turn++;
 	}
+}
+
+void Monster::GainCoin(Monster* enemy)
+{
+	Bag* bp = Bag::Getinstance();
+	int money = enemy->CURLevel() * 5;
+	bp->editGoodNum(7, money);
+	cout << "获得了" << money << "个代币" << endl;
 }
 
 void Monster::UsePotion()
@@ -780,7 +791,7 @@ void Monster::UseBall(Monster* enemy)
 		else
 		{
 			bp->editGoodNum(5, -1);
-			int possible = (enemy->MaxValue - enemy->CurValue) / enemy->MaxValue * 100;
+			float possible = ((float)enemy->MaxValue - (float)enemy->CurValue) / (float)enemy->MaxValue * 100;
 			int n = rand() % 100;
 			if (n <= possible)
 			{
@@ -806,7 +817,7 @@ void Monster::UseBall(Monster* enemy)
 		else
 		{
 			bp->editGoodNum(6, -1);
-			int possible = (enemy->MaxValue - enemy->CurValue) / enemy->MaxValue * 100 * 2;
+			float possible = ((float)enemy->MaxValue - (float)enemy->CurValue) / (float)enemy->MaxValue * 100 * 2;
 			int n = rand() % 100;
 			if (n <= possible)
 			{
@@ -871,6 +882,7 @@ void Monster::M_Attack(Monster* enemy)
 	{
 		enemy->isAlive = false;
 		cout << enemy->Mname << "体力不支，倒下了!" << endl;
+		this->GainCoin(enemy);
 		this->CurExper += enemy->Experience;
 		if (this->CurExper >= this->MaxExper && this->CurLevel < this->MaxLevel)//经验足够且未达最高等级
 		{
@@ -911,8 +923,8 @@ void Monster::M_Attacked(Monster* enemy)
 		{
 		case 0:
 		{
-			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
-			this->CurValue -= damage / 2;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
+			this->CurValue -= damage * 2;
 			break;
 		}
 		case 1:
@@ -923,8 +935,8 @@ void Monster::M_Attacked(Monster* enemy)
 		}
 		case 2:
 		{
-			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，效果显著！造成了 " << damage * 2 << " 点伤害" << endl;
-			this->CurValue -= damage * 2;
+			cout << enemy->Mname << "对" << this->Mname << "发起了攻击，但效果微弱。造成了 " << damage / 2 << " 点伤害" << endl;
+			this->CurValue -= damage / 2;
 			break;
 		}
 		}
@@ -934,9 +946,10 @@ void Monster::M_Attacked(Monster* enemy)
 		this->CurValue = 0;
 		this->isAlive = false;
 		cout << this->Mname << "体力不支，倒下了!" << endl;
+		/*MonsterBag* bag = MonsterBag::Getinstance();
+		bag->Find()->Fight(enemy);*/
 	}
-	cout << "//////////////////////////////////////////////////////////" << endl;
-	//自动切换背包里下一只宝可梦，若都没存活，则返回场景*********************************************************************
+
 }
 
 void Monster::Caught()

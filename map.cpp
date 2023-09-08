@@ -218,13 +218,14 @@ void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation)
 void Map::exploreWilderness()
 {
     system("cls");
-    std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
+    cout << "///////////////////////////////////////////////////////////////" << endl;
     std::cout << "//请选择野外难度等级//\n";
     std::cout << "1: 等级1~20" << endl;
     std::cout << "2: 等级21~40" << endl;
     std::cout << "3: 等级41~60" << endl;
     std::cout << "4: 等级61~80" << endl;
     cout << "0:返回" << endl;
+    cout << "///////////////////////////////////////////////////////////////" << endl;
     int choice;
     while (true)
     {

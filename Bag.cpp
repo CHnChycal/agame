@@ -69,13 +69,18 @@ void Bag::editGoodNum(int id, int num)
 	if (id == 7)
 	{
 		if (sum < 0)cout << "货币数量不足" << endl;
-		else
+		else if(sum > 0 && num < 0)
 		{
-			cout << "消费成功！" << endl;
+			cout << "(消费成功！)" << endl;
 			goods[id].changeGoodsNum(sum);
-			system("pause");
 
 		}
+		else if (sum > 0 && num > 0)
+		{
+			cout << "(金币已放入背包)" << endl;
+			goods[id].changeGoodsNum(sum);
+		}
+		
 		
 	}
 	else
@@ -106,4 +111,11 @@ void Bag::reloadGoodNum(int id, int num)
 {
 	goods[id].changeGoodsNum(num);
 
+}
+void Bag::Clear()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		goods[i].changeGoodsNum(goods[i].showGoodsNum());
+	}
 }

@@ -157,7 +157,7 @@ Player Menu::Gamestart(int i)
 			break;
 		}
 		cout << "(新的存档已创建，如需保存，请在游戏内保存)" << endl;
-		Monster ms(choice,1);
+		Monster ms(choice,10);
 		mbp->Add(ms);
 		system("pause");
 		Player tmp(name);

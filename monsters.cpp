@@ -3,6 +3,15 @@
 #include"monsters.h"
 #include"monsterbag.h"
 
+BOOL SetConsoleColor(WORD wAttributes)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hConsole == INVALID_HANDLE_VALUE)
+		return FALSE;
+
+	return SetConsoleTextAttribute(hConsole, wAttributes);
+}
+
 Monster::Monster(int num,int level) 
 {
 	switch (num) 
@@ -14,7 +23,7 @@ Monster::Monster(int num,int level)
 		id = 0;
 		BasValue = 65;
 		BasAttack = 49;
-		BasDefense = 34;
+		BasDefense = 24;
 		BasSpeed = 45;
 		break;
 	}
@@ -25,7 +34,7 @@ Monster::Monster(int num,int level)
 		id = 1;
 		BasValue = 59;
 		BasAttack = 52;
-		BasDefense = 37;
+		BasDefense = 27;
 		BasSpeed = 65;
 		break;
 	}
@@ -36,7 +45,7 @@ Monster::Monster(int num,int level)
 		id = 2;
 		BasValue = 64;
 		BasAttack = 48;
-		BasDefense = 38;
+		BasDefense = 28;
 		BasSpeed = 43;
 		break;
 	}
@@ -47,7 +56,7 @@ Monster::Monster(int num,int level)
 		id = 3;
 		BasValue = 55;
 		BasAttack = 45;
-		BasDefense = 30;
+		BasDefense = 20;
 		BasSpeed = 45;
 		break;
 	}
@@ -58,7 +67,7 @@ Monster::Monster(int num,int level)
 		id = 4;
 		BasValue = 45;
 		BasAttack = 50;
-		BasDefense = 33;
+		BasDefense = 23;
 		BasSpeed = 55;
 		break;
 	}
@@ -69,7 +78,7 @@ Monster::Monster(int num,int level)
 		id = 5;
 		BasValue = 63;
 		BasAttack = 70;
-		BasDefense = 48;
+		BasDefense = 38;
 		BasSpeed = 90;
 		break;
 	}
@@ -80,7 +89,7 @@ Monster::Monster(int num,int level)
 		id = 6;
 		BasValue = 58;
 		BasAttack = 48;
-		BasDefense = 50;
+		BasDefense = 35;
 		BasSpeed = 40;
 		break;
 	}
@@ -91,7 +100,7 @@ Monster::Monster(int num,int level)
 		id = 7;
 		BasValue = 50;
 		BasAttack = 40;
-		BasDefense = 32;
+		BasDefense = 22;
 		BasSpeed = 44;
 		break;
 	}
@@ -102,7 +111,7 @@ Monster::Monster(int num,int level)
 		id = 8;
 		BasValue = 60;
 		BasAttack = 38;
-		BasDefense = 48;
+		BasDefense = 33;
 		BasSpeed = 38;
 		break;
 	}
@@ -113,7 +122,7 @@ Monster::Monster(int num,int level)
 		id = 9;
 		BasValue = 56;
 		BasAttack = 51;
-		BasDefense = 30;
+		BasDefense = 20;
 		BasSpeed = 49;
 		break;
 	}
@@ -124,7 +133,7 @@ Monster::Monster(int num,int level)
 		id = 10;
 		BasValue = 52;
 		BasAttack = 38;
-		BasDefense = 38;
+		BasDefense = 26;
 		BasSpeed = 40;
 		break;
 	}
@@ -146,7 +155,7 @@ Monster::Monster(int num,int level)
 		id = 12;
 		BasValue = 46;
 		BasAttack = 51;
-		BasDefense = 25;
+		BasDefense = 21;
 		BasSpeed = 62;
 		break;
 	}
@@ -157,7 +166,7 @@ Monster::Monster(int num,int level)
 		id = 13;
 		BasValue = 53;
 		BasAttack = 39;
-		BasDefense = 36;
+		BasDefense = 26;
 		BasSpeed = 39;
 		break;
 	}
@@ -168,7 +177,7 @@ Monster::Monster(int num,int level)
 		id = 14;
 		BasValue = 50;
 		BasAttack = 46;
-		BasDefense = 45;
+		BasDefense = 24;
 		BasSpeed = 40;
 		break;
 	}
@@ -179,7 +188,7 @@ Monster::Monster(int num,int level)
 		id = 15;
 		BasValue = 39;
 		BasAttack = 36;
-		BasDefense = 36;
+		BasDefense = 26;
 		BasSpeed = 40;
 		break;
 	}
@@ -190,7 +199,7 @@ Monster::Monster(int num,int level)
 		id = 16;
 		BasValue = 52;
 		BasAttack = 34;
-		BasDefense = 38;
+		BasDefense = 23;
 		BasSpeed = 36;
 		break;
 	}
@@ -201,7 +210,7 @@ Monster::Monster(int num,int level)
 		id = 17;
 		BasValue = 46;
 		BasAttack = 48;
-		BasDefense = 39;
+		BasDefense = 26;
 		BasSpeed = 37;
 		break;
 	}
@@ -212,7 +221,7 @@ Monster::Monster(int num,int level)
 		id = 18;
 		BasValue = 50;
 		BasAttack = 52;
-		BasDefense = 39;
+		BasDefense = 27;
 		BasSpeed = 53;
 		break;
 	}
@@ -223,7 +232,7 @@ Monster::Monster(int num,int level)
 		id = 19;
 		BasValue = 64;
 		BasAttack = 54;
-		BasDefense = 42;
+		BasDefense = 28;
 		BasSpeed = 30;
 		break;
 	}
@@ -234,7 +243,7 @@ Monster::Monster(int num,int level)
 		id = 20;
 		BasValue = 68;
 		BasAttack = 36;
-		BasDefense = 47;
+		BasDefense = 33;
 		BasSpeed = 28;
 		break;
 	}
@@ -245,7 +254,7 @@ Monster::Monster(int num,int level)
 		id = 21;
 		BasValue = 54;
 		BasAttack = 47;
-		BasDefense = 42;
+		BasDefense = 30;
 		BasSpeed = 44;
 		break;
 	}
@@ -256,7 +265,7 @@ Monster::Monster(int num,int level)
 		id = 22;
 		BasValue = 72;
 		BasAttack = 56;
-		BasDefense = 40;
+		BasDefense = 29;
 		BasSpeed = 60;
 		break;
 	}
@@ -267,7 +276,7 @@ Monster::Monster(int num,int level)
 		id = 23;
 		BasValue = 52;
 		BasAttack = 47;
-		BasDefense = 35;
+		BasDefense = 23;
 		BasSpeed = 66;
 		break;
 	}
@@ -278,7 +287,7 @@ Monster::Monster(int num,int level)
 		id = 24;
 		BasValue = 65;
 		BasAttack = 41;
-		BasDefense = 50;
+		BasDefense = 35;
 		BasSpeed = 39;
 		break;
 	}
@@ -289,7 +298,7 @@ Monster::Monster(int num,int level)
 		id = 25;
 		BasValue = 54;
 		BasAttack = 52;
-		BasDefense = 41;
+		BasDefense = 25;
 		BasSpeed = 66;
 		break;
 	}
@@ -300,7 +309,7 @@ Monster::Monster(int num,int level)
 		id = 26;
 		BasValue = 54;
 		BasAttack = 52;
-		BasDefense = 41;
+		BasDefense = 26;
 		BasSpeed = 66;
 		break;
 	}
@@ -311,7 +320,7 @@ Monster::Monster(int num,int level)
 		id = 27;
 		BasValue = 54;
 		BasAttack = 52;
-		BasDefense = 41;
+		BasDefense = 26;
 		BasSpeed = 66;
 		break;
 	}
@@ -322,7 +331,7 @@ Monster::Monster(int num,int level)
 		id = 28;
 		BasValue = 60;
 		BasAttack = 41;
-		BasDefense = 43;
+		BasDefense = 29;
 		BasSpeed = 45;
 		break;
 	}
@@ -333,7 +342,7 @@ Monster::Monster(int num,int level)
 		id = 29;
 		BasValue = 65;
 		BasAttack = 55;
-		BasDefense = 45;
+		BasDefense = 30;
 		BasSpeed = 55;
 		break;
 	}
@@ -344,7 +353,7 @@ Monster::Monster(int num,int level)
 		id = 30;
 		BasValue = 65;
 		BasAttack = 55;
-		BasDefense = 45;
+		BasDefense = 20;
 		BasSpeed = 55;
 		break;
 	}
@@ -355,7 +364,7 @@ Monster::Monster(int num,int level)
 		id = 31;
 		BasValue = 65;
 		BasAttack = 55;
-		BasDefense = 45;
+		BasDefense = 30;
 		BasSpeed = 55;
 		break;
 	}
@@ -366,7 +375,7 @@ Monster::Monster(int num,int level)
 		id = 32;
 		BasValue = 60;
 		BasAttack = 50;
-		BasDefense = 48;
+		BasDefense = 31;
 		BasSpeed = 37;
 		break;
 	}
@@ -377,7 +386,7 @@ Monster::Monster(int num,int level)
 		id = 33;
 		BasValue = 48;
 		BasAttack = 62;
-		BasDefense = 42;
+		BasDefense = 27;
 		BasSpeed = 39;
 		break;
 	}
@@ -388,7 +397,7 @@ Monster::Monster(int num,int level)
 		id = 34;
 		BasValue = 46;
 		BasAttack = 61;
-		BasDefense = 37;
+		BasDefense = 28;
 		BasSpeed = 53;
 		break;
 	}
@@ -399,7 +408,7 @@ Monster::Monster(int num,int level)
 		id = 35;
 		BasValue = 52;
 		BasAttack = 47;
-		BasDefense = 36;
+		BasDefense = 26;
 		BasSpeed = 67;
 		break;
 	}
@@ -410,7 +419,7 @@ Monster::Monster(int num,int level)
 		id = 36;
 		BasValue = 56;
 		BasAttack = 52;
-		BasDefense = 42;
+		BasDefense = 29;
 		BasSpeed = 60;
 		break;
 	}
@@ -421,7 +430,7 @@ Monster::Monster(int num,int level)
 		id = 37;
 		BasValue = 60;
 		BasAttack = 50;
-		BasDefense = 40;
+		BasDefense = 25;
 		BasSpeed = 50;
 		break;
 	}
@@ -432,7 +441,7 @@ Monster::Monster(int num,int level)
 		id = 38;
 		BasValue = 60;
 		BasAttack = 40;
-		BasDefense = 50;
+		BasDefense = 35;
 		BasSpeed = 50;
 		break;
 	}
@@ -443,7 +452,7 @@ Monster::Monster(int num,int level)
 		id = 39;
 		BasValue = 64;
 		BasAttack = 65;
-		BasDefense = 40;
+		BasDefense = 22;
 		BasSpeed = 60;
 		break;
 	}
@@ -454,7 +463,7 @@ Monster::Monster(int num,int level)
 		id = 40;
 		BasValue = 55;
 		BasAttack = 55;
-		BasDefense = 55;
+		BasDefense = 35;
 		BasSpeed = 55;
 		break;
 	}
@@ -465,7 +474,7 @@ Monster::Monster(int num,int level)
 		id = 41;
 		BasValue = 68;
 		BasAttack = 60;
-		BasDefense = 45;
+		BasDefense = 30;
 		BasSpeed = 40;
 		break;
 	}
@@ -476,7 +485,7 @@ Monster::Monster(int num,int level)
 		id = 42;
 		BasValue = 55;
 		BasAttack = 50;
-		BasDefense = 55;
+		BasDefense = 40;
 		BasSpeed = 60;
 		break;
 	}
@@ -487,7 +496,7 @@ Monster::Monster(int num,int level)
 		id = 43;
 		BasValue = 60;
 		BasAttack = 50;
-		BasDefense = 50;
+		BasDefense = 35;
 		BasSpeed = 80;
 		break;
 	}
@@ -498,7 +507,7 @@ Monster::Monster(int num,int level)
 		id = 44;
 		BasValue = 60;
 		BasAttack = 65;
-		BasDefense = 55;
+		BasDefense = 38;
 		BasSpeed = 50;
 		break;
 	}
@@ -509,7 +518,7 @@ Monster::Monster(int num,int level)
 		id = 45;
 		BasValue = 57;
 		BasAttack = 47;
-		BasDefense = 47;
+		BasDefense = 29;
 		BasSpeed = 72;
 		break;
 	}
@@ -520,7 +529,7 @@ Monster::Monster(int num,int level)
 		id = 46;
 		BasValue = 59;
 		BasAttack = 49;
-		BasDefense = 43;
+		BasDefense = 20;
 		BasSpeed = 44;
 		break;
 	}
@@ -531,7 +540,7 @@ Monster::Monster(int num,int level)
 		id = 47;
 		BasValue = 65;
 		BasAttack = 48;
-		BasDefense = 46;
+		BasDefense = 22;
 		BasSpeed = 38;
 		break;
 	}
@@ -542,7 +551,7 @@ Monster::Monster(int num,int level)
 		id = 48;
 		BasValue = 60;
 		BasAttack = 53;
-		BasDefense = 37;
+		BasDefense = 26;
 		BasSpeed = 66;
 		break;
 	}
@@ -553,14 +562,14 @@ Monster::Monster(int num,int level)
 		id = 49;
 		BasValue = 58;
 		BasAttack = 52;
-		BasDefense = 43;
+		BasDefense = 27;
 		BasSpeed = 70;
 		break;
 	}
 	}
 	CurLevel = level;
 	MaxValue = CurLevel * 5 + BasValue;
-	Attack = CurLevel * 2 + BasAttack;
+	Attack = CurLevel * 3 + BasAttack;
 	Defense = CurLevel * 2 + BasDefense;
 	Speed = CurLevel + BasSpeed;
 	
@@ -596,6 +605,7 @@ void Monster::Recover()
 void Monster::Fight(Monster* enemy)
 {
 	system("cls");
+	SetConsoleColor(FOREGROUND_RED);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
@@ -603,18 +613,19 @@ void Monster::Fight(Monster* enemy)
 	int turn = 1;
 	while(this->isAlive && enemy->isAlive && !enemy->hasCaught)//当双方都未死亡时选择操作
 	{
-		cout << "//////////////////////////////////////////////////////////" << endl;
+		system("cls");
+		SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 		cout << "当前为第" << turn << "回合" << endl;
 		cout << "当前" << this->Mname << "的状态为: " << this->MaxValue << " / " << this->CurValue << endl;
 		cout << enemy->Mname << "的状态为: " << enemy->MaxValue << " / " << enemy->CurValue << endl;
 		cout << "//////////////////////////////////////////////////////////" << endl;
+		SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
 		cout << "请选择你的操作：" << endl;
 		cout << "1: 攻击" << endl;
 		cout << "2: 防御" << endl;
 		cout << "3: 回复道具" << endl;
 		cout << "4: 捕捉道具" << endl;
 		cout << "5: 逃跑" << endl;//返回场景****************************************************************************
-		cout << "//////////////////////////////////////////////////////////" << endl;
 		while (true)
 		{
 			cout << ":";
@@ -623,11 +634,9 @@ void Monster::Fight(Monster* enemy)
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
+				SetConsoleColor(FOREGROUND_RED);
 				cout << "//////////////////////////////////////////////////////////" << endl;
-				cout << "///                                                    ///" << endl;
-				cout << "///   请选择输入 1~5 之间的一个数！                    ///" << endl;
-				cout << "///                                                    ///" << endl;
-				cout << "//////////////////////////////////////////////////////////" << endl;
+				cout << "输入错误！请重新输入" << endl;
 			}
 			else break;
 		}
@@ -643,9 +652,14 @@ void Monster::Fight(Monster* enemy)
 				if (enemy->isAlive)
 				{
 					M_Attacked(enemy);
+					system("pause");
 					break;
 				}
-				else break;
+				else
+				{
+					system("pause");
+					break;
+				}
 			}
 			else
 			{
@@ -653,6 +667,7 @@ void Monster::Fight(Monster* enemy)
 				if (this->isAlive)
 				{
 					M_Attack(enemy);
+					system("pause");
 					break;
 				}
 				else
@@ -662,14 +677,21 @@ void Monster::Fight(Monster* enemy)
 					{
 						bag->Find()->Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
 					}
+					else
+					{
+						SetConsoleColor(FOREGROUND_RED);
+						cout << "背包中没有可战斗的宝可梦！战斗结束！" << endl;
+					}
+					system("pause");
 					break;
 				}
 			}
 		}
 		case 2:
 		{
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << this->Mname << "进行了防御，双方都未受到伤害" << endl;
-			cout << "//////////////////////////////////////////////////////////" << endl;
+			system("pause");
 			break;
 		}
 		case 3:
@@ -687,6 +709,7 @@ void Monster::Fight(Monster* enemy)
 		case 5:
 		{
 			enemy->isAlive = false;
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << "逃跑成功！" << endl;
 			system("pause");
 			break;
@@ -702,14 +725,18 @@ void Monster::GainCoin(Monster* enemy)
 	Bag* bp = Bag::Getinstance();
 	int money = enemy->CURLevel() * 5;
 	bp->editGoodNum(7, money);
+	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "获得了" << money << "个代币" << endl;
 }
 
 void Monster::UsePotion()
 {
 	Bag* bp = Bag::Getinstance();
+	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "你的背包中有" << bp->showGoodNum(4) << "瓶治疗药水，是否要对" << this->Mname << " (" << this->MaxValue << " / " << this->CurValue << ") 使用？" << endl;
+	SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
+	cout << "请选择你的操作：" << endl;
 	cout << "1. 使用" << endl;
 	cout << "2. 返回" << endl;
 	int choice;
@@ -721,7 +748,8 @@ void Monster::UsePotion()
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "(输入了错误的序号，请重新输入)" << endl;
+			SetConsoleColor(FOREGROUND_RED);
+			cout << "输入了错误的序号，请重新输入" << endl;
 		}
 		else break;
 	}
@@ -731,6 +759,7 @@ void Monster::UsePotion()
 	{
 		if (bp->showGoodNum(4) <= 0)
 		{
+			SetConsoleColor(FOREGROUND_RED);
 			cout << "使用失败！剩余治疗药水不足！" << endl;
 			system("pause");
 			break;
@@ -743,6 +772,7 @@ void Monster::UsePotion()
 			{
 				this->CurValue = this->MaxValue;
 			}
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << "使用成功，当前" << this->Mname << "的血量为：" << this->MaxValue << " / " << this->CurValue;
 			system("pause");
 			break;
@@ -751,6 +781,7 @@ void Monster::UsePotion()
 	case 2:
 		break;
 	default:
+		SetConsoleColor(FOREGROUND_RED);
 		cout << "操作失败，请输入正确数字！" << endl;
 		this->UsePotion();
 		system("pause");
@@ -761,9 +792,11 @@ void Monster::UsePotion()
 void Monster::UseBall(Monster* enemy)
 {
 	Bag* bp = Bag::Getinstance();
+	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "你的背包中有：\n" << bp->showGoodNum(5) << " 个普通精灵球" << endl;
 	cout << bp->showGoodNum(6) << " 个大师精灵球" << endl;
+	SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
 	cout << "请选择你的操作：" << endl;
 	cout << "1. 使用普通精灵球" << endl;
 	cout << "2. 使用大师精灵球" << endl;
@@ -777,7 +810,8 @@ void Monster::UseBall(Monster* enemy)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "(输入了错误的序号，请重新输入)" << endl;
+			SetConsoleColor(FOREGROUND_RED);
+			cout << "输入了错误的序号，请重新输入" << endl;
 		}
 		else break;
 	}
@@ -787,6 +821,7 @@ void Monster::UseBall(Monster* enemy)
 	{
 		if (bp->showGoodNum(5) <= 0)
 		{
+			SetConsoleColor(FOREGROUND_RED);
 			cout << "使用失败！剩余普通精灵球不足！" << endl;
 			system("pause");
 			break;
@@ -802,6 +837,7 @@ void Monster::UseBall(Monster* enemy)
 			}
 			else
 			{
+				SetConsoleColor(FOREGROUND_RED);
 				cout << "捕捉失败！" << endl;
 			}
 			system("pause");
@@ -813,6 +849,7 @@ void Monster::UseBall(Monster* enemy)
 	{
 		if (bp->showGoodNum(6) <= 0)
 		{
+			SetConsoleColor(FOREGROUND_RED);
 			cout << "使用失败！剩余大师精灵球不足！" << endl;
 			system("pause");
 			break;
@@ -828,6 +865,7 @@ void Monster::UseBall(Monster* enemy)
 			}
 			else
 			{
+				SetConsoleColor(FOREGROUND_RED);
 				cout << "捕捉失败！" << endl;
 			}
 			system("pause");
@@ -841,6 +879,7 @@ void Monster::UseBall(Monster* enemy)
 	}
 	default:
 	{
+		SetConsoleColor(FOREGROUND_RED);
 		cout << "操作失败！请输入正确数字！" << endl;
 		this->UseBall(enemy);
 		break;
@@ -851,6 +890,7 @@ void Monster::UseBall(Monster* enemy)
 
 void Monster::M_Attack(Monster* enemy)
 {
+	SetConsoleColor(FOREGROUND_BLUE);
 	int damage;
 	damage = this->Attack - enemy->Defense;
 	int check = this->Check(*enemy);//判断属性优劣势
@@ -884,6 +924,7 @@ void Monster::M_Attack(Monster* enemy)
 	if (enemy->CurValue <= 0)
 	{
 		enemy->isAlive = false;
+		SetConsoleColor(FOREGROUND_RED);
 		cout << enemy->Mname << "体力不支，倒下了!" << endl;
 		this->GainCoin(enemy);
 		this->CurExper += enemy->Experience;
@@ -899,14 +940,17 @@ void Monster::M_Attack(Monster* enemy)
 			//升级以后各项属性增加
 			this->CurValue = MaxValue;
 			//升级以后恢复状态
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << this->Mname << "升到了" << this->CurLevel << "级！各项属性获得了提升" << endl;
+			cout << this->Mname << "当前的属性为：" << endl;
+			this->Show_Detail();
 		}
 		else//未达升级条件则显示当前经验
 		{
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << this->Mname << "获得了" << enemy->Experience << "点经验，当前经验" << this->CurExper << " / " << this->MaxExper << endl;
 		}
 	}
-	cout << "//////////////////////////////////////////////////////////" << endl;
 
 	//返回场景***************************************************************************
 
@@ -914,6 +958,7 @@ void Monster::M_Attack(Monster* enemy)
 
 void Monster::M_Attacked(Monster* enemy)
 {
+	SetConsoleColor(FOREGROUND_BLUE);
 	int damage;
 	damage = enemy->Attack - this->Defense;
 	int check = this->Check(*enemy);//判断属性优劣势
@@ -948,6 +993,7 @@ void Monster::M_Attacked(Monster* enemy)
 	{
 		this->CurValue = 0;
 		this->isAlive = false;
+		SetConsoleColor(FOREGROUND_RED);
 		cout << this->Mname << "体力不支，倒下了!" << endl;
 		/*MonsterBag* bag = MonsterBag::Getinstance();
 		bag->Find()->Fight(enemy);*/
@@ -1174,6 +1220,7 @@ int Monster::CURExper()
 
 void Monster::Show_Detail()
 {
+	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "名称：" << this->Mname << endl;
 	cout << "属性:";

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef NPCTEXT.H
-#define NPCTEXT.H
+#ifndef NPCTEXT_H
+#define NPCTEX_H
 
 #include<string>
 #include<iostream>
@@ -13,6 +13,7 @@
 using namespace std;
 class Npc {
 public:
+	bool ifChallengeSucess(int i);
 	Npc(int id);
 	~Npc();
 	void npctalk(int currentLocationIndex, Bag* bag);//与npc交谈并进入战斗

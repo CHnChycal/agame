@@ -1,20 +1,28 @@
 #pragma once
 #include<iostream>
 #include"npc.h";
+#include"monsters.h"
 using namespace std;
 Monster* Npc::getFirstMonster()
 {
-	if (!gymBossMonsters.empty()) {
+	while (!gymBossMonsters.empty()) {
+		removeFirstMoster();
 		return &gymBossMonsters[0];
-	}
-	return nullptr;
+		
+	}return nullptr;
 }
+
 
 void Npc::removeFirstMoster()
 {
-	if (!gymBossMonsters.empty()) {
+	if (!gymBossMonsters.empty()&& gymBossMonsters[0].CURValue()==0) {
 		gymBossMonsters.erase(gymBossMonsters.begin());
 	}
+
+}
+bool Npc::ifChallengeSucess(int i) {
+	if (Npc(i).gymBossMonsters.empty())return 1;
+	else return 0;
 
 }
 int Npc::getMonstersCount() {

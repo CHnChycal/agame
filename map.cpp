@@ -85,50 +85,78 @@ void Map::challengeGym(int currentLocationIndex)
     case 1:
         if (bag->showGoodNum(0) == 1) {
             cout << "你已经获得电系徽章,不可再次挑战！\n";
-            showMap();
         }
         else {
         cout << "你将挑战紫瑾市的电系道馆\n"; 
         Monsterbag->Find()->Fight(Npc(0).getFirstMonster());
-    }break;
+        if (Npc(0).ifChallengeSucess(0)) {
+            cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
+            bag->editGoodNum(0, 1);
+            
+        }
+        else {
+            cout << "挑战失败，继续努力再来吧\n";
+        }
+        }system("pause");
+        break;
     case 2:if (bag->showGoodNum(1) == 1) {
         cout << "你已经获得火系徽章,不可再次挑战！\n";
-        showMap();
     } 
           else if(bag->showGoodNum(0) == 0) {
         cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的电系道馆";
-        showMap();
     }
           else{
         cout << "你将挑战斧炎镇的火系道馆\n";
         Monsterbag->Find()->Fight(Npc(1).getFirstMonster());
-    }
+        if (Npc(1).ifChallengeSucess(1)) {
+            cout << "恭喜你挑战成功,这枚火系徽章是你的啦\n";
+            bag->editGoodNum(1, 1);
+
+        }
+        else {
+            cout << "挑战失败，继续努力再来吧\n";
+        }
+     
+    }system("pause");
          break;
     case 3:if (bag->showGoodNum(2) == 1) {
         cout << "你已经获得普通系徽章,不可再次挑战！\n";
-        showMap();
     }
           else if (bag->showGoodNum(1) == 0) {
         cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的火系道馆";
-        showMap();
     }
           else {
         cout << "你将挑战橙华市的普通道馆\n";
         Monsterbag->Find()->Fight(Npc(2).getFirstMonster());
-    }
+        if (Npc(2).ifChallengeSucess(2)) {
+            cout << "恭喜你挑战成功,这枚普通系徽章是你的啦\n";
+            bag->editGoodNum(2, 1);
+
+        }
+        else {
+            cout << "挑战失败，继续努力再来吧\n";
+        }
+    }system("pause");
           break;
     case 4:if (bag->showGoodNum(3) == 1) {
         cout << "你已经获得水系徽章,不可再次挑战！\n";
-        showMap();
+
     }
           else if (bag->showGoodNum(2) == 0) {
         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
         Monsterbag->Find()->Fight(Npc(3).getFirstMonster());
-        showMap();
+        if (Npc(3).ifChallengeSucess(1)) {
+            cout << "恭喜你挑战成功,这枚水系徽章是你的啦\n";
+            bag->editGoodNum(3, 1);
+
+        }
+        else {
+            cout << "挑战失败，继续努力再来吧\n";
+        }
     }
           else {
         cout << "你将挑战琉璃岛的水系道馆\n";
-    }
+    }system("pause");
           break;
     }
 }

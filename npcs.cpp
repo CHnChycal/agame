@@ -8,7 +8,7 @@ using namespace std;
 Npcs* Npcs::npcs = new Npcs();
 Npcs::Npcs()
 {
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < 13; i++)
 	{
 		npcbag.push_back(Npc(i));
 	}

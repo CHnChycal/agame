@@ -12,7 +12,7 @@ int Welcomepage()//显示游戏标题和选项
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | 14);
-	for (int i = 0; i < 8; i++)//默认向下取八行
+	for (int i = 0; i < 6; i++)//默认向下取6行
 		cout << endl;
 	cout <<'\t'  << '\t' << '\t' << "               __                                            " << endl;
 	cout << '\t' << '\t' << '\t' << "              /\\ \\                                           " << endl;
@@ -28,6 +28,7 @@ int Welcomepage()//显示游戏标题和选项
 	cout << '\t' << '\t' << '\t' << '\t';
 	cout << '\t' << "   ********************" << endl;
 	cout << '\t' << '\t' << '\t' << '\t' << '\t' << "         Made by " << endl;
+	cout << '\t' << '\t' << '\t' << '\t' << '\t' << "   23年夏季学期第四小组 " << endl;
 	cout << '\t' << '\t' << '\t' << '\t' << '\t' << "   ********************" << endl;
 	cout << '\t' << '\t' << '\t' << '\t';
 	for (int i = 0; i < newGameMenu.length(); i++) {

@@ -312,6 +312,7 @@ int Menu::save()
 		fileMap.close();
 		fileBag.close();
 		fileMonster.close();
+		fileNpc.close();
 		system("pause");
 		return 1;
 	}
@@ -328,7 +329,7 @@ int Menu::load()
 	MonsterBag* mbp = MonsterBag::Getinstance();
 	Npcs* npcs = Npcs::Getinstance();
 
-	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
+	if (!filePlayer || !fileMap || !fileBag || !fileMonster||!fileNpc)
 	{
 		cout << "不存在存档文件，读取失败！" << endl;
 		system("pause");
@@ -383,6 +384,7 @@ int Menu::load()
 		fileMap.close();
 		fileBag.close();
 		fileMonster.close();
+		fileNpc.close();
 		system("pause");
 		return 1;
 	}

@@ -3,14 +3,6 @@
 #include"monsters.h"
 #include"monsterbag.h"
 
-BOOL SetConsoleColor(WORD wAttributes)
-{
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	if (hConsole == INVALID_HANDLE_VALUE)
-		return FALSE;
-
-	return SetConsoleTextAttribute(hConsole, wAttributes);
-}
 Monster::Monster(const Monster &tmp)
 {
 	Mname = tmp.Mname;
@@ -627,8 +619,11 @@ void Monster::Recover()
 //战斗页面
 void Monster::Fight(Monster* enemy)
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	
 	system("cls");
-	SetConsoleColor(FOREGROUND_RED);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
@@ -639,13 +634,13 @@ void Monster::Fight(Monster* enemy)
 	while(this->isAlive && enemy->isAlive && !enemy->hasCaught)//当双方都未死亡时选择操作
 	{
 		system("cls");
-		SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		cout << "当前为第" << turn << "回合" << endl;
 		cout << "当前" << this->Mname << "的状态为: " << this->CurValue << " / " << this->MaxValue << endl;
 		cout << enemy->Mname << "的状态为: " << enemy->CurValue << " / " << enemy->MaxValue << endl;
 		cout << "//////////////////////////////////////////////////////////" << endl;
-		SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 		cout << "请选择你的操作：" << endl;
 		cout << "1: 攻击" << endl;
 		cout << "2: 防御" << endl;
@@ -661,7 +656,7 @@ void Monster::Fight(Monster* enemy)
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
-				SetConsoleColor(FOREGROUND_RED);
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 				cout << "//////////////////////////////////////////////////////////" << endl;
 				cout << "输入错误！请重新输入" << endl;
 			}
@@ -674,7 +669,7 @@ void Monster::Fight(Monster* enemy)
 		case 0:
 		{
 			enemy->isAlive = false;
-			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << "逃跑成功！" << endl;
 			system("pause");
 			break;
@@ -715,7 +710,7 @@ void Monster::Fight(Monster* enemy)
 					}
 					else
 					{
-						SetConsoleColor(FOREGROUND_RED);
+						SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 						cout << "背包中没有可战斗的宝可梦！战斗结束！" << endl;
 					}
 					system("pause");
@@ -725,7 +720,7 @@ void Monster::Fight(Monster* enemy)
 		}
 		case 2:
 		{
-			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 			M_Denfense();
 			M_Attacked(enemy);
 			system("pause");
@@ -744,14 +739,14 @@ void Monster::Fight(Monster* enemy)
 			break;
 		}
 		case 5:
-		
+			break;
 		}
 		turn++;
 		if (this->defense_up_turn > 0)
 		{
 			if (this->defense_up_turn == 1)
 			{
-				SetConsoleColor(FOREGROUND_RED);
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 				cout << this->Mname << "的防御力提升状态消失！防御力恢复" << endl;
 				this->Defense /= 2;
 			}
@@ -762,20 +757,24 @@ void Monster::Fight(Monster* enemy)
 
 void Monster::GainCoin(Monster* enemy)
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Bag* bp = Bag::Getinstance();
 	int money = enemy->CURLevel() * 5;
 	bp->editGoodNum(7, money);
-	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "获得了" << money << "个代币" << endl;
 }
 
 void Monster::UsePotion()
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Bag* bp = Bag::Getinstance();
-	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "你的背包中有" << bp->showGoodNum(4) << "瓶治疗药水，是否要对" << this->Mname << " (" << this->MaxValue << " / " << this->CurValue << ") 使用？" << endl;
-	SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 	cout << "请选择你的操作：" << endl;
 	cout << "1. 使用" << endl;
 	cout << "2. 返回" << endl;
@@ -788,7 +787,7 @@ void Monster::UsePotion()
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			SetConsoleColor(FOREGROUND_RED);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 			cout << "输入了错误的序号，请重新输入" << endl;
 		}
 		else break;
@@ -799,7 +798,7 @@ void Monster::UsePotion()
 	{
 		if (bp->showGoodNum(4) <= 0)
 		{
-			SetConsoleColor(FOREGROUND_RED);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 			cout << "使用失败！剩余治疗药水不足！" << endl;
 			system("pause");
 			break;
@@ -812,7 +811,7 @@ void Monster::UsePotion()
 			{
 				this->CurValue = this->MaxValue;
 			}
-			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << "使用成功，当前" << this->Mname << "的血量为：" << this->MaxValue << " / " << this->CurValue;
 			system("pause");
 			break;
@@ -821,7 +820,7 @@ void Monster::UsePotion()
 	case 2:
 		break;
 	default:
-		SetConsoleColor(FOREGROUND_RED);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 		cout << "操作失败，请输入正确数字！" << endl;
 		this->UsePotion();
 		system("pause");
@@ -831,12 +830,14 @@ void Monster::UsePotion()
 
 void Monster::UseBall(Monster* enemy)
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Bag* bp = Bag::Getinstance();
-	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "你的背包中有：\n" << bp->showGoodNum(5) << " 个普通精灵球" << endl;
 	cout << bp->showGoodNum(6) << " 个大师精灵球" << endl;
-	SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 	cout << "请选择你的操作：" << endl;
 	cout << "1. 使用普通精灵球" << endl;
 	cout << "2. 使用大师精灵球" << endl;
@@ -850,7 +851,7 @@ void Monster::UseBall(Monster* enemy)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			SetConsoleColor(FOREGROUND_RED);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 			cout << "输入了错误的序号，请重新输入" << endl;
 		}
 		else break;
@@ -861,7 +862,7 @@ void Monster::UseBall(Monster* enemy)
 	{
 		if (bp->showGoodNum(5) <= 0)
 		{
-			SetConsoleColor(FOREGROUND_RED);
+			SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 			cout << "使用失败！剩余普通精灵球不足！" << endl;
 			system("pause");
 			break;
@@ -877,7 +878,7 @@ void Monster::UseBall(Monster* enemy)
 			}
 			else
 			{
-				SetConsoleColor(FOREGROUND_RED);
+				SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 				cout << "捕捉失败！" << endl;
 			}
 			system("pause");
@@ -889,7 +890,7 @@ void Monster::UseBall(Monster* enemy)
 	{
 		if (bp->showGoodNum(6) <= 0)
 		{
-			SetConsoleColor(FOREGROUND_RED);
+			SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 			cout << "使用失败！剩余大师精灵球不足！" << endl;
 			system("pause");
 			break;
@@ -905,7 +906,7 @@ void Monster::UseBall(Monster* enemy)
 			}
 			else
 			{
-				SetConsoleColor(FOREGROUND_RED);
+				SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 				cout << "捕捉失败！" << endl;
 			}
 			system("pause");
@@ -919,7 +920,7 @@ void Monster::UseBall(Monster* enemy)
 	}
 	default:
 	{
-		SetConsoleColor(FOREGROUND_RED);
+		SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 		cout << "操作失败！请输入正确数字！" << endl;
 		this->UseBall(enemy);
 		break;
@@ -930,7 +931,9 @@ void Monster::UseBall(Monster* enemy)
 
 void Monster::M_Attack(Monster* enemy)
 {
-	SetConsoleColor(FOREGROUND_BLUE);
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE);
 	int damage;
 	damage = this->Attack - enemy->Defense;
 	int check = this->Check(*enemy);//判断属性优劣势
@@ -964,7 +967,7 @@ void Monster::M_Attack(Monster* enemy)
 	if (enemy->CurValue <= 0)
 	{
 		enemy->isAlive = false;
-		SetConsoleColor(FOREGROUND_RED);
+		SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 		cout << enemy->Mname << "体力不支，倒下了!" << endl;
 		this->GainCoin(enemy);
 		this->CurExper += enemy->Experience;
@@ -980,14 +983,14 @@ void Monster::M_Attack(Monster* enemy)
 			//升级以后各项属性增加
 			this->CurValue = MaxValue;
 			//升级以后恢复状态
-			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << this->Mname << "升到了" << this->CurLevel << "级！各项属性获得了提升" << endl;
 			cout << this->Mname << "当前的属性为：" << endl;
 			this->Show_Detail();
 		}
 		else//未达升级条件则显示当前经验
 		{
-			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << this->Mname << "获得了" << enemy->Experience << "点经验，当前经验" << this->CurExper << " / " << this->MaxExper << endl;
 		}
 	}
@@ -998,7 +1001,9 @@ void Monster::M_Attack(Monster* enemy)
 
 void Monster::M_Attacked(Monster* enemy)
 {
-	SetConsoleColor(FOREGROUND_BLUE);
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE);
 	int damage;
 	damage = enemy->Attack - this->Defense;
 	int check = this->Check(*enemy);//判断属性优劣势
@@ -1033,7 +1038,7 @@ void Monster::M_Attacked(Monster* enemy)
 	{
 		this->CurValue = 0;
 		this->isAlive = false;
-		SetConsoleColor(FOREGROUND_RED);
+		SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
 		cout << this->Mname << "体力不支，倒下了!" << endl;
 		/*MonsterBag* bag = MonsterBag::Getinstance();
 		bag->Find()->Fight(enemy);*/
@@ -1267,7 +1272,9 @@ int Monster::CURExper()
 
 void Monster::Show_Detail()
 {
-	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "名称：" << this->Mname << endl;
 	cout << "属性:";

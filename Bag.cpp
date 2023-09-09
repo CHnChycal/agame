@@ -119,3 +119,14 @@ void Bag::Clear()
 		goods[i].changeGoodsNum(goods[i].showGoodsNum());
 	}
 }
+ bool Bag::challengeAblity(int i) {
+	switch (i) {
+	case 1:return 1;
+	case 2:if (bag->showGoodNum(0) == 1)return 1;
+		  else return 0;
+	case 3:if (bag->showGoodNum(1) == 1)return 1;
+		  else return 0;
+	case 4:if (bag->showGoodNum(2) == 1)return 1;
+		  else return 0;
+	}
+}

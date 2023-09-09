@@ -1,6 +1,7 @@
 #include "map.h"
 #include"monsters.h"
 #include"monsterbag.h"
+#include"npc.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -56,7 +57,7 @@ void Map::showMap() {
             exploreWilderness();
             break;
         case 2:
-            challengeGym(gymBadges, currentLocationIndex);
+            challengeGym(currentLocationIndex);
             break;
         case 3:
             enterShop();
@@ -77,27 +78,30 @@ void Map::showMap() {
     }
 }
 
-void Map::challengeGym(int& gymBadges,int currentLocationIndex)
+void Map::challengeGym(int currentLocationIndex)
 {
     switch (currentLocationIndex) {
-    case 1:cout << "你将挑战紫瑾市的  道馆\n"; break;
-    case 2:if (gymBadges > 0) {
-        cout << "你将挑战斧炎镇的  道馆\n";
-    }
-          else {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的  道馆";
+    case 1:
+        if (Bag::challengeAblity(1)) { 
+        cout << "你将挑战紫瑾市的电系道馆\n"; 
     }break;
-    case 3:if (gymBadges > 1) {
-        cout << "你将挑战橙华市的  道馆\n";
+    case 2:if (Bag::challengeAblity(2)) {
+        cout << "你将挑战斧炎镇的火系道馆\n";
     }
           else {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的  道馆";
+        cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的电系道馆";
     }break;
-    case 4:if(gymBadges > 2) {
-        cout << "你将挑战琉璃岛的  道馆\n";
+    case 3:if (Bag::challengeAblity(3)) {
+        cout << "你将挑战橙华市的普通道馆\n";
     }
           else {
-         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的  道馆";
+        cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的火系道馆";
+    }break;
+    case 4:if(Bag::challengeAblity(4)) {
+        cout << "你将挑战琉璃岛的水系道馆\n";
+    }
+          else {
+         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
     }break;
     }
 }

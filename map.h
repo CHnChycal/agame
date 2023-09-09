@@ -12,14 +12,14 @@ public:
     Map();
     void showMap();
     void exploreWilderness();
-    void challengeGym(int& gymbadges, int currentLocationIndex);
+    void challengeGym(int currentLocationIndex);
     void enterShop();
     void enterHospital();
     void goToOtherCity(int& currentLocationIndex,string &currentLocation);
   
     void visitLocation(int i);
     string showLocation();
-   
+    
     void exploreWildness(int level);
     void explore(int percent);//野外探索的随机事件（？）
     void Meet(int num);//探索野外遇到怪物（刷级或者捕捉新怪物）

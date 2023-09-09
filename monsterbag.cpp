@@ -17,19 +17,20 @@ void MonsterBag::Query()
 	cout << "请选择操作：" << endl;
 	cout << "1.查询宝可梦详情" << endl;
 	cout << "2.放生背包内的宝可梦" << endl;
+	cout << "3.调整背包内宝可梦顺序" << endl;
 	cout << "0.关闭背包" << endl;
 	int n;
 	while (true)
 	{
 		cout << ":";
 		cin >> n;
-		if (cin.fail() || n < 0 || n>2)
+		if (cin.fail() || n < 0 || n>3)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
 			cout << "//////////////////////////////////////////////////////////" << endl;
 			cout << "///                                                    ///" << endl;
-			cout << "///   请选择输入 0~2 之间的一个数！                    ///" << endl;
+			cout << "///   请选择输入 0~3 之间的一个数！                    ///" << endl;
 			cout << "///                                                    ///" << endl;
 			cout << "//////////////////////////////////////////////////////////" << endl;
 		}
@@ -65,6 +66,9 @@ void MonsterBag::Query()
 		this->Release();
 		break;
 	}
+	case 3:
+		this->ChangeMonster_Bag();
+		break;
 	case 0:
 	{
 		break;
@@ -158,4 +162,44 @@ Monster* MonsterBag::Find()
 void MonsterBag::Clear()
 {
 	bag.clear();
+}
+
+void MonsterBag::ChangeMonster_Bag()
+{
+	system("cls");
+	cout << "/////////////////////////////////////////////////////////" << endl;
+	cout << "腰包里的宝可梦顺序为" << endl;
+	for (int i = 0; i < MonsterNum(); i++)
+	{
+		cout << i + 1 << " " << bag[i].Show_Name() << endl;
+	}
+	cout << "/////////////////////////////////////////////////////////" << endl;
+	cout << "(请选择要放置在第一战斗位置的宝可梦,0退出)" << endl;
+	int choice;
+	while (true)
+	{
+		cout << ":";
+		cin >> choice;
+		if (cin.fail() || choice < 0 || choice>MonsterNum())
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "(输入了错误的序号，请重新输入)" << endl;
+		}
+		else break;
+	}
+	if (choice == 0)return;
+	if (choice == 1)
+	{
+		cout << "(已经是第一只宝可梦)" << endl;
+		system("pause");
+	}
+	else 
+	{
+		Monster tmp(bag[choice - 1]);
+		bag.erase(bag.begin() + choice - 1);
+		bag.insert(bag.begin(), tmp);
+		cout << "(顺序调换成功)" << endl;
+		system("pause");
+	}
 }

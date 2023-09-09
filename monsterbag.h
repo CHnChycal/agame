@@ -21,6 +21,8 @@ public:
 	void Release();//放生宝可梦
 	Monster* Return(int number);//返回特定序号宝可梦（序号为0~5）
 	Monster* Find();//查找背包里第一只状态为活着的宝可梦，一般用在战斗开始以及过程中有宝可梦阵亡切换宝可梦（
+	Monster* ChangeMonster_Fight();
+	void ChangeMonster_Bag();
 	void Clear();//清空背包，用于读档
 private:
 	MonsterBag(){}

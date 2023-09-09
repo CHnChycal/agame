@@ -11,7 +11,30 @@ BOOL SetConsoleColor(WORD wAttributes)
 
 	return SetConsoleTextAttribute(hConsole, wAttributes);
 }
+Monster::Monster(const Monster &tmp)
+{
+	Mname = tmp.Mname;
+	id = tmp.id;
+	Mnature = tmp.Mnature;
+	isAlive = tmp.isAlive;
+	hasCaught = tmp.hasCaught;
+	BasAttack = tmp.BasAttack;
+	BasDefense = tmp.BasDefense;
+	BasValue = tmp.BasValue;
+	BasSpeed = tmp.BasSpeed;
+	MaxValue = tmp.MaxValue;
+	CurValue = tmp.CurValue;
+	Attack = tmp.Attack;
+	Defense = tmp.Defense;
+	Speed = tmp.Speed;
+	MaxLevel = tmp.MaxLevel;
+	CurLevel = tmp.CurLevel;
+	MaxExper = tmp.MaxExper;
+	CurExper = tmp.CurExper;
+	Experience = tmp.Experience;
+	AcuPercentage = tmp.AcuPercentage;
 
+}
 Monster::Monster(int num,int level) 
 {
 	switch (num) 
@@ -628,12 +651,13 @@ void Monster::Fight(Monster* enemy)
 		cout << "2: 防御" << endl;
 		cout << "3: 回复道具" << endl;
 		cout << "4: 捕捉道具" << endl;
-		cout << "5: 逃跑" << endl;//返回场景****************************************************************************
+		cout << "5: 更换宝可梦" << endl;
+		cout << "0: 逃跑" << endl;//返回场景****************************************************************************
 		while (true)
 		{
 			cout << ":";
 			cin >> n;
-			if (cin.fail() || n < 1 || n > 5)
+			if (cin.fail() || n < 0 || n > 5)
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
@@ -647,6 +671,15 @@ void Monster::Fight(Monster* enemy)
 		
 		switch (n)
 		{
+		case 0:
+		{
+			enemy->isAlive = false;
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			cout << "逃跑成功！" << endl;
+			system("pause");
+			break;
+		}
+		break;
 		case 1:
 		{
 			if (this->Speed >= enemy->Speed)
@@ -711,14 +744,7 @@ void Monster::Fight(Monster* enemy)
 			break;
 		}
 		case 5:
-		{
-			enemy->isAlive = false;
-			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
-			cout << "逃跑成功！" << endl;
-			system("pause");
-			break;
-		}
-		break;
+		
 		}
 		turn++;
 		if (this->defense_up_turn > 0)

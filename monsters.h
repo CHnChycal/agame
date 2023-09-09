@@ -17,6 +17,7 @@ using namespace std;
 class Monster {
 public:
 	Monster(int num,int level);
+	Monster(const Monster& tmp);
 	void SetExper(int curexper);//设置经验值
 	void SetValue(int curvalue);//设置血量
 	void Recover();//血量回满

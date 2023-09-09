@@ -14,6 +14,7 @@
 using namespace std;
 class Npc {
 public:
+	bool ifChallengeSucess(int i);
 	Npc(int id);
 	~Npc();
 	void npctalk(int currentLocationIndex);			//与npc交谈并进入战斗

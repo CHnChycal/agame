@@ -1,30 +1,36 @@
 #pragma once
-#ifndef NPC_H
-#define NPC_H
-#include<string>
-#include"Goods.h"
-#include"monsterbag.h"
+#ifndef NPCTEXT.H
+#define NPCTEXT.H
 
+#include<string>
+#include<iostream>
+#include"monsterbag.h"
+#include<vector>
+#include"map.h"
+#include"Bag.h"
+#include"Goods.h"
+#include"monsters.h"
+using namespace std;
 class Npc {
 public:
+	Npc(int id);
+	~Npc();
+	void npctalk(int currentLocationIndex, Bag* bag);//与npc交谈并进入战斗
+	string getNpcName();
+	int getNpcId();
+	string getNpcDesc();
+	void MainNpc(int currentLocationIndex, Bag* bag);//与npc的交互
+	void ShowNpc(int currentLocationIndex);          //展示npc信息
 	Monster* getFirstMonster();
 	void removeFirstMoster();
 	int getMonstersCount();
-	string getDialogueText(int index);
-	Npc(int num);
-	string getName();
-	int getGoodsId();
-	int getGoodsNum();
-	int getMoney();
-	bool isFighted(int whichNpc);
+	bool WinNpc(int whichNpc);                      //判断是否战胜npc
 private:
-	string name;
-	int GoodsId;
-	int Money;
-	int GoodsNum;
-	int type;
-	vector<string>dialog;
+	string NpcName;     //npc名称
+	int NpcId;      //npc序号
+	string NpcDesc;     //npc描述
+	int isdefeated;  //npc是否被打败
 	vector<Monster>gymBossMonsters;
-	Goods goods[8] = { 0,1,2,3,4,5,6,7 };
 };
+
 #endif

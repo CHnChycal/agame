@@ -2,6 +2,7 @@
 #include"monsters.h"
 #include"monsterbag.h"
 #include"npc.h"
+#include"npcs.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -19,6 +20,7 @@ Map::Map() : currentLocation("×ÏèªÊÐ"),currentLocationIndex(1), gymBadges(0) {
 }
 
 void Map::showMap() {
+
     while(true)
     {
         system("cls");

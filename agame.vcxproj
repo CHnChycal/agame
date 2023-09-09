@@ -127,6 +127,7 @@
     <ClCompile Include="monsterbag.cpp" />
     <ClCompile Include="monsters.cpp" />
     <ClCompile Include="npc.cpp" />
+    <ClCompile Include="npcs.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="monsters.h" />
     <ClInclude Include="npc.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="npcs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

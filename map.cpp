@@ -8,7 +8,7 @@
 #include<string>
 //using namespace Map;
 using namespace std;
-
+Bag* bag = Bag::Getinstance();
 Map::Map() : currentLocation("紫瑾市"),currentLocationIndex(1), gymBadges(0) {
     cities[0] = { 1,"紫瑾市" };
     cities[1] = { 2,"斧炎镇" };
@@ -79,36 +79,58 @@ void Map::showMap() {
 }
 
 void Map::challengeGym(int currentLocationIndex)
-{
+{   
     switch (currentLocationIndex) {
     case 1:
-        if (Bag::challengeAblity(1)) { 
+        if (bag->showGoodNum(0) == 1) {
+            cout << "你已经获得电系徽章,不可再次挑战！\n";
+            showMap();
+        }
+        else {
         cout << "你将挑战紫瑾市的电系道馆\n"; 
     }break;
-    case 2:if (Bag::challengeAblity(2)) {
+    case 2:if (bag->showGoodNum(1) == 1) {
+        cout << "你已经获得火系徽章,不可再次挑战！\n";
+        showMap();
+    } 
+          else if(bag->showGoodNum(0) == 0) {
+        cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的电系道馆";
+        showMap();
+    }
+          else{
         cout << "你将挑战斧炎镇的火系道馆\n";
     }
+         break;
+    case 3:if (bag->showGoodNum(2) == 1) {
+        cout << "你已经获得普通系徽章,不可再次挑战！\n";
+        showMap();
+    }
+          else if (bag->showGoodNum(1) == 0) {
+        cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的火系道馆";
+        showMap();
+    }
           else {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的电系道馆";
-    }break;
-    case 3:if (Bag::challengeAblity(3)) {
         cout << "你将挑战橙华市的普通道馆\n";
     }
-          else {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的火系道馆";
-    }break;
-    case 4:if(Bag::challengeAblity(4)) {
-        cout << "你将挑战琉璃岛的水系道馆\n";
+          break;
+    case 4:if (bag->showGoodNum(3) == 1) {
+        cout << "你已经获得水系徽章,不可再次挑战！\n";
+        showMap();
+    }
+          else if (bag->showGoodNum(2) == 0) {
+        cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
+        showMap();
     }
           else {
-         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
-    }break;
+        cout << "你将挑战琉璃岛的水系道馆\n";
+    }
+          break;
     }
 }
     
 
 void Map::enterShop() {
-    Bag* bag = Bag::Getinstance();
+   
     int choice;
     int number;
     int totalPrice;

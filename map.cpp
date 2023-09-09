@@ -79,7 +79,8 @@ void Map::showMap() {
 }
 
 void Map::challengeGym(int currentLocationIndex)
-{   
+{
+    MonsterBag* Monsterbag = MonsterBag::Getinstance();
     switch (currentLocationIndex) {
     case 1:
         if (bag->showGoodNum(0) == 1) {
@@ -88,6 +89,7 @@ void Map::challengeGym(int currentLocationIndex)
         }
         else {
         cout << "你将挑战紫瑾市的电系道馆\n"; 
+        Monsterbag->Find()->Fight(Npc(0).getFirstMonster());
     }break;
     case 2:if (bag->showGoodNum(1) == 1) {
         cout << "你已经获得火系徽章,不可再次挑战！\n";
@@ -99,6 +101,7 @@ void Map::challengeGym(int currentLocationIndex)
     }
           else{
         cout << "你将挑战斧炎镇的火系道馆\n";
+        Monsterbag->Find()->Fight(Npc(1).getFirstMonster());
     }
          break;
     case 3:if (bag->showGoodNum(2) == 1) {
@@ -111,6 +114,7 @@ void Map::challengeGym(int currentLocationIndex)
     }
           else {
         cout << "你将挑战橙华市的普通道馆\n";
+        Monsterbag->Find()->Fight(Npc(2).getFirstMonster());
     }
           break;
     case 4:if (bag->showGoodNum(3) == 1) {
@@ -119,6 +123,7 @@ void Map::challengeGym(int currentLocationIndex)
     }
           else if (bag->showGoodNum(2) == 0) {
         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
+        Monsterbag->Find()->Fight(Npc(3).getFirstMonster());
         showMap();
     }
           else {

@@ -7,7 +7,11 @@
 
 class Npc {
 public:
-	Npc (int num);
+	Monster* getFirstMonster();
+	void removeFirstMoster();
+	int getMonstersCount();
+	string getDialogueText(int index);
+	Npc(int num);
 	string getName();
 	int getGoodsId();
 	int getGoodsNum();
@@ -19,6 +23,8 @@ private:
 	int Money;
 	int GoodsNum;
 	int type;
+	vector<string>dialog;
+	vector<Monster>gymBossMonsters;
 };
 
 Goods goods[8] = { 0,1,2,3,4,5,6,7 };

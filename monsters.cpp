@@ -615,9 +615,10 @@ void Monster::Fight(Monster* enemy)
 	{
 		system("cls");
 		SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+		cout << "//////////////////////////////////////////////////////////" << endl;
 		cout << "当前为第" << turn << "回合" << endl;
-		cout << "当前" << this->Mname << "的状态为: " << this->MaxValue << " / " << this->CurValue << endl;
-		cout << enemy->Mname << "的状态为: " << enemy->MaxValue << " / " << enemy->CurValue << endl;
+		cout << "当前" << this->Mname << "的状态为: " << this->CurValue << " / " << this->MaxValue << endl;
+		cout << enemy->Mname << "的状态为: " << enemy->CurValue << " / " << enemy->MaxValue << endl;
 		cout << "//////////////////////////////////////////////////////////" << endl;
 		SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
 		cout << "请选择你的操作：" << endl;

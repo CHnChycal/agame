@@ -118,7 +118,7 @@ void MonsterBag::Release()
 		if (k != 0)
 		{
 			bag.erase(bag.begin() + k - 1);
-			cout << "(宝可梦离开了你，希望它能够找到属于自己的未来)" << endl;
+			cout << "("<<bag[k-1].Show_Name() << "离开了你，希望它能够找到属于自己的未来)" << endl;
 		}
 	}
 	else cout << "(背包内宝可梦数量不可为0，请再思考一下吧)" << endl;
@@ -146,4 +146,9 @@ Monster* MonsterBag::Find()
 			break;
 		}
 	}
+	return nullptr;//返回空指针以进行报错提示
+}
+void MonsterBag::Clear()
+{
+	bag.clear();
 }

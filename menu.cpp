@@ -311,8 +311,10 @@ int Menu::load()
 	ifstream fileMap("SaveMap.dat", ios_base::binary);
 	ifstream fileBag("SaveBag.dat", ios_base::binary);
 	ifstream fileMonster("SaveMonster.dat", ios_base::binary);
+
 	Bag* bp = Bag::Getinstance();
 	MonsterBag* mbp = MonsterBag::Getinstance();
+
 	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
 	{
 		cout << "不存在存档文件，读取失败！" << endl;
@@ -321,8 +323,9 @@ int Menu::load()
 	}
 	else
 	{
-		//清除原有物品以便游戏内读档
+		//清除原有物品,和宝可梦,以便游戏内读档
 		bp->Clear();
+		mbp->Clear();
 		//读取玩家名
 		string playername;
 		filePlayer >> playername;

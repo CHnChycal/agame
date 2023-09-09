@@ -164,44 +164,92 @@ void Map::enterShop() {
         switch (choice) {
         case 1:
             Goods(4).showGoods();
-            cout << "单价为20个金币，请输入你要购买的数量:";
-            cin >> number;//输入购买数量
+            cout << "单价为20个金币，请输入你要购买的数量(输入0取消购买)";
+            while (true)//输入购买数量
+            {
+                cout << ":";
+                cin >> number;
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    cout << "(输入了错误的数量，请重新输入)" << endl;
+                }
+                else break;
+            }
             totalPrice = number * 20;
-            if (bag->showGoodNum(7) >= totalPrice)
+            if (bag->showGoodNum(7) >= totalPrice && number > 0)
             {
                 bag->editGoodNum(7, -totalPrice);
                 bag->editGoodNum(4, number);//扣除金币并增加物品数量
-                cout << "你现在一共有" << bag->showGoodNum(4) << "瓶治疗药水了";
+                cout << "你现在一共有" << bag->showGoodNum(4) << "瓶治疗药水了" << endl;
             }
-            else cout << "金币数量不足！" << endl;
+            else if (bag->showGoodNum(7) < totalPrice && number > 0)
+                cout << "金币数量不足！" << endl;
+            else if (number == 0)
+                cout << "(再想想吧)" << endl;
+            else if (number < 0)
+                cout << "(不可以购买少于0件物品哦，再想想吧)" << endl;
             system("pause");
             break;
         case 2:
             Goods(5).showGoods();
-            cout << "单价为40个金币，请输入你要购买的数量:";
-            cin >> number;//输入购买数量
+            cout << "单价为40个金币，请输入你要购买的数量(输入0取消购买)";
+            while (true)//输入购买数量
+            {
+                cout << ":";
+                cin >> number;
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    cout << "(输入了错误的数量，请重新输入)" << endl;
+                }
+                else break;
+            }
             totalPrice = number * 40;
-            if (bag->showGoodNum(7) >= totalPrice)
+            if (bag->showGoodNum(7) >= totalPrice && number > 0)
             {
 				bag->editGoodNum(7, -totalPrice);
 				bag->editGoodNum(5, number);//扣除金币并增加物品数量
-				cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了";
+				cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了" << endl;
             }
-            else cout << "金币数量不足！" << endl;
+            else if (bag->showGoodNum(7) < totalPrice && number > 0)
+                cout << "金币数量不足！" << endl;
+            else if (number == 0)
+                cout << "(再想想吧)" << endl;
+            else if (number < 0)
+                cout << "(不可以购买少于0件物品哦，再想想吧)" << endl;
             system("pause");
             break;
         case 3:
             Goods(6).showGoods();
-            cout << "单价为80个金币，请输入你要购买的数量:";
-            cin >> number;//输入购买数量
-            totalPrice = number * 80;
-            if (bag->showGoodNum(7) >= totalPrice)
+            cout << "单价为80个金币，请输入你要购买的数量(输入0取消购买)";
+            while (true)//输入购买数量
             {
-				bag->editGoodNum(7, -totalPrice);
-				bag->editGoodNum(6, number);//扣除金币并增加物品数量
-				cout << "你现在一共有" << bag->showGoodNum(5) << "个大师精灵球了";
+                cout << ":";
+                cin >> number;
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    cout << "(输入了错误的数量，请重新输入)" << endl;
+                }
+                else break;
             }
-            else cout << "金币数量不足！" << endl;
+            totalPrice = number * 80;
+            if (bag->showGoodNum(7) >= totalPrice && number > 0)
+            {
+                bag->editGoodNum(7, -totalPrice);
+                bag->editGoodNum(6, number);//扣除金币并增加物品数量
+                cout << "你现在一共有" << bag->showGoodNum(5) << "个大师精灵球了" << endl;
+            }
+            else if (bag->showGoodNum(7) < totalPrice && number > 0)
+                cout << "金币数量不足！" << endl;
+            else if (number == 0)
+                cout << "(再想想吧)" << endl;
+            else if (number < 0)
+                cout << "(不可以购买少于0件物品哦，再想想吧)" << endl;
             system("pause");
             break;
         case 0:
@@ -383,6 +431,7 @@ void Map::exploreWildness(int level) {
 				Meet(level);
 				break;
 			}
+            break;
 		}
 		case 2://返回选择界面
             return;
@@ -454,7 +503,6 @@ void Map::Meet(int num)
     cout << "///  2: 逃跑" << endl;
     cout << "//////////////////////////////////////////////////////////" << endl;
     int n;
-    cin >> n;
     while (true)
     {
         cout << ":";
@@ -476,12 +524,22 @@ void Map::Meet(int num)
     case 1:
     {
         MonsterBag* bag = MonsterBag::Getinstance();
-        bag->Find()->Fight(&enemy);
+        if (bag->Find() != nullptr)
+        {
+            bag->Find()->Fight(&enemy);
+        }
+        else 
+        {
+            cout << "(背包内的宝可梦已经全部重伤无法战斗，请疗伤后再来探索吧)" << endl;
+            system("pause");
+        }
+            
+            
+        
         break;
     }
     case 2:
-        exploreWildness(num);
-        break;//想要返回场景的
+        break;//返回场景
     }
 }
 

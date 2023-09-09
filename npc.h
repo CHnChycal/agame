@@ -25,7 +25,6 @@ private:
 	int type;
 	vector<string>dialog;
 	vector<Monster>gymBossMonsters;
+	Goods goods[8] = { 0,1,2,3,4,5,6,7 };
 };
-
-Goods goods[8] = { 0,1,2,3,4,5,6,7 };
 #endif

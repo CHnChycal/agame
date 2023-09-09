@@ -18,6 +18,7 @@ void Npc::removeFirstMoster()
 	if (!gymBossMonsters.empty()&& gymBossMonsters[0].CURValue()==0) {
 		gymBossMonsters.erase(gymBossMonsters.begin());
 	}
+
 }
 bool Npc::ifChallengeSucess(int i) {
 	if (Npc(i).gymBossMonsters.empty())return 1;

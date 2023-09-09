@@ -1,24 +1,33 @@
 #pragma once
 #include<iostream>
 #include"npc.h";
+#include"monsters.h"
 using namespace std;
 Monster* Npc::getFirstMonster()
 {
-	if (!Monsters.empty()) {
-		return &Monsters[0];
+	while (!gymBossMonsters.empty()) {
+		removeFirstMoster();
+		return &gymBossMonsters[0];
+
 	}
 	return nullptr;
 }
 
+
 void Npc::removeFirstMoster()
 {
-	if (!Monsters.empty()) {
-		Monsters.erase(Monsters.begin());
+	if (!gymBossMonsters.empty() && gymBossMonsters[0].CURValue() == 0) {
+		gymBossMonsters.erase(gymBossMonsters.begin());
 	}
 
 }
+bool Npc::ifChallengeSucess(int i) {
+	if (Npc(i).gymBossMonsters.empty())return 1;
+	else return 0;
+
+}
 int Npc::getMonstersCount() {
-	return Monsters.size();
+	return gymBossMonsters.size();
 }
 
 
@@ -45,7 +54,7 @@ void Npc::MainNpc(int currentLocationIndex) {
 
 }
 void Npc::ShowNpc(int currentLocationIndex) {
-	cout << "Npc名字："<<Npc(currentLocationIndex).getNpcName() << endl;
+	cout << "Npc名字：" << Npc(currentLocationIndex).getNpcName() << endl;
 	cout << "Npc详情：" << Npc(currentLocationIndex).getNpcDesc() << endl;
 
 }
@@ -56,91 +65,91 @@ Npc::Npc(int Id) {
 		NpcId = 0;
 		NpcDesc = "紫堇市道馆馆主,性格开朗、十分乐观,喜欢豪爽的大笑，掌管徽章电力徽章。";
 		isdefeated = 0;
-		Monsters = { Monster(5,40),Monster(5,40),Monster(5,40) };
+		gymBossMonsters = { Monster(5,10),Monster(23,15),Monster(27,15) };
 		break;
 	case 1:
 		NpcName = "亚莎";
 		NpcId = 1;
 		NpcDesc = "斧炎镇斧炎道馆馆主,活泼、热血，是一位富有激情的女性，当热衷于一件事情后常常会忘记其他事情,掌管徽章烈焰徽章。";
 		isdefeated = 0;
-		Monsters = { Monster(18,40),Monster(18,40),Monster(18,40) };
+		gymBossMonsters = { Monster(41,15),Monster(33,20),Monster(29,20) };
 		break;
 	case 2:
 		NpcName = "千里";
 		NpcId = 2;
 		NpcDesc = "橙华市橙华道馆的道馆馆主。精通一般属性宝可梦，掌管天秤徽章。";
 		isdefeated = 0;
-		Monsters = { Monster(12,40),Monster(12,40),Monster(12,40) };
+		gymBossMonsters = { Monster(32,25),Monster(36,30),Monster(12,30) };
 		break;
 	case 3:
 		NpcName = "米可莉";
 		NpcId = 3;
 		NpcDesc = "琉璃岛琉璃道馆馆主,冷静、处事直截了当，责任感和正义感浓重，温柔、随和而不失稳重,掌管雨滴徽章。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(24,35),Monster(30,35),Monster(39,40) };
 		break;
 	case 4:
 		NpcName = "小刚";
 		NpcId = 4;
 		NpcDesc = "小刚是深灰市附近少有的严肃专业的宝可梦训练家,精通岩石属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(14,15),Monster(22,20),Monster(44,20) };
 		break;
 	case 5:
 		NpcName = "小霞";
 		NpcId = 5;
-		NpcDesc = "小霞性格很活泼。身为一名游泳健将，她经常去双子岛修炼,精通水属性。";
+		NpcDesc = "小霞性格很活泼。身为一名游泳健将，她经常去双子岛修炼,精通冰属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(46,40),Monster(47,40),Monster(25,40) };
 		break;
 	case 6:
 		NpcName = "模仿少女";
 		NpcId = 6;
 		NpcDesc = "模仿少女的家中有许多布偶,精通普通属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(35,20),Monster(36,25),Monster(49,20) };
 		break;
 	case 7:
 		NpcName = "老人";
 		NpcId = 7;
 		NpcDesc = "老人是一名收服教学人,精通毒属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(40,30),Monster(34,30),Monster(20,25) };
 		break;
 	case 8:
 		NpcName = "正辉";
 		NpcId = 8;
 		NpcDesc = "是宝可梦寄放系统的一名开发员，管理著关都地区和城都地区的寄放系统,精通飞行属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(42,20),Monster(45,20),Monster(9,15) };
 		break;
 	case 9:
 		NpcName = "阿桔";
 		NpcId = 9;
-		NpcDesc = "是石英联盟的现任四天王之一，精通毒属性宝可梦。";
+		NpcDesc = "是石英联盟的现任四天王之一，精通虫属性宝可梦。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(48,35),Monster(49,30),Monster(3,40) };
 		break;
 	case 10:
 		NpcName = "奈奈美";
 		NpcId = 10;
 		NpcDesc = "大木奈奈美,是青绿的姊姊，也是大木博士的孙女,精通电属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(37,20),Monster(38,25),Monster(31,20) };
 		break;
 	case 11:
 		NpcName = "大木博士";
 		NpcId = 11;
 		NpcDesc = "大木雪成博士,是关都地区的宝可梦博士,精通草属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(16,20),Monster(10,20),Monster(28,25) };
 		break;
 	case 12:
 		NpcName = "青绿";
 		NpcId = 12;
-		NpcDesc = "青绿是大木博士的孙子，有个姐姐叫奈奈美,精通一般属性。";
+		NpcDesc = "青绿是大木博士的孙子，有个姐姐叫奈奈美,精通草属性。";
 		isdefeated = 0;
-		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		gymBossMonsters = { Monster(0,40),Monster(10,40),Monster(16,40) };
 		break;
 	default:
 		break;
@@ -288,7 +297,7 @@ string Npc::getNpcDesc() {
 	return string(NpcDesc);
 }
 
-void Npc::setNpc(int isdef) 
+void Npc::setNpc(int isdef)
 {
 	isdefeated = isdef;
 }

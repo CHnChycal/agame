@@ -42,7 +42,7 @@ public:
 	int CURExper();		//返回妖怪的当前经验值
 	void Show_Detail();	//返回妖怪的详细信息
 
-	int defense_up_turn;//防御力提升的回合
+	int defense_up_turn = 0;//防御力提升的回合
 private:
 	string Mname;		//妖怪名字
 	int id;				//创建宝可梦时的id

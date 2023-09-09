@@ -2,11 +2,21 @@
 
 #include"monsterbag.h"
 
+BOOL SetConsoleColor(WORD wAttributes)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hConsole == INVALID_HANDLE_VALUE)
+		return FALSE;
+
+	return SetConsoleTextAttribute(hConsole, wAttributes);
+}
+
 MonsterBag* MonsterBag::monsterbag = new MonsterBag();
 void MonsterBag::Query()
 {
 	system("cls");
 	int size = bag.size();
+	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << "背包存放的宝可梦：" << endl;
 	for (int i = 0; i < size; i++)
@@ -14,6 +24,7 @@ void MonsterBag::Query()
 		cout << i + 1 << ". " << bag[i].Show_Name() << endl;
 	}
 	cout << "//////////////////////////////////////////////////////////" << endl;
+	SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
 	cout << "请选择操作：" << endl;
 	cout << "1.查询宝可梦详情" << endl;
 	cout << "2.放生背包内的宝可梦" << endl;
@@ -28,6 +39,7 @@ void MonsterBag::Query()
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
+			SetConsoleColor(FOREGROUND_RED);
 			cout << "//////////////////////////////////////////////////////////" << endl;
 			cout << "///                                                    ///" << endl;
 			cout << "///   请选择输入 0~3 之间的一个数！                    ///" << endl;
@@ -41,7 +53,8 @@ void MonsterBag::Query()
 	{
 	case 1:
 	{
-		cout << "(请输入你要查看的宝可梦序号)" << endl;
+		SetConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN);
+		cout << "请输入你要查看的宝可梦序号" << endl;
 		int m;
 		while (true)
 		{
@@ -51,6 +64,7 @@ void MonsterBag::Query()
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
+				SetConsoleColor(FOREGROUND_RED);
 				cout << "请正确选择宝可梦序号!" << endl;
 			}
 			else break;
@@ -64,6 +78,7 @@ void MonsterBag::Query()
 	case 2:
 	{
 		this->Release();
+		system("pause");
 		break;
 	}
 	case 3:
@@ -86,6 +101,7 @@ void MonsterBag::Add(Monster monster)
 {
 	if (monster.HasCaught())
 	{
+		SetConsoleColor(FOREGROUND_RED);
 		cout << "这只宝可梦已经有主人了，它不愿意跟你走" << endl;
 	}
 	else
@@ -94,12 +110,14 @@ void MonsterBag::Add(Monster monster)
 		if (size < 6)
 		{
 			bag.push_back(monster);
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << "//////////////////////////////////////////////////////////" << endl;
 			monster.Caught();
 			cout << monster.Show_Name() << "已加入宝可梦背包！" << endl;
 		}
 		else
 		{
+			SetConsoleColor(FOREGROUND_RED);
 			cout << "//////////////////////////////////////////////////////////" << endl;
 			cout << "宝可梦背包已满，请放生部分宝可梦后再捕捉，不要太贪心哦！" << endl;
 		}
@@ -122,17 +140,23 @@ void MonsterBag::Release()
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
-				cout << "(输入了错误的序号，请重新输入)" << endl;
+				SetConsoleColor(FOREGROUND_RED);
+				cout << "输入了错误的序号，请重新输入" << endl;
 			}
 			else break;
 		}
 		if (k != 0)
 		{
 			bag.erase(bag.begin() + k - 1);
-			cout << "("<<bag[k-1].Show_Name() << "离开了你，希望它能够找到属于自己的未来)" << endl;
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			cout<<bag[k-1].Show_Name() << "离开了你，希望它能够找到属于自己的未来" << endl;
 		}
 	}
-	else cout << "(背包内宝可梦数量不可为0，请再思考一下吧)" << endl;
+	else
+	{
+		SetConsoleColor(FOREGROUND_RED);
+		cout << "背包内宝可梦数量不可为0，请再思考一下吧" << endl;
+	}
 
 	
 	system("pause");

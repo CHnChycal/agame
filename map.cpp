@@ -10,10 +10,10 @@
 //using namespace Map;
 using namespace std;
 Bag* bag = Bag::Getinstance();
-Map::Map() : currentLocation("紫瑾市"),currentLocationIndex(1), gymBadges(0) {
+Map::Map() : currentLocation("紫瑾市"), currentLocationIndex(1), gymBadges(0) {
     cities[0] = { 1,"紫瑾市" };
     cities[1] = { 2,"斧炎镇" };
-    cities[2] = { 3,"橙华市"};
+    cities[2] = { 3,"橙华市" };
     cities[3] = { 4,"琉璃岛" };
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -21,15 +21,15 @@ Map::Map() : currentLocation("紫瑾市"),currentLocationIndex(1), gymBadges(0) {
 
 void Map::showMap() {
 
-    while(true)
+    while (true)
     {
         system("cls");
         cout << "///////////////////////////////////////////////////////////////" << endl;
         cout << "(选中手机上的[城镇地图]应用后，浮现出几个光点)" << endl;
-        cout << "您目前处于:" << cities[currentLocationIndex-1].name << endl << endl;
-		std::cout << "|紫瑾市|-------|斧炎镇|\n";
-		std::cout << "    |              |\n";
-		std::cout << "|琉璃岛|-------|橙华市|\n";
+        cout << "您目前处于:" << cities[currentLocationIndex - 1].name << endl << endl;
+        std::cout << "|紫瑾市|-------|斧炎镇|\n";
+        std::cout << "    |              |\n";
+        std::cout << "|琉璃岛|-------|橙华市|\n";
         cout << "///////////////////////////////////////////////////////////////" << endl;
         std::cout << "请输入你想要进行的操作：\n";
         std::cout << "1. 野外探索\n";
@@ -89,25 +89,25 @@ void Map::challengeGym(int currentLocationIndex)
             cout << "你已经获得电系徽章,不可再次挑战！\n";
         }
         else {
-        cout << "你将挑战紫瑾市的电系道馆\n"; 
-        Monsterbag->Find()->Fight(Npc(0).getFirstMonster());
-        if (Npc(0).ifChallengeSucess(0)) {
-            cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
-            bag->editGoodNum(0, 1);
-            
-        }
-        else {
-            cout << "挑战失败，继续努力再来吧\n";
-        }
+            cout << "你将挑战紫瑾市的电系道馆\n";
+            Monsterbag->Find()->Fight(Npc(0).getFirstMonster());
+            if (Npc(0).ifChallengeSucess(0)) {
+                cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
+                bag->editGoodNum(0, 1);
+
+            }
+            else {
+                cout << "挑战失败，继续努力再来吧\n";
+            }
         }system("pause");
         break;
     case 2:if (bag->showGoodNum(1) == 1) {
         cout << "你已经获得火系徽章,不可再次挑战！\n";
-    } 
-          else if(bag->showGoodNum(0) == 0) {
+    }
+          else if (bag->showGoodNum(0) == 0) {
         cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的电系道馆";
     }
-          else{
+          else {
         cout << "你将挑战斧炎镇的火系道馆\n";
         Monsterbag->Find()->Fight(Npc(1).getFirstMonster());
         if (Npc(1).ifChallengeSucess(1)) {
@@ -118,9 +118,9 @@ void Map::challengeGym(int currentLocationIndex)
         else {
             cout << "挑战失败，继续努力再来吧\n";
         }
-     
+
     }system("pause");
-         break;
+    break;
     case 3:if (bag->showGoodNum(2) == 1) {
         cout << "你已经获得普通系徽章,不可再次挑战！\n";
     }
@@ -139,7 +139,7 @@ void Map::challengeGym(int currentLocationIndex)
             cout << "挑战失败，继续努力再来吧\n";
         }
     }system("pause");
-          break;
+    break;
     case 4:if (bag->showGoodNum(3) == 1) {
         cout << "你已经获得水系徽章,不可再次挑战！\n";
 
@@ -159,17 +159,17 @@ void Map::challengeGym(int currentLocationIndex)
           else {
         cout << "你将挑战琉璃岛的水系道馆\n";
     }system("pause");
-          break;
+    break;
     }
 }
-    
+
 
 void Map::enterShop() {
-   
+
     int choice;
     int number;
     int totalPrice;
-    
+
 
 
     while (true) {
@@ -240,9 +240,9 @@ void Map::enterShop() {
             totalPrice = number * 40;
             if (bag->showGoodNum(7) >= totalPrice && number > 0)
             {
-				bag->editGoodNum(7, -totalPrice);
-				bag->editGoodNum(5, number);//扣除金币并增加物品数量
-				cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了" << endl;
+                bag->editGoodNum(7, -totalPrice);
+                bag->editGoodNum(5, number);//扣除金币并增加物品数量
+                cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了" << endl;
             }
             else if (bag->showGoodNum(7) < totalPrice && number > 0)
                 cout << "金币数量不足！" << endl;
@@ -289,7 +289,7 @@ void Map::enterShop() {
             break;
 
         }
-    } 
+    }
     system("pause");
 }
 void Map::enterHospital() {
@@ -303,7 +303,7 @@ void Map::enterHospital() {
     cout << "你的宝可梦都已恢复健康\n";
     system("pause");
 }
-void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation) 
+void Map::goToOtherCity(int& currentLocationIndex, string& currentLocation)
 {
     std::cout << "//你现在处于：" << currentLocation << " //\n";
     showAvailableCities(currentLocationIndex);
@@ -321,152 +321,152 @@ void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation)
         }
         else break;
     }
-    if(choice!=0)
-    { 
-		if (currentLocationIndex == 1 && choice == 1) { currentLocationIndex = 2; changeLocation(2); }
-		else if (currentLocationIndex == 1 && choice == 2) { currentLocationIndex = 4; changeLocation(4); }
-		else if (currentLocationIndex == 2 && choice == 1) { currentLocationIndex = 1; changeLocation(1); }
-		else if (currentLocationIndex == 2 && choice == 2) { currentLocationIndex = 3; changeLocation(3); }
-		else if (currentLocationIndex == 3 && choice == 1) { currentLocationIndex = 2; changeLocation(2); }
-		else if (currentLocationIndex == 3 && choice == 2) { currentLocationIndex = 4; changeLocation(4); }
-		else if (currentLocationIndex == 4 && choice == 1) { currentLocationIndex = 1; changeLocation(1); }
-		else if (currentLocationIndex == 4 && choice == 2) { currentLocationIndex = 3; changeLocation(3); }
+    if (choice != 0)
+    {
+        if (currentLocationIndex == 1 && choice == 1) { currentLocationIndex = 2; changeLocation(2); }
+        else if (currentLocationIndex == 1 && choice == 2) { currentLocationIndex = 4; changeLocation(4); }
+        else if (currentLocationIndex == 2 && choice == 1) { currentLocationIndex = 1; changeLocation(1); }
+        else if (currentLocationIndex == 2 && choice == 2) { currentLocationIndex = 3; changeLocation(3); }
+        else if (currentLocationIndex == 3 && choice == 1) { currentLocationIndex = 2; changeLocation(2); }
+        else if (currentLocationIndex == 3 && choice == 2) { currentLocationIndex = 4; changeLocation(4); }
+        else if (currentLocationIndex == 4 && choice == 1) { currentLocationIndex = 1; changeLocation(1); }
+        else if (currentLocationIndex == 4 && choice == 2) { currentLocationIndex = 3; changeLocation(3); }
         system("pause");
     }
-    
- }
+
+}
 
 
 
 
 void Map::exploreWilderness()
 {
-    while(true)
-    { 
-		system("cls");
-		cout << "///////////////////////////////////////////////////////////////" << endl;
-		std::cout << "//请选择野外难度等级//\n";
-		std::cout << "1: 等级1~20" << endl;
-		std::cout << "2: 等级21~40" << endl;
-		std::cout << "3: 等级41~60" << endl;
-		std::cout << "4: 等级61~80" << endl;
-		cout << "0:返回" << endl;
-		cout << "///////////////////////////////////////////////////////////////" << endl;
-		int choice;
-		while (true)
-		{
-			cout << ":";
-			cin >> choice;
-			if (cin.fail() || choice < 0 || choice>4)
-			{
-				cin.clear();
-				cin.ignore(INT_MAX, '\n');
-				cout << "(输入了错误的序号，请重新输入)" << endl;
-			}
-			else break;
-		}
-		switch (choice)
-		{
-		case 0:
+    while (true)
+    {
+        system("cls");
+        cout << "///////////////////////////////////////////////////////////////" << endl;
+        std::cout << "//请选择野外难度等级//\n";
+        std::cout << "1: 等级1~20" << endl;
+        std::cout << "2: 等级21~40" << endl;
+        std::cout << "3: 等级41~60" << endl;
+        std::cout << "4: 等级61~80" << endl;
+        cout << "0:返回" << endl;
+        cout << "///////////////////////////////////////////////////////////////" << endl;
+        int choice;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 0 || choice>4)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                cout << "(输入了错误的序号，请重新输入)" << endl;
+            }
+            else break;
+        }
+        switch (choice)
+        {
+        case 0:
             return;//结束代码直接返回
-			break;
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-			exploreWildness(choice - 1);
-			break;
-		default:
-			std::cout << "无效的选择。\n";//重复
-			break;
-		}
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            exploreWildness(choice - 1);
+            break;
+        default:
+            std::cout << "无效的选择。\n";//重复
+            break;
+        }
     }
 }
 
 
 void Map::exploreWildness(int level) {
-    while(true)
-    { 
-		system("cls");
-		std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
-		std::cout << "//有野生的宝可梦在附近出没//\n";
-		std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
-		std::cout << "请输入你想要进行的操作：\n";
-		std::cout << "1. 探索野外\n";
-		std::cout << "2. 离开\n";
+    while (true)
+    {
+        system("cls");
+        std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
+        std::cout << "//有野生的宝可梦在附近出没//\n";
+        std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
+        std::cout << "请输入你想要进行的操作：\n";
+        std::cout << "1. 探索野外\n";
+        std::cout << "2. 离开\n";
 
-		int choice;
-		std::cout << "请输入你的选择：";
-		std::cin >> choice;
-		switch (choice)
-		{
-		case 1:
-		{
-			int percentage = rand() % 50;
-			switch (percentage)
-			{
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-			case 16:
-			case 17:
-			case 18:
-			case 19:
-			case 20:
-			case 21:
-			case 22:
-			case 23:
-			case 24:
-			case 25:
-			case 26:
-			case 27:
-			case 28:
-			case 29:
-				explore(percentage);
-				system("pause");
-				break;
-			case 30:
-			case 31:
-			case 32:
-			case 33:
-			case 34:
-			case 35:
-			case 36:
-			case 37:
-			case 38:
-			case 39:
-			case 40:
-			case 41:
-			case 42:
-			case 43:
-			case 44:
-			case 45:
-			case 46:
-			case 47:
-			case 48:
-			case 49:
-				Meet(level);
-				break;
-			}
+        int choice;
+        std::cout << "请输入你的选择：";
+        std::cin >> choice;
+        switch (choice)
+        {
+        case 1:
+        {
+            int percentage = rand() % 50;
+            switch (percentage)
+            {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            case 29:
+                explore(percentage);
+                system("pause");
+                break;
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
+            case 45:
+            case 46:
+            case 47:
+            case 48:
+            case 49:
+                Meet(level);
+                break;
+            }
             break;
-		}
-		case 2://返回选择界面
+        }
+        case 2://返回选择界面
             return;
-			break;
-		}
+            break;
+        }
     }
 }
 void Map::explore(int percent) {
@@ -558,14 +558,14 @@ void Map::Meet(int num)
         {
             bag->Find()->Fight(&enemy);
         }
-        else 
+        else
         {
             cout << "(背包内的宝可梦已经全部重伤无法战斗，请疗伤后再来探索吧)" << endl;
             system("pause");
         }
-            
-            
-        
+
+
+
         break;
     }
     case 2:
@@ -575,19 +575,19 @@ void Map::Meet(int num)
 
 
 void Map::battleAndWinBadge() {
-   
+
 }
 void Map::showAvailableCities(int currentLocationIndex) {
-    if (currentLocationIndex ==1) {
+    if (currentLocationIndex == 1) {
         cout << "可前往的城市：\n1.斧炎镇 \n2.琉璃岛" << endl;
     }
     else if (currentLocationIndex == 2) {
         cout << "可前往的城市：\n1.紫瑾市 \n2.橙华市" << endl;
     }
-    else if (currentLocationIndex ==3) {
+    else if (currentLocationIndex == 3) {
         cout << "可前往的城市：\n1.斧炎镇 \n2.琉璃岛" << endl;
     }
-    else if (currentLocationIndex ==4) {
+    else if (currentLocationIndex == 4) {
         cout << "可前往的城市：\n1.紫瑾市 \n2.橙华市" << endl;
     }
 
@@ -595,19 +595,19 @@ void Map::showAvailableCities(int currentLocationIndex) {
 void Map::changeLocation(int newLocationIndex) {
     if (newLocationIndex == 1) {
         currentLocation = cities[0].name;
-        cout << "你已经到达" << currentLocation<<endl;
+        cout << "你已经到达" << currentLocation << endl;
     }
     else if (newLocationIndex == 2) {
         currentLocation = cities[1].name;
-        cout << "你已经到达" << currentLocation<<endl;
+        cout << "你已经到达" << currentLocation << endl;
     }
     else if (newLocationIndex == 3) {
         currentLocation = cities[2].name;
-        cout << "你已经到达" << currentLocation<<endl;
+        cout << "你已经到达" << currentLocation << endl;
     }
     else if (newLocationIndex == 4) {
         currentLocation = cities[3].name;
-        cout << "你已经到达" << currentLocation<<endl;
+        cout << "你已经到达" << currentLocation << endl;
     }
 }
 void Map::visitLocation(int i)//暂废

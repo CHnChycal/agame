@@ -1,10 +1,13 @@
 #ifndef MENU_CPP
 #define MENU_CPP
-
+#include "npcs.h"
 #include "menu.h"
 #include "player.h"
 #include "map.h"
 #include "monsterbag.h"
+
+#include "npc.h"
+
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -176,10 +179,12 @@ void Menu::Playeredit(Player _player)
 }
 int Menu::Gamerunning()//游戏运行界面
 {
+	MonsterBag* mbp = MonsterBag::Getinstance();
+	Npcs* npcs = Npcs::Getinstance();
 	while(true)
 	{ 
 		system("cls");
-		MonsterBag* mbp = MonsterBag::Getinstance();
+		
 		cout << "/////////////////////////////////////////////////////////" << endl;
 		cout << "你现在处于 " << map.showLocation() << endl;
 		cout << "这里有 " << endl;
@@ -269,9 +274,11 @@ int Menu::save()
 	ofstream fileMap("SaveMap.dat", ios_base::binary);
 	ofstream fileBag("SaveBag.dat", ios_base::binary);
 	ofstream fileMonster("SaveMonster.dat", ios_base::binary);
+	ofstream fileNpc("SaveNpc.dat", ios_base::binary);
 	Bag* bp = Bag::Getinstance();
 	MonsterBag* mbp = MonsterBag::Getinstance();
-	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
+	Npcs* npcs = Npcs::Getinstance();
+	if (!filePlayer || !fileMap || !fileBag || !fileMonster||!fileNpc)
 	{
 		cout << "无法打开保存文件!\n保存失败！" << endl;
 		system("pause");
@@ -295,7 +302,11 @@ int Menu::save()
 			//保存ID，等级，经验，血量
 			fileMonster << mbp->Return(i)->Id() << " " << mbp->Return(i)->CURLevel() << " " << mbp->Return(i)->CURExper() << " " << mbp->Return(i)->CURValue() << " ";
 		}
-
+		//储存npc数据
+		for (int i = 0; i < 13; i++)
+		{
+			fileNpc << npcs->Return(i)->ReturnIsdef() << " ";
+		}
 		cout << "(保存成功)" << endl;
 		filePlayer.close();
 		fileMap.close();
@@ -311,9 +322,11 @@ int Menu::load()
 	ifstream fileMap("SaveMap.dat", ios_base::binary);
 	ifstream fileBag("SaveBag.dat", ios_base::binary);
 	ifstream fileMonster("SaveMonster.dat", ios_base::binary);
+	ifstream fileNpc("SaveNpc.dat", ios_base::binary);
 
 	Bag* bp = Bag::Getinstance();
 	MonsterBag* mbp = MonsterBag::Getinstance();
+	Npcs* npcs = Npcs::Getinstance();
 
 	if (!filePlayer || !fileMap || !fileBag || !fileMonster)
 	{
@@ -356,6 +369,14 @@ int Menu::load()
 			monster->SetExper(exp);
 			monster->SetValue(value);
 			mbp->Add(*monster);
+		}
+		//读取npc数据
+		npcs->Clear();
+		int isdef;
+		for (int i = 0; i < 13; i++)
+		{
+			fileNpc >> isdef;
+			npcs->SetNpc(i, isdef);
 		}
 		cout << "(读取成功)" << endl;
 		filePlayer.close();

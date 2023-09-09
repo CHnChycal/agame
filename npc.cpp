@@ -1,35 +1,27 @@
 #pragma once
 #include<iostream>
 #include"npc.h";
-#include"monsters.h"
 using namespace std;
 Monster* Npc::getFirstMonster()
 {
-	while (!gymBossMonsters.empty()) {
-		removeFirstMoster();
-		return &gymBossMonsters[0];
-		
-	}return nullptr;
+	if (!Monsters.empty()) {
+		return &Monsters[0];
+	}
+	return nullptr;
 }
-
 
 void Npc::removeFirstMoster()
 {
-	if (!gymBossMonsters.empty()&& gymBossMonsters[0].CURValue()==0) {
-		gymBossMonsters.erase(gymBossMonsters.begin());
+	if (!Monsters.empty()) {
+		Monsters.erase(Monsters.begin());
 	}
 }
-bool Npc::ifChallengeSucess(int i) {
-	if (Npc(i).gymBossMonsters.empty())return 1;
-	else return 0;
-
-}
 int Npc::getMonstersCount() {
-	return gymBossMonsters.size();
+	return Monsters.size();
 }
 
 
-void Npc::MainNpc(int currentLocationIndex, Bag* bag) {
+void Npc::MainNpc(int currentLocationIndex) {
 	cout << "你要干什么?" << endl << "1.观察npc" << endl << "2.与npc交谈并战斗" << endl << "3.离开道馆";
 	int choice;
 	cin >> choice;
@@ -44,7 +36,7 @@ void Npc::MainNpc(int currentLocationIndex, Bag* bag) {
 		ShowNpc(currentLocationIndex);
 		break;
 	case 2:
-		npctalk(currentLocationIndex, bag);
+		npctalk(currentLocationIndex);
 		break;
 	case 3:
 		break;
@@ -63,91 +55,91 @@ Npc::Npc(int Id) {
 		NpcId = 0;
 		NpcDesc = "紫堇市道馆馆主,性格开朗、十分乐观,喜欢豪爽的大笑，掌管徽章电力徽章。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(5,40),Monster(5,40),Monster(5,40) };
+		Monsters = { Monster(5,40),Monster(5,40),Monster(5,40) };
 		break;
 	case 1:
 		NpcName = "亚莎";
 		NpcId = 1;
 		NpcDesc = "斧炎镇斧炎道馆馆主,活泼、热血，是一位富有激情的女性，当热衷于一件事情后常常会忘记其他事情,掌管徽章烈焰徽章。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(18,40),Monster(18,40),Monster(18,40) };
+		Monsters = { Monster(18,40),Monster(18,40),Monster(18,40) };
 		break;
 	case 2:
 		NpcName = "千里";
 		NpcId = 2;
 		NpcDesc = "橙华市橙华道馆的道馆馆主。精通一般属性宝可梦，掌管天秤徽章。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(12,40),Monster(12,40),Monster(12,40) };
+		Monsters = { Monster(12,40),Monster(12,40),Monster(12,40) };
 		break;
 	case 3:
 		NpcName = "米可莉";
 		NpcId = 3;
 		NpcDesc = "琉璃岛琉璃道馆馆主,冷静、处事直截了当，责任感和正义感浓重，温柔、随和而不失稳重,掌管雨滴徽章。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 4:
 		NpcName = "小刚";
 		NpcId = 4;
 		NpcDesc = "小刚是深灰市附近少有的严肃专业的宝可梦训练家,精通岩石属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 5:
 		NpcName = "小霞";
 		NpcId = 5;
 		NpcDesc = "小霞性格很活泼。身为一名游泳健将，她经常去双子岛修炼,精通水属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 6:
 		NpcName = "模仿少女";
 		NpcId = 6;
 		NpcDesc = "模仿少女的家中有许多布偶,精通普通属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 7:
 		NpcName = "老人";
 		NpcId = 7;
 		NpcDesc = "老人是一名收服教学人,精通毒属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 8:
 		NpcName = "正辉";
 		NpcId = 8;
 		NpcDesc = "是宝可梦寄放系统的一名开发员，管理著关都地区和城都地区的寄放系统,精通飞行属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 9:
 		NpcName = "阿桔";
 		NpcId = 9;
 		NpcDesc = "是石英联盟的现任四天王之一，精通毒属性宝可梦。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 10:
 		NpcName = "奈奈美";
 		NpcId = 10;
 		NpcDesc = "大木奈奈美,是青绿的姊姊，也是大木博士的孙女,精通电属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 11:
 		NpcName = "大木博士";
 		NpcId = 11;
 		NpcDesc = "大木雪成博士,是关都地区的宝可梦博士,精通草属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	case 12:
 		NpcName = "青绿";
 		NpcId = 12;
 		NpcDesc = "青绿是大木博士的孙子，有个姐姐叫奈奈美,精通一般属性。";
 		isdefeated = 0;
-		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		Monsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
 	default:
 		break;
@@ -155,12 +147,14 @@ Npc::Npc(int Id) {
 }
 Npc::~Npc() {}
 
-void Npc::npctalk(int NpcId, Bag* bag) {
+void Npc::npctalk(int NpcId) {
 	string text;
+	Bag* bp = Bag::Getinstance();
+	MonsterBag* mbp = MonsterBag::Getinstance();
 	if (NpcId < 4) {
 		switch (NpcId) {
 		case 1: {
-			if (bag->showGoodNum(0) <= 0) {//看是否有徽章判断打败了npc没有
+			if (bp->showGoodNum(0) <= 0) {//看是否有徽章判断打败了npc没有
 				text = "铁旋:啊哈！你终于来了！我知道你想要什么。你想和我的宝可梦对战！哇哈哈哈哈！别说我没警告你，我会让你火花四溅的！";
 				for (int i = 0; i < text.length(); i++)
 				{
@@ -187,7 +181,7 @@ void Npc::npctalk(int NpcId, Bag* bag) {
 			break;
 		}
 		case 2: {
-			if (bag->showGoodNum(1) <= 0) {
+			if (bp->showGoodNum(1) <= 0) {
 				text = "亚莎：打输一次不会让我泄气。我爱宝可梦，我爱战斗，而且……我爱这间道馆！让我们用炙热的招式开战吧！";
 				for (int i = 0; i < text.length(); i++)
 				{
@@ -214,7 +208,7 @@ void Npc::npctalk(int NpcId, Bag* bag) {
 			break;
 		}
 		case 3: {
-			if (bag->showGoodNum(2) <= 0) {
+			if (bp->showGoodNum(2) <= 0) {
 				text = "千里：嗯……看来，你已经赢得两枚徽章了。我真高兴能和自己的孩子来一场真真正正的战斗。但是，战斗就是战斗！身为道馆馆主，我会尽我所能赢取胜利。";
 				for (int i = 0; i < text.length(); i++)
 				{
@@ -241,7 +235,7 @@ void Npc::npctalk(int NpcId, Bag* bag) {
 			break;
 		}
 		case 4: {
-			if (bag->showGoodNum(3) <= 0) {
+			if (bp->showGoodNum(3) <= 0) {
 				text = "米可莉：请容我正式介绍我自己。我是米可莉，琉璃道馆的道馆馆主。现在，把你和你的宝可梦的力量展现给我看吧.";
 				for (int i = 0; i < text.length(); i++)
 				{
@@ -293,3 +287,12 @@ string Npc::getNpcDesc() {
 	return string(NpcDesc);
 }
 
+void Npc::setNpc(int isdef) 
+{
+	isdefeated = isdef;
+}
+
+int Npc::ReturnIsdef()
+{
+	return isdefeated;
+}

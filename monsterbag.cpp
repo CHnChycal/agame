@@ -80,18 +80,25 @@ int MonsterBag::MonsterNum()
 
 void MonsterBag::Add(Monster monster)
 {
-	int size = bag.size();
-	if (size < 6)
+	if (monster.HasCaught())
 	{
-		bag.push_back(monster);
-		cout << "//////////////////////////////////////////////////////////" << endl;
-		monster.Caught();
-		cout << monster.Show_Name() << "已加入宝可梦背包！" << endl;
+		cout << "这只宝可梦已经有主人了，它不愿意跟你走" << endl;
 	}
 	else
 	{
-		cout << "//////////////////////////////////////////////////////////" << endl;
-		cout << "宝可梦背包已满，请放生部分宝可梦后再捕捉，不要太贪心哦！" << endl;
+		int size = bag.size();
+		if (size < 6)
+		{
+			bag.push_back(monster);
+			cout << "//////////////////////////////////////////////////////////" << endl;
+			monster.Caught();
+			cout << monster.Show_Name() << "已加入宝可梦背包！" << endl;
+		}
+		else
+		{
+			cout << "//////////////////////////////////////////////////////////" << endl;
+			cout << "宝可梦背包已满，请放生部分宝可梦后再捕捉，不要太贪心哦！" << endl;
+		}
 	}
 }
 

@@ -609,8 +609,10 @@ void Monster::Fight(Monster* enemy)
 	cout << "//////////////////////////////////////////////////////////" << endl;
 	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
+	
 	int n;
 	int turn = 1;
+
 	while(this->isAlive && enemy->isAlive && !enemy->hasCaught)//当双方都未死亡时选择操作
 	{
 		system("cls");
@@ -691,7 +693,8 @@ void Monster::Fight(Monster* enemy)
 		case 2:
 		{
 			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
-			cout << this->Mname << "进行了防御，双方都未受到伤害" << endl;
+			M_Denfense();
+			M_Attacked(enemy);
 			system("pause");
 			break;
 		}
@@ -718,6 +721,16 @@ void Monster::Fight(Monster* enemy)
 		break;
 		}
 		turn++;
+		if (this->defense_up_turn > 0)
+		{
+			if (this->defense_up_turn == 1)
+			{
+				SetConsoleColor(FOREGROUND_RED);
+				cout << this->Mname << "的防御力提升状态消失！防御力恢复" << endl;
+				this->Defense /= 2;
+			}
+			defense_up_turn -= 1;
+		}
 	}
 }
 
@@ -1000,6 +1013,13 @@ void Monster::M_Attacked(Monster* enemy)
 		bag->Find()->Fight(enemy);*/
 	}
 
+}
+
+void Monster::M_Denfense()
+{
+	cout << this->Mname << "进行了防御，防御力提升两回合！" << endl;
+	this->Defense += this->Defense;
+	this->defense_up_turn += 2;
 }
 
 void Monster::Caught()

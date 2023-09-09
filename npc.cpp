@@ -45,7 +45,9 @@ void Npc::MainNpc(int currentLocationIndex, Bag* bag) {
 
 }
 void Npc::ShowNpc(int currentLocationIndex) {
-	;
+	cout << "NpcÃû×Ö£º"<<Npc(currentLocationIndex).getNpcName() << endl;
+	cout << "NpcÏêÇé£º" << Npc(currentLocationIndex).getNpcDesc() << endl;
+
 }
 Npc::Npc(int Id) {
 	switch (Id) {

@@ -30,7 +30,7 @@ public:
 
 	void M_Attack(Monster* enemy);
 	void M_Attacked(Monster* enemy);
-	//void M_Denfense(Monster enemy);
+	void M_Denfense();
 	void Caught();		//妖怪被捉，把hascaught改成true
 	bool HasCaught();	//返回hascaught
 	bool IsAlive();
@@ -40,6 +40,8 @@ public:
 	int CURLevel();		//返回妖怪的当前等级
 	int CURExper();		//返回妖怪的当前经验值
 	void Show_Detail();	//返回妖怪的详细信息
+
+	int defense_up_turn;//防御力提升的回合
 private:
 	string Mname;		//妖怪名字
 	int id;				//创建宝可梦时的id

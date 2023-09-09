@@ -45,7 +45,7 @@ void Npc::MainNpc(int currentLocationIndex, Bag* bag) {
 
 }
 void Npc::ShowNpc(int currentLocationIndex) {
-
+	;
 }
 Npc::Npc(int Id) {
 	switch (Id) {
@@ -74,6 +74,69 @@ Npc::Npc(int Id) {
 		NpcName = "米可莉";
 		NpcId = 3;
 		NpcDesc = "琉璃岛琉璃道馆馆主,冷静、处事直截了当，责任感和正义感浓重，温柔、随和而不失稳重,掌管雨滴徽章。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 4:
+		NpcName = "小刚";
+		NpcId = 4;
+		NpcDesc = "小刚是深灰市附近少有的严肃专业的宝可梦训练家,精通岩石属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 5:
+		NpcName = "小霞";
+		NpcId = 5;
+		NpcDesc = "小霞性格很活泼。身为一名游泳健将，她经常去双子岛修炼,精通水属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 6:
+		NpcName = "模仿少女";
+		NpcId = 6;
+		NpcDesc = "模仿少女的家中有许多布偶,精通普通属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 7:
+		NpcName = "老人";
+		NpcId = 7;
+		NpcDesc = "老人是一名收服教学人,精通毒属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 8:
+		NpcName = "正辉";
+		NpcId = 8;
+		NpcDesc = "是宝可梦寄放系统的一名开发员，管理著关都地区和城都地区的寄放系统,精通飞行属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 9:
+		NpcName = "阿桔";
+		NpcId = 9;
+		NpcDesc = "是石英联盟的现任四天王之一，精通毒属性宝可梦。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 10:
+		NpcName = "奈奈美";
+		NpcId = 10;
+		NpcDesc = "大木奈奈美,是青绿的姊姊，也是大木博士的孙女,精通电属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 11:
+		NpcName = "大木博士";
+		NpcId = 11;
+		NpcDesc = "大木雪成博士,是关都地区的宝可梦博士,精通草属性。";
+		isdefeated = 0;
+		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
+		break;
+	case 12:
+		NpcName = "青绿";
+		NpcId = 12;
+		NpcDesc = "青绿是大木博士的孙子，有个姐姐叫奈奈美,精通一般属性。";
 		isdefeated = 0;
 		gymBossMonsters = { Monster(13,40),Monster(13,40),Monster(13,40) };
 		break;
@@ -209,3 +272,4 @@ int Npc::getNpcId() {
 string Npc::getNpcDesc() {
 	return string(NpcDesc);
 }
+

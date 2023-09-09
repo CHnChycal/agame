@@ -321,6 +321,8 @@ int Menu::load()
 	}
 	else
 	{
+		//清除原有物品以便游戏内读档
+		bp->Clear();
 		//读取玩家名
 		string playername;
 		filePlayer >> playername;

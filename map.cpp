@@ -115,14 +115,14 @@ void Map::enterShop() {
         system("cls");
         cout << "///////////////////////////////////////////////////////////////" << endl;
         cout << "你进入了当地的宝可梦商店，这里可以购置许多有用的宝可梦装备\n";
-        cout << "1.治疗药水\n2.普通精灵球\n3.大师精灵球\n4.退出商店\n";
+        cout << "1.治疗药水\n2.普通精灵球\n3.大师精灵球\n0.退出商店\n";
         cout << "///////////////////////////////////////////////////////////////" << endl;
         cout << "tip:输入对应ID和数量进行购买\n";
         while (true)
         {
             cout << ":";
             cin >> choice;
-            if (cin.fail() || choice < 0 || choice>4)
+            if (cin.fail() || choice < 0 || choice>3)
             {
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');
@@ -136,29 +136,44 @@ void Map::enterShop() {
             cout << "单价为20个金币，请输入你要购买的数量:";
             cin >> number;//输入购买数量
             totalPrice = number * 20;
-            bag->editGoodNum(7, -totalPrice);
-            bag->editGoodNum(4, number);//扣除金币并增加物品数量
-            cout << "你现在一共有" << bag->showGoodNum(4) << "瓶治疗药水了";
+            if (bag->showGoodNum(7) >= totalPrice)
+            {
+                bag->editGoodNum(7, -totalPrice);
+                bag->editGoodNum(4, number);//扣除金币并增加物品数量
+                cout << "你现在一共有" << bag->showGoodNum(4) << "瓶治疗药水了";
+            }
+            else cout << "金币数量不足！" << endl;
+            system("pause");
             break;
         case 2:
             Goods(5).showGoods();
             cout << "单价为40个金币，请输入你要购买的数量:";
             cin >> number;//输入购买数量
             totalPrice = number * 40;
-            bag->editGoodNum(7, -totalPrice);
-            bag->editGoodNum(5, number);//扣除金币并增加物品数量
-            cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了";
+            if (bag->showGoodNum(7) >= totalPrice)
+            {
+				bag->editGoodNum(7, -totalPrice);
+				bag->editGoodNum(5, number);//扣除金币并增加物品数量
+				cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了";
+            }
+            else cout << "金币数量不足！" << endl;
+            system("pause");
             break;
         case 3:
             Goods(6).showGoods();
             cout << "单价为80个金币，请输入你要购买的数量:";
             cin >> number;//输入购买数量
             totalPrice = number * 80;
-            bag->editGoodNum(7, -totalPrice);
-            bag->editGoodNum(6, number);//扣除金币并增加物品数量
-            cout << "你现在一共有" << bag->showGoodNum(5) << "个大师精灵球了";
+            if (bag->showGoodNum(7) >= totalPrice)
+            {
+				bag->editGoodNum(7, -totalPrice);
+				bag->editGoodNum(6, number);//扣除金币并增加物品数量
+				cout << "你现在一共有" << bag->showGoodNum(5) << "个大师精灵球了";
+            }
+            else cout << "金币数量不足！" << endl;
+            system("pause");
             break;
-        case 4:
+        case 0:
             return;
         default:
             cout << "输入了错误的序号，请重新输入";
@@ -217,42 +232,45 @@ void Map::goToOtherCity(int &currentLocationIndex,string &currentLocation)
 
 void Map::exploreWilderness()
 {
-    system("cls");
-    cout << "///////////////////////////////////////////////////////////////" << endl;
-    std::cout << "//请选择野外难度等级//\n";
-    std::cout << "1: 等级1~20" << endl;
-    std::cout << "2: 等级21~40" << endl;
-    std::cout << "3: 等级41~60" << endl;
-    std::cout << "4: 等级61~80" << endl;
-    cout << "0:返回" << endl;
-    cout << "///////////////////////////////////////////////////////////////" << endl;
-    int choice;
-    while (true)
-    {
-        cout << ":";
-        cin >> choice;
-        if (cin.fail() || choice < 0 || choice>4)
-        {
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-            cout << "(输入了错误的序号，请重新输入)" << endl;
-        }
-        else break;
-    }
-    switch (choice)
-    {
-    case 0:
-        break;
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-        exploreWildness(choice - 1);
-        break;
-    default:
-        std::cout << "无效的选择。\n";
-        exploreWilderness();
-        break;
+    while(true)
+    { 
+		system("cls");
+		cout << "///////////////////////////////////////////////////////////////" << endl;
+		std::cout << "//请选择野外难度等级//\n";
+		std::cout << "1: 等级1~20" << endl;
+		std::cout << "2: 等级21~40" << endl;
+		std::cout << "3: 等级41~60" << endl;
+		std::cout << "4: 等级61~80" << endl;
+		cout << "0:返回" << endl;
+		cout << "///////////////////////////////////////////////////////////////" << endl;
+		int choice;
+		while (true)
+		{
+			cout << ":";
+			cin >> choice;
+			if (cin.fail() || choice < 0 || choice>4)
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "(输入了错误的序号，请重新输入)" << endl;
+			}
+			else break;
+		}
+		switch (choice)
+		{
+		case 0:
+            return;//结束代码直接返回
+			break;
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			exploreWildness(choice - 1);
+			break;
+		default:
+			std::cout << "无效的选择。\n";//重复
+			break;
+		}
     }
 }
 
@@ -336,9 +354,9 @@ void Map::exploreWildness(int level) {
 			}
 		}
 		case 2://返回选择界面
+            return;
 			break;
 		}
-        if (choice == 2)break;//返回
     }
 }
 void Map::explore(int percent) {
@@ -406,14 +424,21 @@ void Map::Meet(int num)
     cout << "//////////////////////////////////////////////////////////" << endl;
     int n;
     cin >> n;
-    while (n != 1 && n != 2)
+    while (true)
     {
-        cout << "//////////////////////////////////////////////////////////" << endl;
-        cout << "///                                                    ///" << endl;
-        cout << "///   请选择输入 1 / 2！                               ///" << endl;
-        cout << "///                                                    ///" << endl;
-        cout << "//////////////////////////////////////////////////////////" << endl;
+        cout << ":";
         cin >> n;
+        if (cin.fail() || n < 1 || n>2)
+        {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "//////////////////////////////////////////////////////////" << endl;
+            cout << "///                                                    ///" << endl;
+            cout << "///   请选择输入 1 / 2！                               ///" << endl;
+            cout << "///                                                    ///" << endl;
+            cout << "//////////////////////////////////////////////////////////" << endl;
+        }
+        else break;
     }
     switch (n)
     {

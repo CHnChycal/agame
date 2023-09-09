@@ -92,13 +92,11 @@ void Bag::editGoodNum(int id, int num)
 			{
 				cout << "已从背包中减少" << num << "件" << goods[id].getName() << endl;
 				goods[id].changeGoodsNum(sum);
-				system("pause");
 			}
 			else
 			{
 				cout << "已将" << num << "件" << goods[id].getName() <<"添加到背包" << endl;
 				goods[id].changeGoodsNum(sum);
-				system("pause");
 			}
 		}
 	}

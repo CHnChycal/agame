@@ -4,24 +4,29 @@
 using namespace std;
 Monster* Npc::getFirstMonster()
 {
-	if (!Monsters.empty()) {
-		return &Monsters[0];
-	}
-	return nullptr;
+	while (!gymBossMonsters.empty()) {
+		removeFirstMoster();
+		return &gymBossMonsters[0];
+
+	}return nullptr;
 }
+
 
 void Npc::removeFirstMoster()
 {
-	if (!Monsters.empty()) {
-		Monsters.erase(Monsters.begin());
+	if (!gymBossMonsters.empty() && gymBossMonsters[0].CURValue() == 0) {
+		gymBossMonsters.erase(gymBossMonsters.begin());
 	}
 
 }
-int Npc::getMonstersCount() {
-	return Monsters.size();
+bool Npc::ifChallengeSucess(int i) {
+	if (Npc(i).gymBossMonsters.empty())return 1;
+	else return 0;
+
 }
-
-
+int Npc::getMonstersCount() {
+	return gymBossMonsters.size();
+}
 void Npc::MainNpc(int currentLocationIndex) {
 	cout << "你要干什么?" << endl << "1.观察npc" << endl << "2.与npc交谈并战斗" << endl << "3.离开道馆";
 	int choice;

@@ -131,12 +131,13 @@ void MonsterBag::Release()
 	int k;
 	if (size != 1)//只有背包内精灵数量不为1时可放生
 	{
+		SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 		cout << "请选择要放生的宝可梦\n(输入0返回)" << endl;
 		while (true)
 		{
 			cout << ":";
 			cin >> k;
-			if (cin.fail() || k < 1 || k>size)
+			if (cin.fail() || k < 0 || k>size)
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
@@ -150,6 +151,11 @@ void MonsterBag::Release()
 			bag.erase(bag.begin() + k - 1);
 			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout<<bag[k-1].Show_Name() << "离开了你，希望它能够找到属于自己的未来" << endl;
+		}
+		else
+		{
+			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+			cout << "再想想吧" << endl;
 		}
 	}
 	else

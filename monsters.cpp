@@ -847,7 +847,7 @@ void Monster::UseBall(Monster* enemy)
 	{
 		cout << ":";
 		cin >> choice;
-		if (cin.fail() || choice < 0 || choice>1)
+		if (cin.fail() || choice < 1 || choice>3)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
@@ -875,6 +875,7 @@ void Monster::UseBall(Monster* enemy)
 			if (n <= possible)
 			{
 				MonsterBag::Getinstance()->Add(*enemy);
+				enemy->isAlive = false;
 			}
 			else
 			{
@@ -903,6 +904,7 @@ void Monster::UseBall(Monster* enemy)
 			if (n <= possible)
 			{
 				MonsterBag::Getinstance()->Add(*enemy);
+				enemy->isAlive = false;
 			}
 			else
 			{

@@ -92,10 +92,15 @@ void Map::challengeGym(int currentLocationIndex)
             cout << "你将挑战紫瑾市的电系道馆\n";
             Npc npc1 = Npc(0);
             do {
-                int i = 0;
-                Monsterbag->Find()->Fight(npc1.getFirstMonster());
-                npc1.removeFirstMoster();
-            } while (!npc1.ifChallengeSucess(0) || Monsterbag->Find());
+                Monster* foundMonster = Monsterbag->Find();
+                if (foundMonster) {
+                    foundMonster->Fight(npc1.getFirstMonster());
+                    npc1.removeFirstMoster();
+                }
+                else {
+                    break;  
+                }
+            } while (!npc1.ifChallengeSucess(0));
             if (npc1.ifChallengeSucess(0)) {
                 cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
                 bag->editGoodNum(0, 1);
@@ -116,9 +121,15 @@ void Map::challengeGym(int currentLocationIndex)
         cout << "你将挑战斧炎镇的火系道馆\n";
         Npc npc2 = Npc(1);
         do {
-            Monsterbag->Find()->Fight(npc2.getFirstMonster());
-            npc2.removeFirstMoster();
-        } while (!npc2.ifChallengeSucess(0) || Monsterbag->Find());
+            Monster* foundMonster = Monsterbag->Find();
+            if (foundMonster) {
+                foundMonster->Fight(npc2.getFirstMonster());
+                npc2.removeFirstMoster();
+            }
+            else {
+                break;
+            }
+        } while (!npc2.ifChallengeSucess(0));
         if (npc2.ifChallengeSucess(1)) {
             cout << "恭喜你挑战成功,这枚火系徽章是你的啦\n";
             bag->editGoodNum(1, 1);
@@ -140,9 +151,15 @@ void Map::challengeGym(int currentLocationIndex)
         cout << "你将挑战橙华市的普通道馆\n";
         Npc npc3 = Npc(2);
         do {
-            Monsterbag->Find()->Fight(npc3.getFirstMonster());
-            npc3.removeFirstMoster();
-        } while (!npc3.ifChallengeSucess(0) || Monsterbag->Find());
+            Monster* foundMonster = Monsterbag->Find();
+            if (foundMonster) {
+                foundMonster->Fight(npc3.getFirstMonster());
+                npc3.removeFirstMoster();
+            }
+            else {
+                break;
+            }
+        } while (!npc3.ifChallengeSucess(0) );
         if (npc3.ifChallengeSucess(2)) {
             cout << "恭喜你挑战成功,这枚普通系徽章是你的啦\n";
             bag->editGoodNum(2, 1);
@@ -161,9 +178,15 @@ void Map::challengeGym(int currentLocationIndex)
         cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
         Npc npc4 = Npc(3);
         do {
-            Monsterbag->Find()->Fight(npc4.getFirstMonster());
-            npc4.removeFirstMoster();
-        } while (!npc4.ifChallengeSucess(0) || Monsterbag->Find());
+            Monster* foundMonster = Monsterbag->Find();
+            if (foundMonster) {
+                foundMonster->Fight(npc4.getFirstMonster());
+                npc4.removeFirstMoster();
+            }
+            else {
+                break;
+            }
+        } while (!npc4.ifChallengeSucess(0));
         if (npc4.ifChallengeSucess(1)) {
             cout << "恭喜你挑战成功,这枚水系徽章是你的啦\n";
             bag->editGoodNum(3, 1);

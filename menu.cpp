@@ -23,11 +23,14 @@ Menu::~Menu()
 }
 Player Menu::Gamestart(int i) 
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	string name;
 	MonsterBag* mbp = MonsterBag::Getinstance();
 	system("cls");
 	if (i == 1)//创建新游戏，自定义姓名和获取御三家
 	{
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 		string text;
 		for (int i = 0; i < 4; i++)
 			cout << endl;
@@ -101,6 +104,7 @@ Player Menu::Gamestart(int i)
 			cout << text[i];
 		}
 		cout << endl;
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 		text = "(请输入1/2/3来获取你的初始宝可梦)\n";
 		for (int i = 0; i < text.length(); i++)
 		{
@@ -126,6 +130,7 @@ Player Menu::Gamestart(int i)
 			}
 			else break;
 		}
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 		switch (choice)
 		{
 		case 1:
@@ -179,17 +184,50 @@ void Menu::Playeredit(Player _player)
 }
 int Menu::Gamerunning()//游戏运行界面
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	MonsterBag* mbp = MonsterBag::Getinstance();
 	Npcs* npcs = Npcs::Getinstance();
 	while(true)
 	{ 
 		system("cls");
-		
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 		cout << "/////////////////////////////////////////////////////////" << endl;
 		cout << "你现在处于 " << map.showLocation() << endl;
-		cout << "这里有 " << endl;
+		cout << "这里有 ";//显示场景中的npc名
+		
+		if (map.showIndex() == 1)
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				cout << npcs->Return(i + 4)->getNpcName() << " ";
+			}
+		}
+		else if (map.showIndex() == 2)
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				cout << npcs->Return(i + 6)->getNpcName() << " ";
+			}
+		}
+		else if (map.showIndex() == 3)
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				cout << npcs->Return(i + 8)->getNpcName() << " ";
+			}
+		}
+		else if (map.showIndex() == 4)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				cout << npcs->Return(i + 10)->getNpcName() << " ";
+			}
+		}
+		cout << endl;
 		cout << player.Showname() << " 训练师您好，今天想要做些什么呢?" << endl;
 		cout << "/////////////////////////////////////////////////////////" << endl;
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 		cout << "Tip:离开游戏前请存档\n1查看地图(进行探索)\n2交谈(对战)\n3检查道具背包\n4检查宝可梦腰包\n5存档\n6读取存档\n7返回主菜单\n0退出游戏" << endl;
 
 		int choice;
@@ -214,6 +252,7 @@ int Menu::Gamerunning()//游戏运行界面
 			ShowMap();//展示地图
 			break;
 		case 2://与npc交谈
+			Talk();
 			break;
 		case 3://检查道具背包
 			showBag();
@@ -240,12 +279,16 @@ void Menu::ShowMap()
 }
 void Menu::showBag()
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int choice;
 	Bag* bp = Bag::Getinstance();
 	system("cls");
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 	cout << "///////////////////////////////////////////////////////////////" << endl;
 	cout << "红白相间的背包内有序堆放着" << player.Showname() << "平时常用的道具" << endl;
 	cout << "///////////////////////////////////////////////////////////////" << endl;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 	cout << "请输入你想要进行的操作：\n1查看道具\n0合上背包" << endl;
 	while (true)
 	{
@@ -270,6 +313,8 @@ void Menu::showBag()
 }
 int Menu::save()
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	ofstream filePlayer("SavePlayer.dat", ios_base::binary);
 	ofstream fileMap("SaveMap.dat", ios_base::binary);
 	ofstream fileBag("SaveBag.dat", ios_base::binary);
@@ -278,6 +323,7 @@ int Menu::save()
 	Bag* bp = Bag::Getinstance();
 	MonsterBag* mbp = MonsterBag::Getinstance();
 	Npcs* npcs = Npcs::Getinstance();
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 	if (!filePlayer || !fileMap || !fileBag || !fileMonster||!fileNpc)
 	{
 		cout << "无法打开保存文件!\n保存失败！" << endl;
@@ -319,6 +365,8 @@ int Menu::save()
 }
 int Menu::load()
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	ifstream filePlayer("SavePlayer.dat", ios_base::binary);
 	ifstream fileMap("SaveMap.dat", ios_base::binary);
 	ifstream fileBag("SaveBag.dat", ios_base::binary);
@@ -328,7 +376,9 @@ int Menu::load()
 	Bag* bp = Bag::Getinstance();
 	MonsterBag* mbp = MonsterBag::Getinstance();
 	Npcs* npcs = Npcs::Getinstance();
-
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+	system("cls");
+	cout << "(存档读取中)" << endl;
 	if (!filePlayer || !fileMap || !fileBag || !fileMonster||!fileNpc)
 	{
 		cout << "不存在存档文件，读取失败！" << endl;
@@ -387,6 +437,104 @@ int Menu::load()
 		fileNpc.close();
 		system("pause");
 		return 1;
+	}
+}
+void Menu::Talk()
+{
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	Npcs* npcs = Npcs::Getinstance();
+	system("cls");
+	int num=0;
+	int choice;
+	int _choice;
+	//显示可选人数
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+	cout << "/////////////////////////////////////////////////////////" << endl;
+	if (map.showIndex() == 1)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			cout << i+1 <<"." << npcs->Return(i + 4)->getNpcName() << endl;
+			num++;
+		}
+	}
+	else if (map.showIndex() == 2)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			cout << i + 1 << "." << npcs->Return(i + 6)->getNpcName() << endl;
+			num++;
+		}
+	}
+	else if (map.showIndex() == 3)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			cout << i + 1 << "." << npcs->Return(i + 8)->getNpcName() << endl;
+			num++;
+		}
+	}
+	else if (map.showIndex() == 4)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			cout << i + 1 << "." << npcs->Return(i + 10)->getNpcName() << endl;
+			num++;
+		}
+	}
+	cout << "/////////////////////////////////////////////////////////" << endl;
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+	cout << "(请选择你的动作)" << endl;
+	cout << "1.交谈\n2.战斗\n0.不做动作" << endl;
+	while (true)
+	{
+		cout << ":";
+		cin >> choice;
+		if (cin.fail() || choice < 0 || choice>2)
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "(输入了错误的序号，请重新输入)" << endl;
+		}
+		else break;
+	}
+	switch (choice)
+	{
+	case 0:
+		return;
+	case 1:
+		cout << "(请选择想要交谈的对象)" << endl;
+		while (true)
+		{
+			cout << ":";
+			cin >> _choice;
+			if (cin.fail() || _choice < 1 || _choice>num)
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "(输入了错误的序号，请重新输入)" << endl;
+			}
+			else break;
+		}
+		npcs->Return(map.showIndex() * 2 + 1 + _choice)->npctalk(player);
+		break;
+	case 2:
+		cout << "(请选择想要战斗的对象)" << endl;
+		while (true)
+		{
+			cout << ":";
+			cin >> _choice;
+			if (cin.fail() || _choice < 1 || _choice>num)
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "(输入了错误的序号，请重新输入)" << endl;
+			}
+			else break;
+		}
+		npcs->Return(map.showIndex() * 2 + 1 + _choice)->npcFight();
+		break;
 	}
 }
 #endif

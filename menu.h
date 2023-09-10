@@ -26,7 +26,7 @@ public:
     int save();
     int load();
     void showBag();
-    
+    void Talk();
 };
 
 

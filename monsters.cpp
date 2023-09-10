@@ -625,13 +625,123 @@ void Monster::Fight(Monster* enemy)
 	system("cls");
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
+	cout << this->Mname << "(lv." << this->CurLevel << " ";
+	switch (this->Mnature)
+	{
+	case 0:
+	{
+		cout << "一般" ;
+		break;
+	}
+	case 1:
+	{
+		cout << "火" ;
+		break;
+	}
+	case 2:
+	{
+		cout << "水" ;
+		break;
+	}
+	case 3:
+	{
+		cout << "电" ;
+		break;
+	}
+	case 4:
+	{
+		cout << "草" ;
+		break;
+	}
+	case 5:
+	{
+		cout << "冰" ;
+		break;
+	}
+	case 6:
+	{
+		cout << "飞行" ;
+		break;
+	}
+	case 7:
+	{
+		cout << "毒" ;
+		break;
+	}
+	case 8:
+	{
+		cout << "虫" ;
+		break;
+	}
+	case 9:
+	{
+		cout << "岩石" ;
+		break;
+	}
+	break;
+	}
+	cout << ")" << "与" << enemy->Mname << "(lv." << enemy->CurLevel << " ";
+	switch (enemy->Mnature)
+	{
+	case 0:
+	{
+		cout << "一般";
+		break;
+	}
+	case 1:
+	{
+		cout << "火";
+		break;
+	}
+	case 2:
+	{
+		cout << "水";
+		break;
+	}
+	case 3:
+	{
+		cout << "电";
+		break;
+	}
+	case 4:
+	{
+		cout << "草";
+		break;
+	}
+	case 5:
+	{
+		cout << "冰";
+		break;
+	}
+	case 6:
+	{
+		cout << "飞行";
+		break;
+	}
+	case 7:
+	{
+		cout << "毒";
+		break;
+	}
+	case 8:
+	{
+		cout << "虫";
+		break;
+	}
+	case 9:
+	{
+		cout << "岩石";
+		break;
+	}
+	break;
+	}
+	cout << ")开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	
+	system("pause");
 	int n;
 	int turn = 1;
 
-	while(this->isAlive && enemy->isAlive && !enemy->hasCaught)//当双方都未死亡时选择操作
+	while(this->isAlive && enemy->isAlive)//当双方都未死亡时选择操作
 	{
 		system("cls");
 		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
@@ -657,8 +767,8 @@ void Monster::Fight(Monster* enemy)
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
 				SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-				cout << "//////////////////////////////////////////////////////////" << endl;
-				cout << "输入错误！请重新输入" << endl;
+				cout << "(输入错误！请重新输入)" << endl;
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 			}
 			else break;
 		}
@@ -680,10 +790,26 @@ void Monster::Fight(Monster* enemy)
 			if (this->Speed >= enemy->Speed)
 			{
 				M_Attack(enemy);
+
 				if (enemy->isAlive)
 				{
 					M_Attacked(enemy);
 					system("pause");
+					if (!this->isAlive)
+					{
+						MonsterBag* bag = MonsterBag::Getinstance();
+						if (bag->Find() != nullptr)
+						{
+							system("pause");
+							bag->Find()->Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
+						}
+						else
+						{
+							SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+							cout << "背包中没有可战斗的宝可梦！战斗结束！" << endl;
+							system("pause");
+						}
+					}
 					break;
 				}
 				else
@@ -706,14 +832,16 @@ void Monster::Fight(Monster* enemy)
 					MonsterBag* bag = MonsterBag::Getinstance();
 					if(bag->Find()!=nullptr)
 					{
+						system("pause");
 						bag->Find()->Fight(enemy);//自动切换背包里下一只活着的宝可梦进行战斗
 					}
 					else
 					{
 						SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 						cout << "背包中没有可战斗的宝可梦！战斗结束！" << endl;
+						system("pause");
 					}
-					system("pause");
+					
 					break;
 				}
 			}
@@ -1019,6 +1147,7 @@ void Monster::Exppp(int exp)
 		//升级以后各项属性增加
 		this->CurValue = MaxValue;
 		//升级以后恢复状态
+		Recover();
 	}
 	if (improve > 0)
 	{

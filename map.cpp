@@ -21,9 +21,12 @@ Map::Map() : currentLocation("紫瑾市"), currentLocationIndex(1) {
 
 void Map::showMap() {
 
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     while (true)
     {
         system("cls");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         cout << "///////////////////////////////////////////////////////////////" << endl;
         cout << "(选中手机上的[城镇地图]应用后，浮现出几个光点)" << endl;
         cout << "您目前处于:" << cities[currentLocationIndex - 1].name << endl << endl;
@@ -31,6 +34,7 @@ void Map::showMap() {
         std::cout << "    |              |\n";
         std::cout << "|琉璃岛|-------|橙华市|\n";
         cout << "///////////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         std::cout << "请输入你想要进行的操作：\n";
         std::cout << "1. 野外探索\n";
         std::cout << "2. 挑战道馆\n";
@@ -49,7 +53,9 @@ void Map::showMap() {
             {
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');
-                cout << "(输入了错误的序号，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             }
             else break;
         }
@@ -81,125 +87,116 @@ void Map::showMap() {
 }
 void Map::challengeGym(int currentLocationIndex)
 {
+    system("cls");
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     MonsterBag* Monsterbag = MonsterBag::Getinstance();
+    Npcs* npcs = Npcs::Getinstance();
+    int choice;
     switch (currentLocationIndex) {
     case 1:
-        if (bag->showGoodNum(0) == 1) {
-            cout << "你已经获得电系徽章,不可再次挑战！\n";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        cout << "(你将要挑战紫瑾市的火系道馆,道馆馆主为铁旋，推荐宝可梦等级15+)";
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        cout << "1.进入对战\n0.退出道馆" << endl;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 0 || choice>1)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+            }
+            else break;
         }
-        else {
-            cout << "你将挑战紫瑾市的电系道馆\n";
-            Npc npc1 = Npc(0);
-            do {
-                Monster* foundMonster = Monsterbag->Find();
-                if (foundMonster) {
-                    foundMonster->Fight(npc1.getFirstMonster());
-                    npc1.removeFirstMoster(&npc1);
-                }
-                else {
-                    break;
-                }
-            } while (!npc1.ifChallengeSucess(npc1));
-            if (npc1.ifChallengeSucess(npc1)) {
-                cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
-                bag->editGoodNum(0, 1);
-
-            }
-            else {
-                cout << "挑战失败，继续努力再来吧\n";
-            }
-        }system("pause");
+        if (choice == 1)
+        {
+            npcs->Return(0)->npcFight();
+        }
         break;
-    case 2:if (bag->showGoodNum(1) == 1) {
-        cout << "你已经获得火系徽章,不可再次挑战！\n";
-    }
-          else if (bag->showGoodNum(0) == 0) {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----紫瑾市的电系道馆";
-    }
-          else {
-        cout << "你将挑战斧炎镇的火系道馆\n";
-        Npc npc2 = Npc(1);
-        do {
-            Monster* foundMonster = Monsterbag->Find();
-            if (foundMonster) {
-                foundMonster->Fight(npc2.getFirstMonster());
-                npc2.removeFirstMoster(&npc2);
+    case 2:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        cout << "(你将要挑战斧炎镇的电系道馆,道馆馆主为亚莎，推荐宝可梦等级20+)";
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+        cout << "1.进入对战\n0.退出道馆" << endl;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 0 || choice>1)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             }
-            else {
-                break;
+            else break;
+        }
+        if (choice == 1)
+        {
+            npcs->Return(1)->npcFight();
+        }
+        break;
+    case 3:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        cout << "(你将要挑战橙华市的一般系道馆,道馆馆主为千里，推荐宝可梦等级25+)";
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+        cout << "1.进入对战\n0.退出道馆" << endl;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 0 || choice>1)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             }
-        } while (!npc2.ifChallengeSucess(npc2));
-        if (npc2.ifChallengeSucess(npc2)) {
-            cout << "恭喜你挑战成功,这枚火系徽章是你的啦\n";
-            bag->editGoodNum(1, 1);
-
+            else break;
         }
-        else {
-            cout << "挑战失败，继续努力再来吧\n";
+        if (choice == 1)
+        {
+            npcs->Return(2)->npcFight();
         }
-
-    }system("pause");
-    break;
-    case 3:if (bag->showGoodNum(2) == 1) {
-        cout << "你已经获得普通系徽章,不可再次挑战！\n";
-    }
-          else if (bag->showGoodNum(1) == 0) {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----斧炎镇的火系道馆";
-    }
-          else {
-        cout << "你将挑战橙华市的普通道馆\n";
-        Npc npc3 = Npc(2);
-        do {
-            Monster* foundMonster = Monsterbag->Find();
-            if (foundMonster) {
-                foundMonster->Fight(npc3.getFirstMonster());
-                npc3.removeFirstMoster(&npc3);
+        break;
+    case 4:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        cout << "(你将要挑战琉璃岛的水系道馆,道馆馆主为米可莉，推荐宝可梦等级30+)";
+        cout << "/////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+        cout << "1.进入对战\n0.退出道馆" << endl;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 0 || choice>1)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             }
-            else {
-                break;
-            }
-        } while (!npc3.ifChallengeSucess(npc3));
-        
-        if (npc3.ifChallengeSucess(npc3)) {
-            cout << "恭喜你挑战成功,这枚普通系徽章是你的啦\n";
-            bag->editGoodNum(2, 1);
-
+            else break;
         }
-        else {
-            cout << "挑战失败，继续努力再来吧\n";
+        if (choice == 1)
+        {
+            npcs->Return(3)->npcFight();
         }
-    }system("pause");
-    break;
-    case 4:if (bag->showGoodNum(3) == 1) {
-        cout << "你已经获得水系徽章,不可再次挑战！\n";
-
-    }
-          else if (bag->showGoodNum(2) == 0) {
-        cout << "你不具有挑战资格，请先挑战上一个道馆----橙华市的普通道馆";
-        Npc npc4 = Npc(3);
-        do {
-            Monster* foundMonster = Monsterbag->Find();
-            if (foundMonster) {
-                foundMonster->Fight(npc4.getFirstMonster());
-                npc4.removeFirstMoster(&npc4);
-            }
-            else {
-                break;
-            }
-        } while (!npc4.ifChallengeSucess(npc4));
-        if (npc4.ifChallengeSucess(npc4)) {
-            cout << "恭喜你挑战成功,这枚水系徽章是你的啦\n";
-            bag->editGoodNum(3, 1);
-
-        }
-        else {
-            cout << "挑战失败，继续努力再来吧\n";
-        }
-    }
-          else {
-        cout << "你将挑战琉璃岛的水系道馆\n";
-    }system("pause");
-    break;
+        break;
     }
 }
 
@@ -209,15 +206,21 @@ void Map::enterShop() {
     int choice;
     int number;
     int totalPrice;
-
-
+    Bag* bag = Bag::Getinstance();
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     while (true) {
         system("cls");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         cout << "///////////////////////////////////////////////////////////////" << endl;
         cout << "你进入了当地的宝可梦商店，这里可以购置许多有用的宝可梦装备\n";
+        cout << "货币数量:" << bag->showGoodNum(7) << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         cout << "1.治疗药水\n2.普通精灵球\n3.大师精灵球\n0.退出商店\n";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         cout << "///////////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         cout << "tip:输入对应ID和数量进行购买\n";
         while (true)
         {
@@ -227,7 +230,9 @@ void Map::enterShop() {
             {
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');
-                cout << "(输入了错误的序号，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             }
             else break;
         }
@@ -243,7 +248,9 @@ void Map::enterShop() {
                 {
                     cin.clear();
                     cin.ignore(INT_MAX, '\n');
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                     cout << "(输入了错误的数量，请重新输入)" << endl;
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
                 }
                 else break;
             }
@@ -255,7 +262,10 @@ void Map::enterShop() {
                 cout << "你现在一共有" << bag->showGoodNum(4) << "瓶治疗药水了" << endl;
             }
             else if (bag->showGoodNum(7) < totalPrice && number > 0)
+            {
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                 cout << "金币数量不足！" << endl;
+            }
             else if (number == 0)
                 cout << "(再想想吧)" << endl;
             else if (number < 0)
@@ -273,7 +283,9 @@ void Map::enterShop() {
                 {
                     cin.clear();
                     cin.ignore(INT_MAX, '\n');
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                     cout << "(输入了错误的数量，请重新输入)" << endl;
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
                 }
                 else break;
             }
@@ -285,7 +297,10 @@ void Map::enterShop() {
                 cout << "你现在一共有" << bag->showGoodNum(5) << "个普通精灵球了" << endl;
             }
             else if (bag->showGoodNum(7) < totalPrice && number > 0)
+            {
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                 cout << "金币数量不足！" << endl;
+            }
             else if (number == 0)
                 cout << "(再想想吧)" << endl;
             else if (number < 0)
@@ -303,7 +318,9 @@ void Map::enterShop() {
                 {
                     cin.clear();
                     cin.ignore(INT_MAX, '\n');
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                     cout << "(输入了错误的数量，请重新输入)" << endl;
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
                 }
                 else break;
             }
@@ -312,10 +329,13 @@ void Map::enterShop() {
             {
                 bag->editGoodNum(7, -totalPrice);
                 bag->editGoodNum(6, number);//扣除金币并增加物品数量
-                cout << "你现在一共有" << bag->showGoodNum(5) << "个大师精灵球了" << endl;
+                cout << "你现在一共有" << bag->showGoodNum(6) << "个大师精灵球了" << endl;
             }
             else if (bag->showGoodNum(7) < totalPrice && number > 0)
+            {
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                 cout << "金币数量不足！" << endl;
+            }
             else if (number == 0)
                 cout << "(再想想吧)" << endl;
             else if (number < 0)
@@ -325,7 +345,9 @@ void Map::enterShop() {
         case 0:
             return;
         default:
-            cout << "输入了错误的序号，请重新输入";
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+            cout << "(输入了错误的数量，请重新输入)" << endl;
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             break;
 
         }
@@ -333,20 +355,29 @@ void Map::enterShop() {
     system("pause");
 }
 void Map::enterHospital() {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     MonsterBag* monsterBag = MonsterBag::Getinstance();
     int size = monsterBag->MonsterNum();
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
     for (int i = 0; i < size; i++) {
         Monster* currentMonster = monsterBag->Return(i);
         currentMonster->Recover();
         cout << currentMonster->Show_Name() << " 已经恢复健康" << endl;
     }
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
     cout << "你的宝可梦都已恢复健康\n";
     system("pause");
 }
 void Map::goToOtherCity(int& currentLocationIndex, string& currentLocation)
 {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
     std::cout << "//你现在处于：" << currentLocation << " //\n";
+
     showAvailableCities(currentLocationIndex);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
     cout << "0.我不想走了" << endl;
     int choice;
     while (true)
@@ -357,7 +388,9 @@ void Map::goToOtherCity(int& currentLocationIndex, string& currentLocation)
         {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-            cout << "(输入了错误的序号，请重新输入)" << endl;
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+            cout << "(输入了错误的数量，请重新输入)" << endl;
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         }
         else break;
     }
@@ -381,17 +414,23 @@ void Map::goToOtherCity(int& currentLocationIndex, string& currentLocation)
 
 void Map::exploreWilderness()
 {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     while (true)
     {
         system("cls");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         cout << "///////////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         std::cout << "//请选择野外难度等级//\n";
         std::cout << "1: 等级1~20" << endl;
         std::cout << "2: 等级21~40" << endl;
         std::cout << "3: 等级41~60" << endl;
         std::cout << "4: 等级61~80" << endl;
         cout << "0:返回" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         cout << "///////////////////////////////////////////////////////////////" << endl;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         int choice;
         while (true)
         {
@@ -401,7 +440,9 @@ void Map::exploreWilderness()
             {
                 cin.clear();
                 cin.ignore(INT_MAX, '\n');
-                cout << "(输入了错误的序号，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
             }
             else break;
         }
@@ -425,19 +466,36 @@ void Map::exploreWilderness()
 
 
 void Map::exploreWildness(int level) {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     while (true)
     {
         system("cls");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
         std::cout << "//有野生的宝可梦在附近出没//\n";
         std::cout << "///////////////////////////////////////////////////////////////////////////////////\n";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         std::cout << "请输入你想要进行的操作：\n";
         std::cout << "1. 探索野外\n";
         std::cout << "2. 离开\n";
 
         int choice;
         std::cout << "请输入你的选择：";
-        std::cin >> choice;
+        while (true)
+        {
+            cout << ":";
+            cin >> choice;
+            if (cin.fail() || choice < 1 || choice>2)
+            {
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                cout << "(输入了错误的数量，请重新输入)" << endl;
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+            }
+            else break;
+        }
         switch (choice)
         {
         case 1:
@@ -510,6 +568,8 @@ void Map::exploreWildness(int level) {
     }
 }
 void Map::explore(int percent) {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     Bag* bp = Bag::Getinstance();
     switch (percent)
     {
@@ -528,6 +588,7 @@ void Map::explore(int percent) {
     case 12:
     case 13:
     case 14:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         std::cout << "你努力的搜索，不放过一草一木，但这里安静的出奇，什么都没有。\n";
         break;
     case 15:
@@ -535,16 +596,19 @@ void Map::explore(int percent) {
     case 17:
     case 18:
     case 19:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         std::cout << "在草丛中发现一瓶治疗药水。\n";
         bp->editGoodNum(4, 1);
         break;
     case 20:
     case 21:
     case 22:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         std::cout << "捡到一个普通精灵球。\n";
         bp->editGoodNum(5, 1);
         break;
     case 23:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         std::cout << "鸿运当头！在野外宝箱中开出大师精灵球！\n";
         bp->editGoodNum(6, 1);
         break;
@@ -554,6 +618,7 @@ void Map::explore(int percent) {
     case 27:
     case 28:
     case 29:
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         int money = rand() % 20 + 10;
         std::cout << "在草丛中发现一袋代币，打开后共有" << money << "枚。\n";
         bp->editGoodNum(7, money);
@@ -563,15 +628,21 @@ void Map::explore(int percent) {
 
 void Map::Meet(int num)
 {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     int newlevel = rand() % 20 + num * 20 + 1;
     int newmonster = rand() % 50;
     Monster enemy(newmonster, newlevel);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
     cout << "//////////////////////////////////////////////////////////" << endl;
     cout << "///" << "  一只lv." << enemy.CURLevel() << "的" << enemy.Show_Name() << "向你挑衅" << endl;
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
     cout << "///  请选择 :" << endl;
     cout << "///  1: 战斗" << endl;
     cout << "///  2: 逃跑" << endl;
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
     cout << "//////////////////////////////////////////////////////////" << endl;
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
     int n;
     while (true)
     {
@@ -600,6 +671,7 @@ void Map::Meet(int num)
         }
         else
         {
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
             cout << "(背包内的宝可梦已经全部重伤无法战斗，请疗伤后再来探索吧)" << endl;
             system("pause");
         }
@@ -614,37 +686,50 @@ void Map::Meet(int num)
 }
 
 void Map::showAvailableCities(int currentLocationIndex) {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     if (currentLocationIndex == 1) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         cout << "可前往的城市：\n1.斧炎镇 \n2.琉璃岛" << endl;
     }
     else if (currentLocationIndex == 2) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         cout << "可前往的城市：\n1.紫瑾市 \n2.橙华市" << endl;
     }
     else if (currentLocationIndex == 3) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         cout << "可前往的城市：\n1.斧炎镇 \n2.琉璃岛" << endl;
     }
     else if (currentLocationIndex == 4) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
         cout << "可前往的城市：\n1.紫瑾市 \n2.橙华市" << endl;
     }
 
 }
 void Map::changeLocation(int newLocationIndex) {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     if (newLocationIndex == 1) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         currentLocation = cities[0].name;
         cout << "你已经到达" << currentLocation << endl;
     }
     else if (newLocationIndex == 2) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         currentLocation = cities[1].name;
         cout << "你已经到达" << currentLocation << endl;
     }
     else if (newLocationIndex == 3) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         currentLocation = cities[2].name;
         cout << "你已经到达" << currentLocation << endl;
     }
     else if (newLocationIndex == 4) {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         currentLocation = cities[3].name;
         cout << "你已经到达" << currentLocation << endl;
     }
+    currentLocationIndex = newLocationIndex;
 }
 void Map::visitLocation(int i)//暂废
 {

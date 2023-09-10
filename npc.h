@@ -4,12 +4,12 @@
 
 #include<string>
 #include<iostream>
-#include"monsterbag.h"
 #include<vector>
 #include"map.h"
 #include"Bag.h"
 #include"Goods.h"
 #include"monsters.h"
+#include"monsterbag.h"
 
 using namespace std;
 class Npc {
@@ -34,7 +34,7 @@ private:
 	int NpcId;      //npc序号
 	string NpcDesc;     //npc描述
 	int isdefeated;  //npc是否被打败(1被打败/0未击败)
-	vector<Monster>gymBossMonsters;//携带宝可梦 
+	vector<Monster>gymBossMonsters;//道馆要挑战的宝可梦 
 	vector<string>TalkDialog;//对话文本
 	vector<string>ChallengeDialog;//挑战对话文本
 };

@@ -10,7 +10,7 @@
 //using namespace Map;
 using namespace std;
 Bag* bag = Bag::Getinstance();
-Map::Map() : currentLocation("紫瑾市"), currentLocationIndex(1), gymBadges(0) {
+Map::Map() : currentLocation("紫瑾市"), currentLocationIndex(1) {
     cities[0] = { 1,"紫瑾市" };
     cities[1] = { 2,"斧炎镇" };
     cities[2] = { 3,"橙华市" };
@@ -79,7 +79,6 @@ void Map::showMap() {
         if (choice == 0)break;
     }
 }
-
 void Map::challengeGym(int currentLocationIndex)
 {
     MonsterBag* Monsterbag = MonsterBag::Getinstance();
@@ -614,10 +613,6 @@ void Map::Meet(int num)
     }
 }
 
-
-void Map::battleAndWinBadge() {
-
-}
 void Map::showAvailableCities(int currentLocationIndex) {
     if (currentLocationIndex == 1) {
         cout << "可前往的城市：\n1.斧炎镇 \n2.琉璃岛" << endl;

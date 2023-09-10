@@ -14,17 +14,14 @@ Monster* Npc::getFirstMonster()
 }
 
 
-void Npc::removeFirstMoster()
+void Npc::removeFirstMoster(Npc*npc)
 {
-	if ( gymBossMonsters[0].CURValue() == 0) {
-		gymBossMonsters.erase(gymBossMonsters.begin());
+		npc->gymBossMonsters.erase(gymBossMonsters.begin());
 		
 	}
 
-}
-bool Npc::ifChallengeSucess(int i) {
-	if (Npc(i).gymBossMonsters.empty())return 1;
-	else return 0;
+bool Npc::ifChallengeSucess(Npc npc) {
+	return npc.gymBossMonsters.empty();
 
 }
 int Npc::getMonstersCount() {

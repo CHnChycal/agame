@@ -10,7 +10,7 @@
 //using namespace Map;
 using namespace std;
 Bag* bag = Bag::Getinstance();
-Map::Map() : currentLocation("紫瑾市"), currentLocationIndex(1), gymBadges(0) {
+Map::Map() : currentLocation("紫瑾市"), currentLocationIndex(1) {
     cities[0] = { 1,"紫瑾市" };
     cities[1] = { 2,"斧炎镇" };
     cities[2] = { 3,"橙华市" };
@@ -79,7 +79,6 @@ void Map::showMap() {
         if (choice == 0)break;
     }
 }
-
 void Map::challengeGym(int currentLocationIndex)
 {
     MonsterBag* Monsterbag = MonsterBag::Getinstance();
@@ -95,13 +94,13 @@ void Map::challengeGym(int currentLocationIndex)
                 Monster* foundMonster = Monsterbag->Find();
                 if (foundMonster) {
                     foundMonster->Fight(npc1.getFirstMonster());
-                    npc1.removeFirstMoster();
+                    npc1.removeFirstMoster(&npc1);
                 }
                 else {
-                    break;  
+                    break;
                 }
-            } while (!npc1.ifChallengeSucess(0));
-            if (npc1.ifChallengeSucess(0)) {
+            } while (!npc1.ifChallengeSucess(npc1));
+            if (npc1.ifChallengeSucess(npc1)) {
                 cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
                 bag->editGoodNum(0, 1);
 
@@ -124,13 +123,13 @@ void Map::challengeGym(int currentLocationIndex)
             Monster* foundMonster = Monsterbag->Find();
             if (foundMonster) {
                 foundMonster->Fight(npc2.getFirstMonster());
-                npc2.removeFirstMoster();
+                npc2.removeFirstMoster(&npc2);
             }
             else {
                 break;
             }
-        } while (!npc2.ifChallengeSucess(0));
-        if (npc2.ifChallengeSucess(1)) {
+        } while (!npc2.ifChallengeSucess(npc2));
+        if (npc2.ifChallengeSucess(npc2)) {
             cout << "恭喜你挑战成功,这枚火系徽章是你的啦\n";
             bag->editGoodNum(1, 1);
 
@@ -154,13 +153,14 @@ void Map::challengeGym(int currentLocationIndex)
             Monster* foundMonster = Monsterbag->Find();
             if (foundMonster) {
                 foundMonster->Fight(npc3.getFirstMonster());
-                npc3.removeFirstMoster();
+                npc3.removeFirstMoster(&npc3);
             }
             else {
                 break;
             }
-        } while (!npc3.ifChallengeSucess(0) );
-        if (npc3.ifChallengeSucess(2)) {
+        } while (!npc3.ifChallengeSucess(npc3));
+        
+        if (npc3.ifChallengeSucess(npc3)) {
             cout << "恭喜你挑战成功,这枚普通系徽章是你的啦\n";
             bag->editGoodNum(2, 1);
 
@@ -181,13 +181,13 @@ void Map::challengeGym(int currentLocationIndex)
             Monster* foundMonster = Monsterbag->Find();
             if (foundMonster) {
                 foundMonster->Fight(npc4.getFirstMonster());
-                npc4.removeFirstMoster();
+                npc4.removeFirstMoster(&npc4);
             }
             else {
                 break;
             }
-        } while (!npc4.ifChallengeSucess(0));
-        if (npc4.ifChallengeSucess(1)) {
+        } while (!npc4.ifChallengeSucess(npc4));
+        if (npc4.ifChallengeSucess(npc4)) {
             cout << "恭喜你挑战成功,这枚水系徽章是你的啦\n";
             bag->editGoodNum(3, 1);
 
@@ -613,10 +613,6 @@ void Map::Meet(int num)
     }
 }
 
-
-void Map::battleAndWinBadge() {
-
-}
 void Map::showAvailableCities(int currentLocationIndex) {
     if (currentLocationIndex == 1) {
         cout << "可前往的城市：\n1.斧炎镇 \n2.琉璃岛" << endl;

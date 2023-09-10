@@ -95,13 +95,13 @@ void Map::challengeGym(int currentLocationIndex)
                 Monster* foundMonster = Monsterbag->Find();
                 if (foundMonster) {
                     foundMonster->Fight(npc1.getFirstMonster());
-                    npc1.removeFirstMoster();
+                    npc1.removeFirstMoster(&npc1);
                 }
                 else {
                     break;
                 }
-            } while (!npc1.ifChallengeSucess(0));
-            if (npc1.ifChallengeSucess(0)) {
+            } while (!npc1.ifChallengeSucess(npc1));
+            if (npc1.ifChallengeSucess(npc1)) {
                 cout << "恭喜你挑战成功,这枚电系徽章是你的啦\n";
                 bag->editGoodNum(0, 1);
 
@@ -124,13 +124,13 @@ void Map::challengeGym(int currentLocationIndex)
             Monster* foundMonster = Monsterbag->Find();
             if (foundMonster) {
                 foundMonster->Fight(npc2.getFirstMonster());
-                npc2.removeFirstMoster();
+                npc2.removeFirstMoster(&npc2);
             }
             else {
                 break;
             }
-        } while (!npc2.ifChallengeSucess(0));
-        if (npc2.ifChallengeSucess(1)) {
+        } while (!npc2.ifChallengeSucess(npc2));
+        if (npc2.ifChallengeSucess(npc2)) {
             cout << "恭喜你挑战成功,这枚火系徽章是你的啦\n";
             bag->editGoodNum(1, 1);
 
@@ -154,14 +154,14 @@ void Map::challengeGym(int currentLocationIndex)
             Monster* foundMonster = Monsterbag->Find();
             if (foundMonster) {
                 foundMonster->Fight(npc3.getFirstMonster());
-                npc3.removeFirstMoster();
+                npc3.removeFirstMoster(&npc3);
             }
             else {
                 break;
             }
-        } while (!npc3.ifChallengeSucess(2));
+        } while (!npc3.ifChallengeSucess(npc3));
         
-        if (npc3.ifChallengeSucess(2)) {
+        if (npc3.ifChallengeSucess(npc3)) {
             cout << "恭喜你挑战成功,这枚普通系徽章是你的啦\n";
             bag->editGoodNum(2, 1);
 
@@ -182,13 +182,13 @@ void Map::challengeGym(int currentLocationIndex)
             Monster* foundMonster = Monsterbag->Find();
             if (foundMonster) {
                 foundMonster->Fight(npc4.getFirstMonster());
-                npc4.removeFirstMoster();
+                npc4.removeFirstMoster(&npc4);
             }
             else {
                 break;
             }
-        } while (!npc4.ifChallengeSucess(0));
-        if (npc4.ifChallengeSucess(3)) {
+        } while (!npc4.ifChallengeSucess(npc4));
+        if (npc4.ifChallengeSucess(npc4)) {
             cout << "恭喜你挑战成功,这枚水系徽章是你的啦\n";
             bag->editGoodNum(3, 1);
 

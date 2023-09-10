@@ -5,19 +5,20 @@
 using namespace std;
 Monster* Npc::getFirstMonster()
 {
-	while (!gymBossMonsters.empty()) {
-		removeFirstMoster();
+	if(!gymBossMonsters.empty()) {
+		
 		return &gymBossMonsters[0];
 
 	}
-	return nullptr;
+	else return nullptr;
 }
 
 
 void Npc::removeFirstMoster()
 {
-	if (!gymBossMonsters.empty() && gymBossMonsters[0].CURValue() == 0) {
+	if ( gymBossMonsters[0].CURValue() == 0) {
 		gymBossMonsters.erase(gymBossMonsters.begin());
+		
 	}
 
 }
@@ -58,7 +59,7 @@ void Npc::ShowNpc(int currentLocationIndex) {
 	cout << "NpcÏêÇé£º" << Npc(currentLocationIndex).getNpcDesc() << endl;
 
 }
-Npc::Npc(int Id) {
+Npc::Npc(  int Id) {
 	switch (Id) {
 	case 0:
 		NpcName = "ÌúÐý";

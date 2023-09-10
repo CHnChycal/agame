@@ -455,33 +455,41 @@ void Menu::Talk()
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			cout << i+1 <<"." << npcs->Return(i + 4)->getNpcName() << endl;
+			cout << i+1 <<"." << npcs->Return(i + 4)->getNpcName() <<" " << npcs->Return(i + 4)->getNpcDesc() << endl;
 			num++;
 		}
+		cout << 3 << "." << npcs->Return(0)->getNpcName() << " " << npcs->Return(0)->getNpcDesc() << endl;
+		num++;
 	}
 	else if (map.showIndex() == 2)
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			cout << i + 1 << "." << npcs->Return(i + 6)->getNpcName() << endl;
+			cout << i + 1 << "." << npcs->Return(i + 6)->getNpcName() << " " << npcs->Return(i + 4)->getNpcDesc() << endl;
 			num++;
 		}
+		cout << 3 << "." << npcs->Return(1)->getNpcName() << " " << npcs->Return(1)->getNpcDesc() << endl;
+		num++;
 	}
 	else if (map.showIndex() == 3)
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			cout << i + 1 << "." << npcs->Return(i + 8)->getNpcName() << endl;
+			cout << i + 1 << "." << npcs->Return(i + 8)->getNpcName() << " " << npcs->Return(i + 4)->getNpcDesc() << endl;
 			num++;
 		}
+		cout << 3 << "." << npcs->Return(2)->getNpcName() << " " << npcs->Return(2)->getNpcDesc() << endl;
+		num++;
 	}
 	else if (map.showIndex() == 4)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			cout << i + 1 << "." << npcs->Return(i + 10)->getNpcName() << endl;
+			cout << i + 1 << "." << npcs->Return(i + 10)->getNpcName() << " " << npcs->Return(i + 4)->getNpcDesc() << endl;
 			num++;
 		}
+		cout << 4 << "." << npcs->Return(3)->getNpcName() << " " << npcs->Return(3)->getNpcDesc() << endl;
+		num++;
 	}
 	cout << "/////////////////////////////////////////////////////////" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
@@ -504,6 +512,7 @@ void Menu::Talk()
 	case 0:
 		return;
 	case 1:
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 		cout << "(请选择想要交谈的对象)" << endl;
 		while (true)
 		{
@@ -517,9 +526,11 @@ void Menu::Talk()
 			}
 			else break;
 		}
-		npcs->Return(map.showIndex() * 2 + 1 + _choice)->npctalk(player);
+		if(_choice!=num)npcs->Return(map.showIndex() * 2 + 1 + _choice)->npctalk(player);
+		else npcs->Return(map.showIndex()-1)->npctalk(player);
 		break;
 	case 2:
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
 		cout << "(请选择想要战斗的对象)" << endl;
 		while (true)
 		{
@@ -533,7 +544,9 @@ void Menu::Talk()
 			}
 			else break;
 		}
-		npcs->Return(map.showIndex() * 2 + 1 + _choice)->npcFight();
+		if (_choice != num)npcs->Return(map.showIndex() * 2 + 1 + _choice)->npcFight();
+		
+		else { SetConsoleTextAttribute(hConsole, FOREGROUND_RED); cout << "(道馆馆主只可以在道馆内挑战！)" << endl; system("pause"); }
 		break;
 	}
 }

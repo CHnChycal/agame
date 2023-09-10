@@ -92,12 +92,13 @@ void Map::challengeGym(int currentLocationIndex)
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     MonsterBag* Monsterbag = MonsterBag::Getinstance();
     Npcs* npcs = Npcs::Getinstance();
+    Bag* bp = Bag::Getinstance();
     int choice;
     switch (currentLocationIndex) {
     case 1:
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
         cout << "/////////////////////////////////////////////////////////" << endl;
-        cout << "(你将要挑战紫瑾市的火系道馆,道馆馆主为铁旋，推荐宝可梦等级15+)";
+        cout << "(你将要挑战紫瑾市的电系道馆,道馆馆主为铁旋，推荐宝可梦等级15+)";
         cout << "/////////////////////////////////////////////////////////" << endl;
         cout << "1.进入对战\n0.退出道馆" << endl;
         while (true)
@@ -120,81 +121,106 @@ void Map::challengeGym(int currentLocationIndex)
         }
         break;
     case 2:
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
-        cout << "/////////////////////////////////////////////////////////" << endl;
-        cout << "(你将要挑战斧炎镇的电系道馆,道馆馆主为亚莎，推荐宝可梦等级20+)";
-        cout << "/////////////////////////////////////////////////////////" << endl;
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
-        cout << "1.进入对战\n0.退出道馆" << endl;
-        while (true)
-        {
-            cout << ":";
-            cin >> choice;
-            if (cin.fail() || choice < 0 || choice>1)
-            {
-                cin.clear();
-                cin.ignore(INT_MAX, '\n');
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-                cout << "(输入了错误的数量，请重新输入)" << endl;
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
-            }
-            else break;
-        }
-        if (choice == 1)
-        {
-            npcs->Return(1)->npcFight();
-        }
+
+	if(bp->showGoodNum(0)==1){
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+		cout << "/////////////////////////////////////////////////////////" << endl;
+		cout << "(你将要挑战斧炎镇的火系道馆,道馆馆主为亚莎，推荐宝可梦等级20+)";
+		cout << "/////////////////////////////////////////////////////////" << endl;
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+		cout << "1.进入对战\n0.退出道馆" << endl;
+		while (true)
+		{
+			cout << ":";
+			cin >> choice;
+			if (cin.fail() || choice < 0 || choice>1)
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+				cout << "(输入了错误的数量，请重新输入)" << endl;
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+			}
+			else break;
+		}
+		if (choice == 1)
+		{
+			npcs->Return(1)->npcFight();
+		}
+    }
+    else
+    {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        cout << "(未获得紫瑾市道馆徽章，请击败紫瑾市馆主后再来尝试)" << endl;
+        system("pause");
+    }
         break;
     case 3:
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
-        cout << "/////////////////////////////////////////////////////////" << endl;
-        cout << "(你将要挑战橙华市的一般系道馆,道馆馆主为千里，推荐宝可梦等级25+)";
-        cout << "/////////////////////////////////////////////////////////" << endl;
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
-        cout << "1.进入对战\n0.退出道馆" << endl;
-        while (true)
-        {
-            cout << ":";
-            cin >> choice;
-            if (cin.fail() || choice < 0 || choice>1)
+        if (bp->showGoodNum(1) == 1) {
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+            cout << "/////////////////////////////////////////////////////////" << endl;
+            cout << "(你将要挑战橙华市的一般系道馆,道馆馆主为千里，推荐宝可梦等级25+)";
+            cout << "/////////////////////////////////////////////////////////" << endl;
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+            cout << "1.进入对战\n0.退出道馆" << endl;
+            while (true)
             {
-                cin.clear();
-                cin.ignore(INT_MAX, '\n');
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-                cout << "(输入了错误的数量，请重新输入)" << endl;
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+                cout << ":";
+                cin >> choice;
+                if (cin.fail() || choice < 0 || choice>1)
+                {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                    cout << "(输入了错误的数量，请重新输入)" << endl;
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+                }
+                else break;
             }
-            else break;
+            if (choice == 1)
+            {
+                npcs->Return(2)->npcFight();
+            }
         }
-        if (choice == 1)
+        else
         {
-            npcs->Return(2)->npcFight();
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+            cout << "(未获得斧炎镇道馆徽章，请击败斧炎镇馆主后再来尝试)" << endl;
+            system("pause");
         }
         break;
     case 4:
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
-        cout << "/////////////////////////////////////////////////////////" << endl;
-        cout << "(你将要挑战琉璃岛的水系道馆,道馆馆主为米可莉，推荐宝可梦等级30+)";
-        cout << "/////////////////////////////////////////////////////////" << endl;
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
-        cout << "1.进入对战\n0.退出道馆" << endl;
-        while (true)
-        {
-            cout << ":";
-            cin >> choice;
-            if (cin.fail() || choice < 0 || choice>1)
+        if (bp->showGoodNum(2) == 1) {
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+            cout << "/////////////////////////////////////////////////////////" << endl;
+            cout << "(你将要挑战琉璃岛的水系道馆,道馆馆主为米可莉，推荐宝可梦等级30+)";
+            cout << "/////////////////////////////////////////////////////////" << endl;
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+            cout << "1.进入对战\n0.退出道馆" << endl;
+            while (true)
             {
-                cin.clear();
-                cin.ignore(INT_MAX, '\n');
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-                cout << "(输入了错误的数量，请重新输入)" << endl;
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+                cout << ":";
+                cin >> choice;
+                if (cin.fail() || choice < 0 || choice>1)
+                {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                    cout << "(输入了错误的数量，请重新输入)" << endl;
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+                }
+                else break;
             }
-            else break;
+            if (choice == 1)
+            {
+                npcs->Return(3)->npcFight();
+            }
         }
-        if (choice == 1)
+        else
         {
-            npcs->Return(3)->npcFight();
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+            cout << "(未获得橙华市道馆徽章，请击败橙华市馆主后再来尝试)" << endl;
+            system("pause");
         }
         break;
     }

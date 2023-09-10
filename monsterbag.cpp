@@ -97,6 +97,17 @@ int MonsterBag::MonsterNum()
 	return bag.size();
 }
 
+void MonsterBag::showMonster()
+{
+	int size = bag.size();
+	SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
+	cout << "背包存放的宝可梦：" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << i + 1 << ". " << bag[i].Show_Name() << endl;
+	}
+}
+
 void MonsterBag::Add(Monster monster)
 {
 	if (monster.HasCaught())
@@ -150,7 +161,7 @@ void MonsterBag::Release()
 		{
 			bag.erase(bag.begin() + k - 1);
 			SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN);
-			cout<<bag[k-1].Show_Name() << "离开了你，希望它能够找到属于自己的未来" << endl;
+			cout<<"宝可梦离开了你，希望它能够找到属于自己的未来" << endl;
 		}
 		else
 		{

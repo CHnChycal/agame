@@ -625,9 +625,9 @@ void Monster::Fight(Monster* enemy)
 	system("cls");
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	cout << this->Mname << "(lv." << this->CurLevel << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")开始了战斗！" << endl;
+	cout << this->Mname << "(lv." << this->CurLevel << ")" << "(" << this->Mnature << ")" << "与" << enemy->Mname << "lv.(" << enemy->CurLevel << ")" << "lv.(" << enemy->Mnature << ")"<<"开始了战斗！" << endl;
 	cout << "//////////////////////////////////////////////////////////" << endl;
-	
+	system("pause");
 	int n;
 	int turn = 1;
 

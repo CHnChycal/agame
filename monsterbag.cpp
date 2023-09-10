@@ -40,11 +40,7 @@ void MonsterBag::Query()
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
 			SetConsoleColor(FOREGROUND_RED);
-			cout << "//////////////////////////////////////////////////////////" << endl;
-			cout << "///                                                    ///" << endl;
-			cout << "///   请选择输入 0~3 之间的一个数！                    ///" << endl;
-			cout << "///                                                    ///" << endl;
-			cout << "//////////////////////////////////////////////////////////" << endl;
+			cout << "输入错误！请重新输入" << endl;
 		}
 		else break;
 	}

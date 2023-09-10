@@ -29,6 +29,8 @@ public:
 	void UseBall(Monster* enemy);//使用精灵球捕捉
 	int Check(Monster enemy);//判断属性优劣势
 
+	void Exppp(int exp);//增加宝可梦经验
+
 	void M_Attack(Monster* enemy);
 	void M_Attacked(Monster* enemy);
 	void M_Denfense();

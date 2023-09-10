@@ -988,36 +988,50 @@ void Monster::M_Attack(Monster* enemy)
 	if (enemy->CurValue <= 0)
 	{
 		enemy->isAlive = false;
-		SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 		cout << enemy->Mname << "体力不支，倒下了!" << endl;
 		this->GainCoin(enemy);
-		this->CurExper += enemy->Experience;
-		if (this->CurExper >= this->MaxExper && this->CurLevel < this->MaxLevel)//经验足够且未达最高等级
-		{
-			this->CurLevel += 1;
-			this->CurExper = 0;
-			this->MaxExper += 20;
-			this->MaxValue += 5;
-			this->Attack += 2;
-			this->Defense += 2;
-			this->Speed += 1;
-			//升级以后各项属性增加
-			this->CurValue = MaxValue;
-			//升级以后恢复状态
-			SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
-			cout << this->Mname << "升到了" << this->CurLevel << "级！各项属性获得了提升" << endl;
-			cout << this->Mname << "当前的属性为：" << endl;
-			this->Show_Detail();
-		}
-		else//未达升级条件则显示当前经验
-		{
-			SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
-			cout << this->Mname << "获得了" << enemy->Experience << "点经验，当前经验" << this->CurExper << " / " << this->MaxExper << endl;
-		}
+		this->Exppp(enemy->Experience);
 	}
-
 	//返回场景***************************************************************************
 
+}
+
+void Monster::Exppp(int exp)
+{
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	this->CurExper += exp;
+	int improve = 0;
+	while (this->CurExper >= this->MaxExper)
+	{
+		this->CurExper -= this->MaxExper;
+
+		this->CurLevel += 1;
+		this->MaxExper += 20;
+		this->MaxValue += 5;
+		this->Attack += 2;
+		this->Defense += 2;
+		this->Speed += 1;
+
+		improve++;
+		//升级以后各项属性增加
+		this->CurValue = MaxValue;
+		//升级以后恢复状态
+	}
+	if (improve > 0)
+	{
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+		cout << this->Mname << "升到了" << this->CurLevel << "级！各项属性获得了提升" << endl;
+		cout << this->Mname << "当前的属性为：" << endl;
+		this->Show_Detail();
+	}
+	else
+	{
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
+		cout << this->Mname << "获得了" << exp << "点经验，当前经验" << this->CurExper << " / " << this->MaxExper << endl;
+	}
 }
 
 void Monster::M_Attacked(Monster* enemy)

@@ -507,7 +507,7 @@ void Map::exploreWildness(int level) {
         std::cout << "2. 离开\n";
 
         int choice;
-        std::cout << "请输入你的选择：";
+        std::cout << "请输入你的选择";
         while (true)
         {
             cout << ":";

@@ -895,7 +895,7 @@ void Monster::Fight(Monster* enemy)
 			{
 				SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 				cout << this->Mname << "的防御力提升状态消失！防御力恢复" << endl;
-				this->Defense /= 2;
+				this->Defense = this->BasDefense + this->CurLevel * 2;
 			}
 			defense_up_turn -= 1;
 		}
@@ -1213,7 +1213,7 @@ void Monster::M_Attacked(Monster* enemy)
 void Monster::M_Denfense()
 {
 	cout << this->Mname << "进行了防御，防御力提升两回合！" << endl;
-	this->Defense += this->Defense;
+	this->Defense = (this->CurLevel * 2 + this->BasDefense) * 2;
 	this->defense_up_turn += 2;
 }
 

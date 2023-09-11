@@ -202,6 +202,7 @@ int Menu::Gamerunning()//游戏运行界面
 			{
 				cout << npcs->Return(i + 4)->getNpcName() << " ";
 			}
+			cout << npcs->Return(0)->getNpcName();
 		}
 		else if (map.showIndex() == 2)
 		{
@@ -209,6 +210,7 @@ int Menu::Gamerunning()//游戏运行界面
 			{
 				cout << npcs->Return(i + 6)->getNpcName() << " ";
 			}
+			cout << npcs->Return(1)->getNpcName();
 		}
 		else if (map.showIndex() == 3)
 		{
@@ -216,6 +218,7 @@ int Menu::Gamerunning()//游戏运行界面
 			{
 				cout << npcs->Return(i + 8)->getNpcName() << " ";
 			}
+			cout << npcs->Return(2)->getNpcName();
 		}
 		else if (map.showIndex() == 4)
 		{
@@ -223,6 +226,7 @@ int Menu::Gamerunning()//游戏运行界面
 			{
 				cout << npcs->Return(i + 10)->getNpcName() << " ";
 			}
+			cout << npcs->Return(3)->getNpcName();
 		}
 		cout << endl;
 		cout << player.Showname() << " 训练师您好，今天想要做些什么呢?" << endl;

@@ -871,20 +871,30 @@ void Monster::Fight(Monster* enemy)
 			MonsterBag* bag = MonsterBag::Getinstance();
 			int size = bag->MonsterNum();
 			bag->showMonster();
-			cout << "请输入想选择的宝可梦：" << endl;
-			while (true)
-			{
-				cout << ":";
-				cin >> n;
-				if (cin.fail() || n < 1 || n > size+1)
+			while(true)
+			{ 
+				cout << "请输入想选择的宝可梦：" << endl;
+				while (true)
 				{
-					cin.clear();
-					cin.ignore(INT_MAX, '\n');
-					SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-					cout << "//////////////////////////////////////////////////////////" << endl;
-					cout << "输入错误！请重新输入" << endl;
+					cout << ":";
+					cin >> n;
+					if (cin.fail() || n < 1 || n > size + 1)
+					{
+						cin.clear();
+						cin.ignore(INT_MAX, '\n');
+						SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+						cout << "//////////////////////////////////////////////////////////" << endl;
+						cout << "输入错误！请重新输入" << endl;
+					}
+					else break;
 				}
-				else break;
+				if (bag->Return(n - 1)->isAlive == false)
+				{
+					cout << "(这只宝可梦已经重伤无法再战，请更换一只吧)" << endl;
+					system("pause");
+				}
+				else
+					break;
 			}
 			bag->Return(n-1)->Fight(enemy);
 		}

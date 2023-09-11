@@ -74,7 +74,6 @@ void MonsterBag::Query()
 	case 2:
 	{
 		this->Release();
-		system("pause");
 		break;
 	}
 	case 3:

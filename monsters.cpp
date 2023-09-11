@@ -608,6 +608,7 @@ void Monster::SetExper(int curexper)
 void Monster::SetValue(int curvalue)
 {
 	this->CurValue = curvalue;
+	if (curvalue == 0)isAlive = false;
 }
 void Monster::Recover()
 {

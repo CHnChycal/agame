@@ -558,6 +558,7 @@ void Menu::Talk()
 		else
 		{
 			cout << "(你的宝可梦已全部重伤，请疗伤后再来挑战吧)" << endl;
+			system("pause");
 		}
 	}
 }

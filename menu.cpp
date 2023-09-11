@@ -448,6 +448,7 @@ void Menu::Talk()
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Npcs* npcs = Npcs::Getinstance();
+	MonsterBag* mbp = MonsterBag::Getinstance();
 	system("cls");
 	int num=0;
 	int choice;
@@ -530,28 +531,34 @@ void Menu::Talk()
 			}
 			else break;
 		}
-		if(_choice!=num)npcs->Return(map.showIndex() * 2 + 1 + _choice)->npctalk(player);
-		else npcs->Return(map.showIndex()-1)->npctalk(player);
+		if (_choice != num)npcs->Return(map.showIndex() * 2 + 1 + _choice)->npctalk(player);
+		else npcs->Return(map.showIndex() - 1)->npctalk(player);
 		break;
 	case 2:
-		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
-		cout << "(请选择想要战斗的对象)" << endl;
-		while (true)
-		{
-			cout << ":";
-			cin >> _choice;
-			if (cin.fail() || _choice < 1 || _choice>num)
+		if (mbp->Find() != nullptr) {
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN);
+			cout << "(请选择想要战斗的对象)" << endl;
+			while (true)
 			{
-				cin.clear();
-				cin.ignore(INT_MAX, '\n');
-				cout << "(输入了错误的序号，请重新输入)" << endl;
+				cout << ":";
+				cin >> _choice;
+				if (cin.fail() || _choice < 1 || _choice>num)
+				{
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+					cout << "(输入了错误的序号，请重新输入)" << endl;
+				}
+				else break;
 			}
-			else break;
+			if (_choice != num)npcs->Return(map.showIndex() * 2 + 1 + _choice)->npcFight();
+
+			else { SetConsoleTextAttribute(hConsole, FOREGROUND_RED); cout << "(道馆馆主只可以在道馆内挑战！)" << endl; system("pause"); }
+			break;
 		}
-		if (_choice != num)npcs->Return(map.showIndex() * 2 + 1 + _choice)->npcFight();
-		
-		else { SetConsoleTextAttribute(hConsole, FOREGROUND_RED); cout << "(道馆馆主只可以在道馆内挑战！)" << endl; system("pause"); }
-		break;
+		else
+		{
+			cout << "(你的宝可梦已全部重伤，请疗伤后再来挑战吧)" << endl;
+		}
 	}
 }
 #endif

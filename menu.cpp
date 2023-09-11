@@ -469,7 +469,7 @@ void Menu::Talk()
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			cout << i + 1 << "." << npcs->Return(i + 6)->getNpcName() << " " << npcs->Return(i + 4)->getNpcDesc() << endl;
+			cout << i + 1 << "." << npcs->Return(i + 6)->getNpcName() << " " << npcs->Return(i + 6)->getNpcDesc() << endl;
 			num++;
 		}
 		cout << 3 << "." << npcs->Return(1)->getNpcName() << " " << npcs->Return(1)->getNpcDesc() << endl;
@@ -479,7 +479,7 @@ void Menu::Talk()
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			cout << i + 1 << "." << npcs->Return(i + 8)->getNpcName() << " " << npcs->Return(i + 4)->getNpcDesc() << endl;
+			cout << i + 1 << "." << npcs->Return(i + 8)->getNpcName() << " " << npcs->Return(i + 8)->getNpcDesc() << endl;
 			num++;
 		}
 		cout << 3 << "." << npcs->Return(2)->getNpcName() << " " << npcs->Return(2)->getNpcDesc() << endl;
@@ -489,7 +489,7 @@ void Menu::Talk()
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			cout << i + 1 << "." << npcs->Return(i + 10)->getNpcName() << " " << npcs->Return(i + 4)->getNpcDesc() << endl;
+			cout << i + 1 << "." << npcs->Return(i + 10)->getNpcName() << " " << npcs->Return(i + 10)->getNpcDesc() << endl;
 			num++;
 		}
 		cout << 4 << "." << npcs->Return(3)->getNpcName() << " " << npcs->Return(3)->getNpcDesc() << endl;

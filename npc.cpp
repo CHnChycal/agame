@@ -367,7 +367,7 @@ void Npc::npcFight()//Õ½¶·½»Ì¸
 			mbp->Return(i)->Exppp(reward[0]);
 			system("pause");
 		}
-		if (NpcId < 3)
+		if (NpcId <= 3)
 		{
 			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);
 			cout << "///////////////////////////////////////////////////////////////" << endl;
